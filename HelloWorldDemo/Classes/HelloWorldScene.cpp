@@ -21,57 +21,46 @@ Scene* HelloWorld::createScene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-    //////////////////////////////
-    // 1. super init first
     if ( !Layer::init() )
     {
         return false;
     }
     
-    auto visibleSize = Director::getInstance()->getVisibleSize();
+    Size wsize = Director::getInstance()->getWinSize();
+    setContentSize(wsize);
+//    auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
-
-    // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
-    
-    closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
-
-    // create menu, it's an autorelease object
+    auto closeItem = MenuItemImage::create("CloseNormal.png","CloseSelected.png",CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+    closeItem->setPosition(Vec2(50 ,50));
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
-
-    /////////////////////////////
-    // 3. add your codes below...
-
-    // add a label shows "Hello World"
-    // create and initialize a label
+//    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
+//    label->setPosition(Vec2(origin.x + visibleSize.width/2,origin.y + visibleSize.height - label->getContentSize().height));
+//    this->addChild(label, 1);
+//    auto sprite = Sprite::create("HelloWorld.png");
+//    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+//    this->addChild(sprite, 0);
     
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
+    _map = TMXTiledMap::create("image/tiled_test3.tmx");
+    Size size = _map->getContentSize();
+//    float scale = _map->getScale();
+//    _map->setPosition(0, 0);
+//    _map->setAnchorPoint(Point(0,0));
+    this->addChild(_map);
     
-    // position the label on the center of the screen
-    label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
-
-    // add the label as a child to this layer
-    this->addChild(label, 1);
-
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-
-    // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-
-    // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
+    //获取自定义属性
+    Value tValue = _map->getPropertiesForGID(10);
+    ValueMap tMap = tValue.asValueMap();
+    log("type1 = %s ", tMap.at("type1").asString().c_str());
+    
+    tValue = _map->getPropertiesForGID(30);
+    tMap = tValue.asValueMap();
+    log("type2 = %s ", tMap.at("type2").asString().c_str());
+    
+    int i=0;
+    i++;
     
     return true;
 }
@@ -91,5 +80,64 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     //EventCustom customEndEvent("game_scene_close_event");
     //_eventDispatcher->dispatchEvent(&customEndEvent);
     
+    
+}
+
+void HelloWorld::onEnter(){
+    Node::onEnter();
+    setTouchEnabled(true);
+    setTouchMode(kCCTouchesOneByOne);
+    
+}
+void HelloWorld::onExit(){
+    setTouchEnabled(false);
+    Node::onExit();
+}
+
+bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event){
+    //得到触摸点的坐标
+    Vec2 ptLocation = touch->getLocation();
+    
+    //ptLcocation -> 在tmx地图里的坐标
+    //获取地图中每个图块的大小
+    Size tileSize = _map->getTileSize();
+    
+    //获得地图中图块的个数
+    Size mapSize = _map->getMapSize();
+    
+    Vec2 ptInMap;
+    
+    //获取触摸点在地图中的坐标
+    ptInMap.y = mapSize.height * tileSize.height - ptLocation.y;
+    ptInMap.x = ptLocation.x;
+    
+    
+    //获取触摸点在窗口中的坐标
+    int tx = ptInMap.x / tileSize.width;
+    int ty = ptInMap.y / tileSize.height;
+    
+    //通过图层名称获取地图对象
+    TMXLayer* layer0 = _map->layerNamed("layer_0");
+    
+    //设置瓷砖的编号0表示隐藏瓷砖
+    layer0->setTileGID(9, Point(tx, ty));
+    layer0->removeTileAt(Point(5, 30));
+    
+    /////////////////////////////////////////遍历对象层中对象
+    TMXObjectGroup* objectGroup = _map->getObjectGroup("objLayer");
+    ValueVector object = objectGroup->getObjects();
+    
+    for (ValueVector::iterator it = object.begin(); it != object.end(); it++) {
+        Value obj = *it;
+        ValueMap map = obj.asValueMap();
+        log("x = %d y = %d", map.at("x").asInt(), map.at("y").asInt());
+    }
+    
+    return false;
+}
+void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event){
+    
+}
+void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event){
     
 }

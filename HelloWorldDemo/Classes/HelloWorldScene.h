@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 
+using namespace cocos2d;
+
 class HelloWorld : public cocos2d::Layer
 {
 public:
@@ -15,6 +17,15 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+    
+    void onEnter();
+    void onExit();
+    
+    bool onTouchBegan(Touch *touch, Event *unused_event);
+    void onTouchMoved(Touch *touch, Event *unused_event);
+    void onTouchEnded(Touch *touch, Event *unused_event);
+private:
+    TMXTiledMap* _map;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

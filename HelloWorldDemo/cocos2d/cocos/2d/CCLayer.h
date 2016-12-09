@@ -176,9 +176,11 @@ public:
     @js NA
     */
     CC_DEPRECATED_ATTRIBUTE bool isTouchEnabled() const;
-    CC_DEPRECATED_ATTRIBUTE void setTouchEnabled(bool value);
+//    CC_DEPRECATED_ATTRIBUTE
+    void setTouchEnabled(bool value);
     
-    CC_DEPRECATED_ATTRIBUTE virtual void setTouchMode(Touch::DispatchMode mode);
+//    CC_DEPRECATED_ATTRIBUTE
+    virtual void setTouchMode(Touch::DispatchMode mode);
     CC_DEPRECATED_ATTRIBUTE virtual Touch::DispatchMode getTouchMode() const;
 
     /** 

@@ -1,9 +1,7 @@
 #ifndef __HELLOWORLD_SCENE_H__
 #define __HELLOWORLD_SCENE_H__
 
-#include "cocos2d.h"
-
-using namespace cocos2d;
+#include "CommonHead.h"
 
 class HelloWorld : public cocos2d::Layer
 {

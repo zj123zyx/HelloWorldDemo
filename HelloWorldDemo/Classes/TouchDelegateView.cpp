@@ -8,6 +8,9 @@
 
 #include "TouchDelegateView.hpp"
 
+static float MaxMapScall=2;
+static float MinMapScall=0.5;
+
 bool TouchDelegateView::init(){
     bool ret = false;
     if(Layer::init()){
@@ -18,78 +21,115 @@ bool TouchDelegateView::init(){
 
 void TouchDelegateView::onEnter(){
     Layer::onEnter();
-    setTouchMode(Touch::DispatchMode::ALL_AT_ONCE);
-    setTouchEnabled(true);
+    listener = EventListenerTouchAllAtOnce::create();
+    listener->onTouchesBegan = CC_CALLBACK_2(TouchDelegateView::onTouchesBegan, this);
+    listener->onTouchesMoved = CC_CALLBACK_2(TouchDelegateView::onTouchesMoved, this);
+    listener->onTouchesEnded = CC_CALLBACK_2(TouchDelegateView::onTouchesEnded, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    m_isZoom = false;
+//    m_isScroll = false;
+    zoomDistance = 0;
+    scrollBeganPoint=Vec2(-1, -1);
 }
 void TouchDelegateView::onExit(){
-    setTouchEnabled(false);
+    _eventDispatcher->removeEventListener(listener);
     Layer::onExit();
 }
 
 void TouchDelegateView::onTouchesBegan(const std::vector<Touch*>& pTouches, Event *pEvent){
     CC_ASSERT(this->m_TargetNode);
-    m_fingerMap.clear();
-    for ( auto &item: pTouches ){
-        Touch* curTouch = dynamic_cast<Touch*>(item);
-        CC_ASSERT(curTouch);
-        if (m_fingerMap.size() <= 2) {
-            m_fingerMap[curTouch->getID()] = curTouch->getLocation();
-        }
-    }
-    if(m_fingerMap.size()==1){
-        
-    }else if (m_fingerMap.size()==2){
-        
+    if(pTouches.size()==1){
+        BeginScroll(dynamic_cast<Touch*>(pTouches[0]));
+    }else if (pTouches.size()==2){
+//        Point p1 = dynamic_cast<Touch*>(pTouches[0])->getLocation();
+//        Point p2 = dynamic_cast<Touch*>(pTouches[1])->getLocation();
+//        zoomDistance = p1.getDistance(p2);
+//        zoomScale = m_TargetNode->getScale();
+//        m_isZoom = true;
     }
 }
 void TouchDelegateView::onTouchesMoved(const std::vector<Touch*>& pTouches, Event *pEvent){
     CC_ASSERT(this->m_TargetNode);
-    if(m_fingerMap.size()==1){
-        
-//        auto tmpIt = pTouches.begin();
-//        while (tmpIt != pTouches.end()) {
-//            auto tmpTouch = dynamic_cast<CCTouch*>(*tmpIt);
-//            if (mFingerMap.find(tmpTouch->getID()) != mFingerMap.end()) {
-//                tmpTouches.push_back(tmpTouch);
-//            }
-//            ++tmpIt;
-//        }
-        
-//        auto fingerMapIt = m_fingerMap.begin();
-//        auto fingerMapTouch = dynamic_cast<Touch*>(fingerMapIt->second);
-//        
-        auto tmpIt = pTouches.begin();
-        auto tmpTouch = dynamic_cast<Touch*>(*tmpIt);
-        if(m_fingerMap.find(tmpTouch->getID())!=m_fingerMap.end()){
-            
-        }
-        
-//        OnScroll();
-    }else if (m_fingerMap.size()==2){
-        
+    if(pTouches.size()==1){
+        OnScroll(dynamic_cast<Touch*>(pTouches[0]));
+    }else if (pTouches.size()==2){
+        Point p1 = dynamic_cast<Touch*>(pTouches[0])->getLocation();
+        Point p2 = dynamic_cast<Touch*>(pTouches[1])->getLocation();
+        OnZoom(p1,p2);
     }
 }
 void TouchDelegateView::onTouchesEnded(const std::vector<Touch*>& pTouches, Event *pEvent){
     CC_ASSERT(this->m_TargetNode);
-    if(m_fingerMap.size()==1){
-        
-    }else if (m_fingerMap.size()==2){
+    if(pTouches.size()==1){
+        EndScroll(dynamic_cast<Touch*>(pTouches[0]));
+    }else if (pTouches.size()==2){
         
     }
+    m_isZoom = false;
+//    m_isScroll = false;
+    zoomDistance = 0;
+    scrollBeganPoint=Vec2(-1, -1);
 }
-void TouchDelegateView::onTouchesCancelled(const std::vector<Touch*>& pTouches, Event *pEvent){
-    onTouchesEnded(pTouches, pEvent);
-}
+
 void TouchDelegateView::setViewPortTarget(Node* target){
     m_TargetNode = target;
 }
+void TouchDelegateView::setTouchDelegate(TouchDelegate* delegate){
+    m_touchDelegate = delegate;
+}
 
 void TouchDelegateView::BeginScroll(Touch* touch){
-    
+    if(m_isZoom) return;
+    m_isTap=true;
 }
 void TouchDelegateView::OnScroll(Touch* touch){
-    
+    if(m_isZoom) return;
+    if(scrollBeganPoint==Vec2(-1, -1)){
+        scrollBeganPoint = touch->getLocation();
+    }
+    if(m_isTap==false || touch->getLocation().getDistance(scrollBeganPoint)>20){
+        Point curPoint = this->m_TargetNode->getPosition();
+        float moveX = touch->getLocation().x - scrollBeganPoint.x;
+        float moveY = touch->getLocation().y - scrollBeganPoint.y;
+        
+        float endX = curPoint.x+moveX;
+        float endY = curPoint.y+moveY;
+        if(m_TargetNode){//边界检测
+            Size mapSize = m_TargetNode->getContentSize();
+            Size winSize = Director::getInstance()->getWinSize();
+            endX = endX<0?endX:0;
+            endX = endX>(winSize.width-mapSize.width)?endX:(winSize.width-mapSize.width);
+            endY = endY<0?endY:0;
+            endY = endY>(winSize.height-mapSize.height)?endY:(winSize.height-mapSize.height);
+        }
+
+        Point endPoint = Vec2(endX,endY);
+        this->m_TargetNode->setPosition(endPoint);
+        scrollBeganPoint = touch->getLocation();
+        m_isTap=false;
+//        m_isScroll = true;
+    }
 }
 void TouchDelegateView::EndScroll(Touch* touch){
-    
+    if(m_isZoom) return;
+    if(m_isTap && m_touchDelegate){
+        m_touchDelegate->TapView(touch);
+    }
+}
+
+void TouchDelegateView::OnZoom(Point p1,Point p2){
+    m_isZoom = true;
+    m_isTap=false;
+    if(zoomDistance<=0){
+        zoomDistance = p1.getDistance(p2);
+        zoomScale = m_TargetNode->getScale();
+        return;
+    }
+    float distance = p1.getDistance(p2);
+    float scale = (distance/zoomDistance)*zoomScale;
+    Size mapSize = m_TargetNode->getContentSize();
+    float moveX = (scale-m_TargetNode->getScale())*mapSize.width;
+    float moveY = (scale-m_TargetNode->getScale())*mapSize.height;
+    m_TargetNode->setScale(scale);
+    m_TargetNode->setPosition(moveX, moveY);
 }

@@ -43,25 +43,27 @@ bool HelloWorld::init()
 //    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 //    this->addChild(sprite, 0);
     
-    _map = TMXTiledMap::create("image/tiled_test3.tmx");
+    _map = TMXTiledMap::create("image/tiled_test4.tmx");//tiled_test3
     Size size = _map->getContentSize();
 //    float scale = _map->getScale();
 //    _map->setPosition(0, 0);
 //    _map->setAnchorPoint(Point(0,0));
     this->addChild(_map);
     
-    //获取自定义属性
-    Value tValue = _map->getPropertiesForGID(10);
-    ValueMap tMap = tValue.asValueMap();
-    log("type1 = %s ", tMap.at("type1").asString().c_str());
+    m_touchDelegateView = TouchDelegateView::create();
+    m_touchDelegateView->setViewPortTarget(_map);
+    m_touchDelegateView->setTouchDelegate(this);
+    this->addChild(m_touchDelegateView);
     
-    tValue = _map->getPropertiesForGID(30);
-    tMap = tValue.asValueMap();
-    log("type2 = %s ", tMap.at("type2").asString().c_str());
-    
-    int i=0;
-    i++;
-    
+//    //获取自定义属性
+//    Value tValue = _map->getPropertiesForGID(10);
+//    ValueMap tMap = tValue.asValueMap();
+//    log("type1 = %s ", tMap.at("type1").asString().c_str());
+//    
+//    tValue = _map->getPropertiesForGID(30);
+//    tMap = tValue.asValueMap();
+//    log("type2 = %s ", tMap.at("type2").asString().c_str());
+//        
     return true;
 }
 
@@ -85,18 +87,29 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::onEnter(){
     Node::onEnter();
-    setTouchEnabled(true);
-    setTouchMode(kCCTouchesOneByOne);
+//    setTouchEnabled(true);
+//    setTouchMode(kCCTouchesOneByOne);
     
 }
 void HelloWorld::onExit(){
-    setTouchEnabled(false);
+//    setTouchEnabled(false);
     Node::onExit();
 }
 
-bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event){
+//bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event){
+//    return false;
+//}
+//void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event){
+//    
+//}
+//void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event){
+//    
+//}
+
+void HelloWorld::TapView(Touch* pTouch){
     //得到触摸点的坐标
-    Vec2 ptLocation = touch->getLocation();
+    Point mapPoint = _map->getPosition();
+    Vec2 ptLocation = pTouch->getLocation()-mapPoint;
     
     //ptLcocation -> 在tmx地图里的坐标
     //获取地图中每个图块的大小
@@ -121,23 +134,15 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event){
     
     //设置瓷砖的编号0表示隐藏瓷砖
     layer0->setTileGID(9, Point(tx, ty));
-    layer0->removeTileAt(Point(5, 30));
+//    layer0->removeTileAt(Point(5, 30));
     
     /////////////////////////////////////////遍历对象层中对象
-    TMXObjectGroup* objectGroup = _map->getObjectGroup("objLayer");
-    ValueVector object = objectGroup->getObjects();
-    
-    for (ValueVector::iterator it = object.begin(); it != object.end(); it++) {
-        Value obj = *it;
-        ValueMap map = obj.asValueMap();
-        log("x = %d y = %d", map.at("x").asInt(), map.at("y").asInt());
-    }
-    
-    return false;
-}
-void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event){
-    
-}
-void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event){
-    
+//    TMXObjectGroup* objectGroup = _map->getObjectGroup("objLayer");
+//    ValueVector object = objectGroup->getObjects();
+//    
+//    for (ValueVector::iterator it = object.begin(); it != object.end(); it++) {
+//        Value obj = *it;
+//        ValueMap map = obj.asValueMap();
+//        log("x = %d y = %d", map.at("x").asInt(), map.at("y").asInt());
+//    }
 }

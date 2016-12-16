@@ -109,7 +109,8 @@ void HelloWorld::onExit(){
 void HelloWorld::TapView(Touch* pTouch){
     //得到触摸点的坐标
     Point mapPoint = _map->getPosition();
-    Vec2 ptLocation = pTouch->getLocation()-mapPoint;
+    float mapScale = _map->getScale();
+    Vec2 ptLocation = (pTouch->getLocation()-mapPoint)/mapScale;
     
     //ptLcocation -> 在tmx地图里的坐标
     //获取地图中每个图块的大小

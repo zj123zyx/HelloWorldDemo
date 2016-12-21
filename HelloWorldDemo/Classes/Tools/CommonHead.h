@@ -10,6 +10,7 @@
 #define CommonHead_h
 
 #include "CCBLoadHelper.hpp"
+#include "CommonUtils.hpp"
 
 USING_NS_CC;
 using namespace std;

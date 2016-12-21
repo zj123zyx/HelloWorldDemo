@@ -14,6 +14,9 @@ public:
     virtual bool init();
     CREATE_FUNC(GameLoadingScene);
     
+    GameLoadingScene(){};
+    ~GameLoadingScene(){Director::getInstance()->purgeCachedData();};
+    
     void onEnter();
     void onExit();
     

@@ -1,5 +1,6 @@
 #include "WorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "TouchUI.h"
 
 USING_NS_CC;
 
@@ -26,6 +27,9 @@ bool WorldScene::init()
     m_touchDelegateView->setViewPortTarget(_map);
     m_touchDelegateView->setTouchDelegate(this);
     this->addChild(m_touchDelegateView);
+    
+    TouchUI* touchUI = TouchUI::create();
+    this->addChild(touchUI);
     
     return true;
 }

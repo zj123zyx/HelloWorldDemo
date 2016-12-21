@@ -183,8 +183,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
+							<real>1</real>
+							<real>1</real>
 							<true/>
 							<integer>0</integer>
 						</array>
@@ -223,7 +223,7 @@
 						<key>type</key>
 						<string>String</string>
 						<key>value</key>
-						<string>Title</string>
+						<string></string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -240,7 +240,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>12</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -262,8 +262,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>704</real>
-							<real>256</real>
+							<real>244</real>
+							<real>74</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -273,7 +273,7 @@
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<true/>
+						<false/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -282,8 +282,8 @@
 						<string>SpriteFrame</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<string>Common1/clickme.png</string>
+							<string>Common/Common_1.plist</string>
+							<string>UI_btn3_1.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -293,9 +293,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<integer>255</integer>
-							<integer>255</integer>
-							<integer>255</integer>
+							<integer>0</integer>
+							<integer>0</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -305,8 +305,8 @@
 						<string>SpriteFrame</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<string>Common1/clickme-down.png</string>
+							<string>Common/Common_1.plist</string>
+							<string>UI_btn3_1.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -328,8 +328,8 @@
 						<string>SpriteFrame</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<string>Common1/clickme-down.png</string>
+							<string>Common/Common_1.plist</string>
+							<string>UI_btn3_1.png</string>
 						</array>
 					</dict>
 					<dict>

@@ -22,13 +22,15 @@ public:
     virtual bool init();
     virtual void onEnter();
     virtual void onExit();
-    virtual void onTouchesBegan(const std::vector<Touch*>& pTouches, Event *pEvent);
-    virtual void onTouchesMoved(const std::vector<Touch*>& pTouches, Event *pEvent);
-    virtual void onTouchesEnded(const std::vector<Touch*>& pTouches, Event *pEvent);
+    
     void setViewPortTarget(Node* target);
     void setTouchDelegate(TouchDelegate* delegate);
     
 protected:
+    virtual void onTouchesBegan(const std::vector<Touch*>& pTouches, Event *pEvent);
+    virtual void onTouchesMoved(const std::vector<Touch*>& pTouches, Event *pEvent);
+    virtual void onTouchesEnded(const std::vector<Touch*>& pTouches, Event *pEvent);
+    
     void BeginScroll(Touch* touch);
     void OnScroll(Touch* touch);
     void EndScroll(Touch* touch);

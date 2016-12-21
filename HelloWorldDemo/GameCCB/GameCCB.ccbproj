@@ -72,11 +72,11 @@
 	<array>
 		<dict>
 			<key>path</key>
-			<string>Resources</string>
+			<string>CCB</string>
 		</dict>
 		<dict>
 			<key>path</key>
-			<string>CCB</string>
+			<string>../Resources</string>
 		</dict>
 	</array>
 	<key>versionStr</key>

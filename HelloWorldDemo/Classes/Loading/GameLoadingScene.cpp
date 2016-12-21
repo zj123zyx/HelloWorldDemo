@@ -18,15 +18,18 @@ bool GameLoadingScene::init()
         return false;
     }
     
-//    auto sprite = Sprite::create("HelloWorld.png");//HelloWorld.png
-//    sprite->setAnchorPoint(Vec2(0.5, 0.5));
-//    sprite->setPosition(Vec2(wsize.width/2, wsize.height/2));
-//    this->addChild(sprite, 0);
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Common/Common_1.plist");
+    
+    Size wSize = Director::getInstance()->getWinSize();
+    auto sprite = Sprite::create("HelloWorld.png");//HelloWorld.png
+    sprite->setAnchorPoint(Vec2(0.5, 0.5));
+    sprite->setPosition(Vec2(wSize.width/2, wSize.height/2));
+    this->addChild(sprite, 0);
     
     CCBLoadFile("MainScene",this,this);
     
     helloLabel->setString("loading");
-    m_btn->setTitleForState("btn", Control::State::HIGH_LIGHTED);
+    m_btn->setTitleForState("btn", Control::State::NORMAL);
     m_btn->setTitleColorForState({255,255,255}, Control::State::HIGH_LIGHTED);
     return true;
 }
@@ -41,7 +44,9 @@ void GameLoadingScene::onExit(){
 }
 
 void GameLoadingScene::gotoWorldScene(float dt){
-//    Director::getInstance()->replaceScene(WorldScene::createScene());
+//    Director::getInstance()->purgeCachedData();
+    Scene *worldScene = WorldScene::createScene();
+    Director::getInstance()->replaceScene(worldScene);
 }
 
 bool GameLoadingScene::onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVariableName, Node * pNode){

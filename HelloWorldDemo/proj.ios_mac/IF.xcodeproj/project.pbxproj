@@ -44,6 +44,14 @@
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
+		607FD08A1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD0881E0961CF003798E2 /* GameLoadingScene.cpp */; };
+		607FD08B1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD0881E0961CF003798E2 /* GameLoadingScene.cpp */; };
+		607FD08F1E096460003798E2 /* WorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD08D1E096460003798E2 /* WorldScene.cpp */; };
+		607FD0901E096460003798E2 /* WorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD08D1E096460003798E2 /* WorldScene.cpp */; };
+		607FD0961E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD0941E096AD0003798E2 /* CCBLoadHelper.cpp */; };
+		607FD0971E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD0941E096AD0003798E2 /* CCBLoadHelper.cpp */; };
+		607FD0991E097D6B003798E2 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 607FD0981E097D6B003798E2 /* ccbi */; };
+		607FD09A1E097D6B003798E2 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 607FD0981E097D6B003798E2 /* ccbi */; };
 		60B253221DFAB7FE004C1D4A /* TouchDelegateView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B253201DFAB7FE004C1D4A /* TouchDelegateView.cpp */; };
 		60B253231DFAB7FE004C1D4A /* TouchDelegateView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B253201DFAB7FE004C1D4A /* TouchDelegateView.cpp */; };
 		60B6B5701DF94FB40069A07A /* image in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B56F1DF94FB40069A07A /* image */; };
@@ -136,6 +144,13 @@
 		5087E78A17EB975400C73F5D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		607FD0881E0961CF003798E2 /* GameLoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLoadingScene.cpp; sourceTree = "<group>"; };
+		607FD0891E0961CF003798E2 /* GameLoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLoadingScene.h; sourceTree = "<group>"; };
+		607FD08D1E096460003798E2 /* WorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldScene.cpp; sourceTree = "<group>"; };
+		607FD08E1E096460003798E2 /* WorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldScene.h; sourceTree = "<group>"; };
+		607FD0941E096AD0003798E2 /* CCBLoadHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCBLoadHelper.cpp; sourceTree = "<group>"; };
+		607FD0951E096AD0003798E2 /* CCBLoadHelper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CCBLoadHelper.hpp; sourceTree = "<group>"; };
+		607FD0981E097D6B003798E2 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ccbi; sourceTree = "<group>"; };
 		60B253201DFAB7FE004C1D4A /* TouchDelegateView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TouchDelegateView.cpp; sourceTree = "<group>"; };
 		60B253211DFAB7FE004C1D4A /* TouchDelegateView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TouchDelegateView.hpp; sourceTree = "<group>"; };
 		60B253251DFAB855004C1D4A /* CommonHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHead.h; sourceTree = "<group>"; };
@@ -275,6 +290,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				607FD0981E097D6B003798E2 /* ccbi */,
 				60B6B56F1DF94FB40069A07A /* image */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
@@ -295,6 +311,9 @@
 				60B253201DFAB7FE004C1D4A /* TouchDelegateView.cpp */,
 				60B253211DFAB7FE004C1D4A /* TouchDelegateView.hpp */,
 				60B253251DFAB855004C1D4A /* CommonHead.h */,
+				607FD0921E096A9E003798E2 /* Ext */,
+				607FD08C1E096460003798E2 /* World */,
+				607FD0871E0961CF003798E2 /* Loading */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -339,6 +358,41 @@
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 			);
 			name = HSene;
+			sourceTree = "<group>";
+		};
+		607FD0871E0961CF003798E2 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				607FD0881E0961CF003798E2 /* GameLoadingScene.cpp */,
+				607FD0891E0961CF003798E2 /* GameLoadingScene.h */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		607FD08C1E096460003798E2 /* World */ = {
+			isa = PBXGroup;
+			children = (
+				607FD08D1E096460003798E2 /* WorldScene.cpp */,
+				607FD08E1E096460003798E2 /* WorldScene.h */,
+			);
+			path = World;
+			sourceTree = "<group>";
+		};
+		607FD0921E096A9E003798E2 /* Ext */ = {
+			isa = PBXGroup;
+			children = (
+				607FD0931E096A9E003798E2 /* GUI */,
+			);
+			path = Ext;
+			sourceTree = "<group>";
+		};
+		607FD0931E096A9E003798E2 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				607FD0941E096AD0003798E2 /* CCBLoadHelper.cpp */,
+				607FD0951E096AD0003798E2 /* CCBLoadHelper.hpp */,
+			);
+			path = GUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,6 +505,7 @@
 				60B6B5701DF94FB40069A07A /* image in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				60B6B5781DF959330069A07A /* icon.png in Resources */,
+				607FD0991E097D6B003798E2 /* ccbi in Resources */,
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
@@ -472,6 +527,7 @@
 				60B6B5711DF94FB40069A07A /* image in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				607FD09A1E097D6B003798E2 /* ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,10 +539,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				607FD0961E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				60B253221DFAB7FE004C1D4A /* TouchDelegateView.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				607FD08F1E096460003798E2 /* WorldScene.cpp in Sources */,
+				607FD08A1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,10 +554,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607FD0971E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				607FD08B1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				60B253231DFAB7FE004C1D4A /* TouchDelegateView.cpp in Sources */,
+				607FD0901E096460003798E2 /* WorldScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

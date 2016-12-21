@@ -32,7 +32,10 @@ protected:
     void BeginScroll(Touch* touch);
     void OnScroll(Touch* touch);
     void EndScroll(Touch* touch);
+    void intervalMove(float dt);
     void OnZoom(Point p1,Point p2);
+    
+    void TargetNodeSetPosition(float x,float y);
 private:
     Node* m_TargetNode;
     TouchDelegate* m_touchDelegate;
@@ -44,6 +47,7 @@ private:
     Point scrollBeganPoint;
     float zoomDistance;
     float zoomScale;
+    Point m_tScrollDistance;
 };
 
 #endif /* TouchDelegateView_hpp */

@@ -9,8 +9,11 @@
 #ifndef CommonHead_h
 #define CommonHead_h
 
-#include "cocos2d.h"
+#include "CCBLoadHelper.hpp"
 
-using namespace cocos2d;
+USING_NS_CC;
+using namespace std;
+using namespace cocosbuilder;
+using namespace cocos2d::extension;
 
 #endif /* CommonHead_h */

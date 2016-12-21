@@ -37,6 +37,12 @@ void TouchDelegateView::onExit(){
 
 void TouchDelegateView::onTouchesBegan(const std::vector<Touch*>& pTouches, Event *pEvent){
     CC_ASSERT(this->m_TargetNode);
+    if(fabsf(m_tScrollDistance.x)>3 || fabsf(m_tScrollDistance.y)>3){
+        m_tScrollDistance = Vec2(0, 0);
+        this->unschedule(schedule_selector(TouchDelegateView::intervalMove));
+        return;
+    }
+    
     if(pTouches.size()==1){
         BeginScroll(dynamic_cast<Touch*>(pTouches[0]));
     }else if (pTouches.size()==2){
@@ -60,17 +66,9 @@ void TouchDelegateView::onTouchesEnded(const std::vector<Touch*>& pTouches, Even
     }
     if(m_isZoom){//缩放后边界检测
         m_isZoom = false;
-        
-        float mapScale = m_TargetNode->getScale();
-        Size mapSize = m_TargetNode->getContentSize()*mapScale;
-        Size winSize = Director::getInstance()->getWinSize();
         float endX = this->m_TargetNode->getPositionX();
         float endY = this->m_TargetNode->getPositionY();
-        endX = endX<0?endX:0;
-        endX = endX>(winSize.width-mapSize.width)?endX:(winSize.width-mapSize.width);
-        endY = endY<0?endY:0;
-        endY = endY>(winSize.height-mapSize.height)?endY:(winSize.height-mapSize.height);
-        this->m_TargetNode->setPosition(Vec2(endX,endY));
+        TargetNodeSetPosition(endX,endY);
     }
     zoomDistance = 0;
     scrollBeganPoint=Vec2(-1, -1);
@@ -100,18 +98,9 @@ void TouchDelegateView::OnScroll(Touch* touch){
         
         float endX = curPoint.x+moveX;
         float endY = curPoint.y+moveY;
-        if(m_TargetNode){//边界检测
-            float mapScale = m_TargetNode->getScale();
-            Size mapSize = m_TargetNode->getContentSize()*mapScale;
-            Size winSize = Director::getInstance()->getWinSize();
-            endX = endX<0?endX:0;
-            endX = endX>(winSize.width-mapSize.width)?endX:(winSize.width-mapSize.width);
-            endY = endY<0?endY:0;
-            endY = endY>(winSize.height-mapSize.height)?endY:(winSize.height-mapSize.height);
-        }
+        TargetNodeSetPosition(endX,endY);
 
-        Point endPoint = Vec2(endX,endY);
-        this->m_TargetNode->setPosition(endPoint);
+        m_tScrollDistance = touch->getLocation() - scrollBeganPoint;
         scrollBeganPoint = touch->getLocation();
         m_isTap=false;
     }
@@ -121,8 +110,20 @@ void TouchDelegateView::EndScroll(Touch* touch){
     if(m_isTap && m_touchDelegate){
         m_touchDelegate->TapView(touch);
     }else{
-        
+        this->unschedule(schedule_selector(TouchDelegateView::intervalMove));
+        this->schedule(schedule_selector(TouchDelegateView::intervalMove));
     }
+}
+
+void TouchDelegateView::intervalMove(float dt){
+    if(fabsf(m_tScrollDistance.x)<=0.5 && fabsf(m_tScrollDistance.y)<=0.5){
+        this->unschedule(schedule_selector(TouchDelegateView::intervalMove));
+    }
+    m_tScrollDistance *= 0.95;//ccpMult(m_tScrollDistance, 0.96);
+    
+    float endX = m_TargetNode->getPosition().x + m_tScrollDistance.x;
+    float endY = m_TargetNode->getPosition().y + m_tScrollDistance.y;
+    TargetNodeSetPosition(endX,endY);
 }
 
 void TouchDelegateView::OnZoom(Point p1,Point p2){
@@ -145,4 +146,19 @@ void TouchDelegateView::OnZoom(Point p1,Point p2){
     float moveX = mapPoint.x - ((scale-mapScale)*mapSize.width)*(((winSize.width/2)-mapPoint.x)/(mapSize.width*mapScale));
     float moveY = mapPoint.y - ((scale-mapScale)*mapSize.height)*(((winSize.height/2)-mapPoint.y)/(mapSize.height*mapScale));
     m_TargetNode->setPosition(moveX, moveY);//设置位置
+}
+
+void TouchDelegateView::TargetNodeSetPosition(float x,float y){
+    if(m_TargetNode){//边界检测
+        float endX = x;
+        float endY = y;
+        float mapScale = m_TargetNode->getScale();
+        Size mapSize = m_TargetNode->getContentSize()*mapScale;
+        Size winSize = Director::getInstance()->getWinSize();
+        endX = endX<0?endX:0;
+        endX = endX>(winSize.width-mapSize.width)?endX:(winSize.width-mapSize.width);
+        endY = endY<0?endY:0;
+        endY = endY>(winSize.height-mapSize.height)?endY:(winSize.height-mapSize.height);
+        m_TargetNode->setPosition(Vec2(endX, endY));
+    }
 }

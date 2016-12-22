@@ -41,13 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/HelloWorldScene.cpp"
-            timestampString = "503929557.78227"
+            filePath = "../Classes/model/role/Player.cpp"
+            timestampString = "504080941.3774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "HelloWorld::TapView(Touch* pTouch)"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "Player::move(Point point)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/Loading/GameLoadingScene.cpp"
-            timestampString = "504007685.416379"
+            filePath = "../Classes/model/role/Role.cpp"
+            timestampString = "504093545.596417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "GameLoadingScene::init()"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "Role::setAnimation(const char* aniName,string frameName,int frameCount,float dTime)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +73,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/Loading/GameLoadingScene.cpp"
-            timestampString = "504007685.416379"
+            filePath = "../Classes/model/role/Role.cpp"
+            timestampString = "504093545.596417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "GameLoadingScene::gotoWorldScene(float dt)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "Role::startMove(Point point)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,13 +89,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../cocos2d/cocos/2d/CCSpriteFrameCache.cpp"
-            timestampString = "504006092.447115"
+            filePath = "../Classes/model/role/Role.cpp"
+            timestampString = "504093545.596417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "472"
-            endingLineNumber = "472"
-            landmarkName = "SpriteFrameCache::removeUnusedSpriteFrames()"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "Role::stopMove(Point point)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,13 +105,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/UI/TouchUI.cpp"
-            timestampString = "504017218.962086"
+            filePath = "../Classes/Tools/TouchDelegateView.cpp"
+            timestampString = "504095477.067483"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "TouchUI::onTouchBegan(Touch* touch, Event* event)"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "TouchDelegateView::moveToPosition(Point point,float duration,Ref *target,SEL_CallFunc func)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/World/WorldScene.cpp"
+            timestampString = "504093288.521433"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "WorldScene::OnTouchUIRelease(Ref *target,SEL_CallFunc func)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

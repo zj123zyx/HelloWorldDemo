@@ -64,6 +64,12 @@
 		60B6B5711DF94FB40069A07A /* image in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B56F1DF94FB40069A07A /* image */; };
 		60B6B5781DF959330069A07A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B5771DF959330069A07A /* icon.png */; };
 		60B6B5791DF959330069A07A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B5771DF959330069A07A /* icon.png */; };
+		60B8B6051E0B6F6500371D5D /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B8B6031E0B6F6500371D5D /* Player.cpp */; };
+		60B8B6061E0B6F6500371D5D /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B8B6031E0B6F6500371D5D /* Player.cpp */; };
+		60B8B6091E0B710C00371D5D /* Role.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B8B6071E0B710C00371D5D /* Role.cpp */; };
+		60B8B60A1E0B710C00371D5D /* Role.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B8B6071E0B710C00371D5D /* Role.cpp */; };
+		60B8B6141E0BD3F100371D5D /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B8B6121E0BD3F100371D5D /* PlayerController.cpp */; };
+		60B8B6151E0BD3F100371D5D /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B8B6121E0BD3F100371D5D /* PlayerController.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -167,6 +173,12 @@
 		607FD0981E097D6B003798E2 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ccbi; sourceTree = "<group>"; };
 		60B6B56F1DF94FB40069A07A /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
 		60B6B5771DF959330069A07A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		60B8B6031E0B6F6500371D5D /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		60B8B6041E0B6F6500371D5D /* Player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		60B8B6071E0B710C00371D5D /* Role.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Role.cpp; sourceTree = "<group>"; };
+		60B8B6081E0B710C00371D5D /* Role.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Role.hpp; sourceTree = "<group>"; };
+		60B8B6121E0BD3F100371D5D /* PlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerController.cpp; sourceTree = "<group>"; };
+		60B8B6131E0BD3F100371D5D /* PlayerController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerController.hpp; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -325,6 +337,8 @@
 				607FD08C1E096460003798E2 /* World */,
 				607FD0871E0961CF003798E2 /* Loading */,
 				601CAAF21E0A9062003BCC41 /* UI */,
+				60B8B6011E0B6F6500371D5D /* model */,
+				60B8B6101E0BD3C900371D5D /* Controller */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -425,6 +439,34 @@
 				607FD0951E096AD0003798E2 /* CCBLoadHelper.hpp */,
 			);
 			path = GUI;
+			sourceTree = "<group>";
+		};
+		60B8B6011E0B6F6500371D5D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				60B8B6021E0B6F6500371D5D /* role */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		60B8B6021E0B6F6500371D5D /* role */ = {
+			isa = PBXGroup;
+			children = (
+				60B8B6031E0B6F6500371D5D /* Player.cpp */,
+				60B8B6041E0B6F6500371D5D /* Player.hpp */,
+				60B8B6071E0B710C00371D5D /* Role.cpp */,
+				60B8B6081E0B710C00371D5D /* Role.hpp */,
+			);
+			path = role;
+			sourceTree = "<group>";
+		};
+		60B8B6101E0BD3C900371D5D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				60B8B6121E0BD3F100371D5D /* PlayerController.cpp */,
+				60B8B6131E0BD3F100371D5D /* PlayerController.hpp */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -576,13 +618,16 @@
 				607FD0961E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				60B8B6141E0BD3F100371D5D /* PlayerController.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				607FD08F1E096460003798E2 /* WorldScene.cpp in Sources */,
 				607FD08A1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */,
 				601CAAFF1E0A9537003BCC41 /* CommonUtils.cpp in Sources */,
+				60B8B6051E0B6F6500371D5D /* Player.cpp in Sources */,
 				601CAAFB1E0A94DB003BCC41 /* TouchDelegateView.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				601CAAF51E0A9062003BCC41 /* TouchUI.cpp in Sources */,
+				60B8B6091E0B710C00371D5D /* Role.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,10 +639,13 @@
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				607FD08B1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				60B8B6061E0B6F6500371D5D /* Player.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				601CAAF61E0A9062003BCC41 /* TouchUI.cpp in Sources */,
+				60B8B60A1E0B710C00371D5D /* Role.cpp in Sources */,
 				601CAB001E0A9537003BCC41 /* CommonUtils.cpp in Sources */,
 				607FD0901E096460003798E2 /* WorldScene.cpp in Sources */,
+				60B8B6151E0BD3F100371D5D /* PlayerController.cpp in Sources */,
 				601CAAFC1E0A94DB003BCC41 /* TouchDelegateView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

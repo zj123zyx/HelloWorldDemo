@@ -1,4 +1,5 @@
 #include "TouchUI.h"
+#include "PlayerController.hpp"
 
 USING_NS_CC;
 
@@ -9,10 +10,11 @@ bool TouchUI::init()
     if ( !Node::init() ){
         return false;
     }
+    m_uiDelegate=nullptr;
     m_isLeftTouch=false;
     m_isScrollingLeft=false;
     
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Common/Common_1.plist");
+//    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Common/Common_1.plist");
     CCBLoadFile("TouchUI",this,this);
     m_layerCover->setOpacity(0);
     return true;
@@ -69,29 +71,41 @@ void TouchUI::onTouchMoved(Touch* touch, Event* event){
             m_isScrollingLeft=true;
             this->unschedule(schedule_selector(TouchUI::OnScrollLeft));
             this->schedule(schedule_selector(TouchUI::OnScrollLeft));
+            PlayerController::getInstance()->OnUIStartScrollLeft(m_yaoGanerSpr->getPosition());
         }
     }
 }
 void TouchUI::onTouchEnded(Touch* touch, Event* event){
     m_isLeftTouch=false;
     m_isScrollingLeft=false;
-    m_yaoGanerSpr->setPosition(0, 0);
+    
 }
 
 void TouchUI::OnScrollLeft(float dt){
     if(m_isScrollingLeft==false){
         this->unschedule(schedule_selector(TouchUI::OnScrollLeft));
+        PlayerController::getInstance()->OnUIStopScrollLeft(m_yaoGanerSpr->getPosition());
+        m_yaoGanerSpr->setPosition(0, 0);
     }
-    Point touchPoint = m_yaoGanerSpr->getPosition();
-    float distance = touchPoint.getLength();
-    CCLOG("touchPoint.x=%f,touchPoint.y=%f,distance=%f",touchPoint.x,touchPoint.y,distance);
+    if(m_uiDelegate){
+        PlayerController::getInstance()->OnUIScrollLeft(m_yaoGanerSpr->getPosition());
+    }
 }
-
-
 
 void TouchUI::onBtn1Click(Ref* pSender, Control::EventType event){
     CCLOG("onBtnClick");
-    listener->setSwallowTouches(!listener->isSwallowTouches());
+    if(listener->isSwallowTouches()==false){
+        m_uiDelegate->OnTouchUIRelease(this,callfunc_selector(TouchUI::startUseTouchUI));
+    }else{
+        listener->setSwallowTouches(false);
+    }
 }
 
+void TouchUI::startUseTouchUI(){
+    listener->setSwallowTouches(true);
+}
+
+void TouchUI::setUiDelegate(UIDelegate* delegate){
+    m_uiDelegate = delegate;
+}
 

@@ -1,6 +1,6 @@
 #include "WorldScene.h"
 #include "SimpleAudioEngine.h"
-#include "TouchUI.h"
+#include "PlayerController.hpp"
 
 USING_NS_CC;
 
@@ -18,18 +18,23 @@ bool WorldScene::init()
     {
         return false;
     }
-    
     _map = TMXTiledMap::create("image/tiled_test4.tmx");//tiled_test3
     Size size = _map->getContentSize();
     this->addChild(_map);
-    
+    //touch
     m_touchDelegateView = TouchDelegateView::create();
     m_touchDelegateView->setViewPortTarget(_map);
     m_touchDelegateView->setTouchDelegate(this);
     this->addChild(m_touchDelegateView);
-    
+    //ui
     TouchUI* touchUI = TouchUI::create();
+    touchUI->setUiDelegate(this);
     this->addChild(touchUI);
+    //add player
+    Player *m_player = PlayerController::getInstance()->player;
+    m_player->setPosition(m_player->getPositionInScreen()-_map->getPosition());
+    m_player->setContainer(_map);
+    _map->addChild(m_player);
     
     return true;
 }
@@ -63,4 +68,11 @@ void WorldScene::TapView(Touch* pTouch){
     TMXLayer* layer0 = _map->getLayer("layer_0");//layerNamed("layer_0");
     //设置瓷砖的编号0表示隐藏瓷砖
     layer0->setTileGID(9, Point(tx, ty));
+}
+
+void WorldScene::OnTouchUIRelease(Ref *target,SEL_CallFunc func){
+    Point playerPoint = PlayerController::getInstance()->player->getPosition();
+    Size size = Director::getInstance()->getWinSize()/2;
+    Point moveToPoint = Vec2(size.width-playerPoint.x, size.height-playerPoint.y);
+    m_touchDelegateView->moveToPosition(moveToPoint, 0.5, target, func);
 }

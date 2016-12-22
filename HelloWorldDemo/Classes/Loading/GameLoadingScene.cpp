@@ -17,20 +17,21 @@ bool GameLoadingScene::init()
     if ( !Layer::init() ){
         return false;
     }
-    
+    //加载图片
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Common/Common_1.plist");
     
-    Size wSize = Director::getInstance()->getWinSize();
-    auto sprite = Sprite::create("HelloWorld.png");//HelloWorld.png
-    sprite->setAnchorPoint(Vec2(0.5, 0.5));
-    sprite->setPosition(Vec2(wSize.width/2, wSize.height/2));
-    this->addChild(sprite, 0);
+//    Size wSize = Director::getInstance()->getWinSize();
+//    auto sprite = Sprite::create("HelloWorld.png");//HelloWorld.png
+//    sprite->setAnchorPoint(Vec2(0.5, 0.5));
+//    sprite->setPosition(Vec2(wSize.width/2, wSize.height/2));
+//    this->addChild(sprite, 0);
     
     CCBLoadFile("MainScene",this,this);
     
-    helloLabel->setString("loading");
-    m_btn->setTitleForState("btn", Control::State::NORMAL);
-    m_btn->setTitleColorForState({255,255,255}, Control::State::HIGH_LIGHTED);
+    m_btn->setVisible(false);
+//    helloLabel->setString("loading");
+//    m_btn->setTitleForState("btn", Control::State::NORMAL);
+//    m_btn->setTitleColorForState({255,255,255}, Control::State::HIGH_LIGHTED);
     return true;
 }
 

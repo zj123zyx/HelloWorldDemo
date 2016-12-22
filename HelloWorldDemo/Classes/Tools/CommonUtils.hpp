@@ -24,7 +24,8 @@ inline bool isTouchInside(Node* pNode, Touch* touch)
 }
 
 namespace CommonUtils {
-    
+    Sprite* createSprite(string pic_name);
+    SpriteFrame* createSpriteFrame(string pic_name);
 }
 
 #endif /* CommonUtils_hpp */

@@ -35,6 +35,19 @@ void TouchDelegateView::onExit(){
     Layer::onExit();
 }
 
+void TouchDelegateView::addListener(){
+    listener->setEnabled(true);
+}
+
+void TouchDelegateView::moveToPosition(Point point,float duration,Ref *target,SEL_CallFunc func){
+    auto callBack = CallFunc::create(target, func);
+    auto addListener = CallFunc::create(this, callfunc_selector(TouchDelegateView::addListener));
+    setMapScale(1);
+    MoveTo* moveTo = MoveTo::create(0.5, point);
+    listener->setEnabled(false);
+    m_TargetNode->runAction(Sequence::create(moveTo,callBack,addListener, NULL));
+}
+
 void TouchDelegateView::onTouchesBegan(const std::vector<Touch*>& pTouches, Event *pEvent){
     CC_ASSERT(this->m_TargetNode);
     if(fabsf(m_tScrollDistance.x)>3 || fabsf(m_tScrollDistance.y)>3){
@@ -136,6 +149,10 @@ void TouchDelegateView::OnZoom(Point p1,Point p2){
     }
     float distance = p1.getDistance(p2);
     float scale = (distance/zoomDistance)*zoomScale;
+    setMapScale(scale);
+}
+
+void TouchDelegateView::setMapScale(float scale){
     float mapScale = m_TargetNode->getScale();
     Size mapSize = m_TargetNode->getContentSize();
     Size winSize = Director::getInstance()->getWinSize();

@@ -336,7 +336,8 @@ public:
      * @js NA
      * @lua NA
      */
-    CC_DEPRECATED_ATTRIBUTE static CallFunc * create(Ref* target, SEL_CallFunc selector);
+//    CC_DEPRECATED_ATTRIBUTE
+    static CallFunc * create(Ref* target, SEL_CallFunc selector);
 
 public:
     /** Executes the callback.

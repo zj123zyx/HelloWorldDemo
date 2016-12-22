@@ -26,6 +26,8 @@ public:
     void setViewPortTarget(Node* target);
     void setTouchDelegate(TouchDelegate* delegate);
     
+    void moveToPosition(Point point,float duration,Ref *target,SEL_CallFunc func);
+    void addListener();
 protected:
     virtual void onTouchesBegan(const std::vector<Touch*>& pTouches, Event *pEvent);
     virtual void onTouchesMoved(const std::vector<Touch*>& pTouches, Event *pEvent);
@@ -36,6 +38,7 @@ protected:
     void EndScroll(Touch* touch);
     void intervalMove(float dt);
     void OnZoom(Point p1,Point p2);
+    void setMapScale(float scale);
     
     void TargetNodeSetPosition(float x,float y);
 private:

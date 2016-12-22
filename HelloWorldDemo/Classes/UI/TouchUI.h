@@ -3,6 +3,11 @@
 
 #include "CommonHead.h"
 
+class UIDelegate{
+public:
+    virtual void OnTouchUIRelease(Ref *target,SEL_CallFunc func)=0;
+};
+
 class TouchUI :
 public Node
 , public CCBSelectorResolver
@@ -15,6 +20,7 @@ public:
     void onEnter();
     void onExit();
     
+    void setUiDelegate(UIDelegate* delegate);
 protected:
     EventListenerTouchOneByOne* listener;
     
@@ -29,6 +35,9 @@ private:
     virtual Control::Handler onResolveCCBCCControlSelector(Ref * pTarget, const char * pSelectorName);
     
     void onBtn1Click(Ref* pSender, Control::EventType event);
+    void startUseTouchUI();
+    
+    UIDelegate* m_uiDelegate;
     
     LayerColor* m_layerCover;
     Node* m_downUiNode;

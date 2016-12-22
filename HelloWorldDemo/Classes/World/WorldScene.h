@@ -3,10 +3,12 @@
 
 #include "CommonHead.h"
 #include "TouchDelegateView.hpp"
+#include "TouchUI.h"
+#include "Player.hpp"
 
-class WorldScene :
-public cocos2d::Layer,
-public TouchDelegate
+class WorldScene :public cocos2d::Layer
+,public TouchDelegate
+,public UIDelegate
 {
 public:
     static cocos2d::Scene* createScene();
@@ -17,11 +19,12 @@ public:
     
     void onEnter();
     void onExit();
-    
+protected:
+    //delegate method
     void TapView(Touch* pTouch);
+    void OnTouchUIRelease(Ref *target,SEL_CallFunc func);
 private:
     TMXTiledMap* _map;
-    
     TouchDelegateView* m_touchDelegateView;
 };
 

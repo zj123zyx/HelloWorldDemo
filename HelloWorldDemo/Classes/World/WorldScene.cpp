@@ -34,7 +34,7 @@ bool WorldScene::init()
     Player *m_player = PlayerController::getInstance()->player;
     m_player->setPosition(m_player->getPositionInScreen()-_map->getPosition());
     m_player->setContainer(_map);
-    _map->addChild(m_player);
+    _map->addChild(m_player,3);
     
     return true;
 }

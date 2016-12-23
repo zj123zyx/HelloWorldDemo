@@ -26,6 +26,7 @@ inline bool isTouchInside(Node* pNode, Touch* touch)
 namespace CommonUtils {
     Sprite* createSprite(string pic_name);
     SpriteFrame* createSpriteFrame(string pic_name);
+    bool isRectInTile(Point rectCenter,float rectWidth,float rectHeight,int tileX,int tileY,float tileSize,float mapHeight);//瓦片地图碰撞检测
 }
 
 #endif /* CommonUtils_hpp */

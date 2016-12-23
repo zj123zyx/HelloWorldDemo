@@ -23,6 +23,7 @@ public:
     void OnUIStartScrollLeft(Point scrollPoint);
     void OnUIScrollLeft(Point scrollPoint);
     void OnUIStopScrollLeft(Point scrollPoint);
+    void playerMoveTo(Point point);
     Player* player;
 };
 

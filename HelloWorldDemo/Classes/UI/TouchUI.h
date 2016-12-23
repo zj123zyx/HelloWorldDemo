@@ -40,6 +40,7 @@ private:
     UIDelegate* m_uiDelegate;
     
     LayerColor* m_layerCover;
+    Node* m_touchNode;
     Node* m_downUiNode;
     Node* m_yaoGanerNode;
     Sprite* m_yaoGanerSpr;
@@ -47,6 +48,7 @@ private:
     ControlButton* m_btn1;
     
     bool m_isLeftTouch;
+    bool m_isNodeTouch;
     bool m_isScrollingLeft;
 };
 

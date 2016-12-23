@@ -19,6 +19,7 @@ public:
     virtual bool init();
     
     void move(Point point);
+    void moveTo(Point point);
 protected:
     void onEnter();
     void onExit();

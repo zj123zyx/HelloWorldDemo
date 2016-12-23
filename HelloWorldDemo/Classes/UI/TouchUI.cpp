@@ -13,6 +13,7 @@ bool TouchUI::init()
     m_uiDelegate=nullptr;
     m_isLeftTouch=false;
     m_isScrollingLeft=false;
+    m_isNodeTouch=false;
     
 //    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Common/Common_1.plist");
     CCBLoadFile("TouchUI",this,this);
@@ -37,6 +38,7 @@ void TouchUI::onExit(){
 
 bool TouchUI::onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVariableName, Node * pNode){
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_layerCover", LayerColor*, m_layerCover);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_touchNode", Node*, m_touchNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_downUiNode", Node*, m_downUiNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_yaoGanerNode", Node*, m_yaoGanerNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_yaoGanerSpr", Sprite*, m_yaoGanerSpr);
@@ -52,6 +54,11 @@ cocos2d::extension::Control::Handler TouchUI::onResolveCCBCCControlSelector(Ref 
 bool TouchUI::onTouchBegan(Touch* touch, Event* event){
     if(isTouchInside(m_yaoGanerSprBg,touch)){
         m_isLeftTouch=true;
+        return true;
+    }
+    if(isTouchInside(m_touchNode,touch)){
+        m_isNodeTouch=true;
+        return true;
     }
     return true;
 }
@@ -74,11 +81,19 @@ void TouchUI::onTouchMoved(Touch* touch, Event* event){
             PlayerController::getInstance()->OnUIStartScrollLeft(m_yaoGanerSpr->getPosition());
         }
     }
+    if(listener->isSwallowTouches() && m_isNodeTouch){
+        if(touch->getLocation().getDistance(touch->getStartLocation())){
+            m_isNodeTouch=false;
+        }
+    }
 }
 void TouchUI::onTouchEnded(Touch* touch, Event* event){
     m_isLeftTouch=false;
     m_isScrollingLeft=false;
-    
+    if(listener->isSwallowTouches() && m_isNodeTouch){
+        m_isNodeTouch=false;
+        PlayerController::getInstance()->playerMoveTo(touch->getLocation());
+    }
 }
 
 void TouchUI::OnScrollLeft(float dt){

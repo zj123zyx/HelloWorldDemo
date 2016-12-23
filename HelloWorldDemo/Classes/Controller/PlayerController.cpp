@@ -40,3 +40,7 @@ void PlayerController::OnUIStopScrollLeft(Point scrollPoint){
 void PlayerController::OnUIStartScrollLeft(Point scrollPoint){
     player->startMove(scrollPoint);
 }
+
+void PlayerController::playerMoveTo(Point point){
+    player->moveTo(point);
+}

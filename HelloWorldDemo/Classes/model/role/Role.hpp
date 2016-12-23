@@ -34,6 +34,8 @@ public:
     virtual void move(Point point);
     virtual void stopMove(Point point);
     virtual void moveTo(Point point);
+    void moveToSchedule(float dt);
+    
     void setAnimation(const char* aniName,string frameName,int frameCount,float dTime = 0.2f);
     int getLayerTileGIDAtPoint(string layerName, Point point);
     int getFaceToTileGID(int x,int y,string layerName);
@@ -59,7 +61,8 @@ protected:
     Sprite* m_roleSprite;
     Label* m_upLabel;
     
-    
+    Point m_moveToPoint;
+    Point m_moveVector;
 };
 
 #endif /* Role_hpp */

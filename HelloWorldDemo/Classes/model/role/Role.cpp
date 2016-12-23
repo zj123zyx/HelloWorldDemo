@@ -53,6 +53,7 @@ void Role::onEnter(){
     Node::onEnter();
 }
 void Role::onExit(){
+    this->unschedule(schedule_selector(Role::moveToSchedule));
     Node::onExit();
 }
 
@@ -114,88 +115,80 @@ void Role::move(Point point){
             m_faceTo = FaceTo_DOWN;
         }
     }
-//    if(m_container){
-//        //得到自己的坐标
-////        Vec2 ptLocation = this->getPosition();
-//        //获取地图中每个图块的大小
-////        Size tileSize = m_container->getTileSize();
-//        //获得地图中图块的个数
-////        Size mapSize = m_container->getMapSize();
-//        float mapHeight = mapSize.height * tileSize.height;
-//        
-//        Point movePoint = point;
-//        {
-//            int gid = getLayerTileGIDAtPoint("layer_1",m_nextTileX);
-//            string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
-//            if(goThrough=="1" && CommonUtils::isRectInTile(ptLocation, m_width, m_height, m_nextTileX.x, m_nextTileX.y, tileSize.width,mapHeight)){
-//                movePoint.x=0;
-//            }
-//        }
-//        {
-//            int gid = getLayerTileGIDAtPoint("layer_1",m_nextTileY);
-//            string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
-//            if(goThrough=="1" && CommonUtils::isRectInTile(ptLocation, m_width, m_height, m_nextTileY.x, m_nextTileY.y, tileSize.width,mapHeight)){
-//                movePoint.y=0;
-//            }
-//        }
-//        {
-//            int gid = getLayerTileGIDAtPoint("layer_1",m_nextTileXY);
-//            string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
-//            if(goThrough=="1" && CommonUtils::isRectInTile(ptLocation, m_width, m_height, m_nextTileXY.x, m_nextTileXY.y, tileSize.width,mapHeight)){
-//                movePoint.x=0;
-//                movePoint.y=0;
-//                
-//                float tileUp = mapHeight-m_nextTileXY.y*tileSize.width;
-//                float tileDown = mapHeight-(m_nextTileXY.y+1)*tileSize.width;
-//                float tileLeft = m_nextTileXY.x*tileSize.width;
-//                float tileRight = (m_nextTileXY.x+1)*tileSize.width;
-//                
-//                float tileX = (tileUp+tileDown)/2;
-//                float tileY = (tileLeft+tileRight)/2;
-//                float dxy = 0.2;
-//                if(ptLocation.x>tileX && ptLocation.y>tileY){
-//                    movePoint.x+=dxy;
-//                    movePoint.y+=dxy;
-//                }
-//                if(ptLocation.x<tileX && ptLocation.y>tileY){
-//                    movePoint.x-=dxy;
-//                    movePoint.y+=dxy;
-//                }
-//                if(ptLocation.x<tileX && ptLocation.y<tileY){
-//                    movePoint.x-=dxy;
-//                    movePoint.y-=dxy;
-//                }
-//                if(ptLocation.x>tileX && ptLocation.y<tileY){
-//                    movePoint.x+=dxy;
-//                    movePoint.y-=dxy;
-//                }
-//            }
-//        }
-//        Vec2 ptInMap;
-//        ptInMap.y = mapHeight - ptLocation.y+(tileSize.height/2);
-//        ptInMap.x = ptLocation.x+(tileSize.width/2);
-//        int tx = ptInMap.x / tileSize.width;
-//        int ty = ptInMap.y / tileSize.height;
-//        if((point.x<0 && tx<=0) || (point.x>0 && tx>=mapSize.width)){
-//            movePoint.x=0;
-//        }
-//        if((point.y>0 && ty<=0) || (point.y<0 && ty>=mapSize.height)) {
-//            movePoint.y=0;
-//        }
-//        
-//        {
-//            Vec2 ptInMap;
-//            ptInMap.y = mapHeight - ptLocation.y;
-//            ptInMap.x = ptLocation.x;
-//            int tx = ptInMap.x / tileSize.width;
-//            int ty = ptInMap.y / tileSize.height;
-//            int gid = getFaceToTileGID(tx,ty,"layer_1");
-//            string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
-//            m_upLabel->setString(goThrough);
-//        }
-//        
-//        this->setPosition(this->getPositionInScreen()-(this->getPosition()-(movePoint/10*m_moveSpeed)));
-//    }
+    if(m_container){
+        float mapHeight = mapSize.height * tileSize.height;
+        Point movePoint = point;
+        {   //碰撞检测X
+            int gid = getLayerTileGIDAtPoint("layer_1",m_nextTileX);
+            string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
+            if(goThrough=="1" && CommonUtils::isRectInTile(ptLocation, m_width, m_height, m_nextTileX.x, m_nextTileX.y, tileSize.width,mapHeight)){
+                movePoint.x=0;
+            }
+        }
+        {   //碰撞检测Y
+            int gid = getLayerTileGIDAtPoint("layer_1",m_nextTileY);
+            string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
+            if(goThrough=="1" && CommonUtils::isRectInTile(ptLocation, m_width, m_height, m_nextTileY.x, m_nextTileY.y, tileSize.width,mapHeight)){
+                movePoint.y=0;
+            }
+        }
+        {   //碰撞检测XY
+            int gid = getLayerTileGIDAtPoint("layer_1",m_nextTileXY);
+            string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
+            if(goThrough=="1" && CommonUtils::isRectInTile(ptLocation, m_width, m_height, m_nextTileXY.x, m_nextTileXY.y, tileSize.width,mapHeight)){
+                movePoint.x=0;
+                movePoint.y=0;
+                
+                float tileUp = mapHeight-m_nextTileXY.y*tileSize.width;
+                float tileDown = mapHeight-(m_nextTileXY.y+1)*tileSize.width;
+                float tileLeft = m_nextTileXY.x*tileSize.width;
+                float tileRight = (m_nextTileXY.x+1)*tileSize.width;
+                
+                float tileX = (tileUp+tileDown)/2;
+                float tileY = (tileLeft+tileRight)/2;
+                float dxy = 0.2;
+                if(ptLocation.x>tileX && ptLocation.y>tileY){
+                    movePoint.x+=dxy;
+                    movePoint.y+=dxy;
+                }
+                if(ptLocation.x<tileX && ptLocation.y>tileY){
+                    movePoint.x-=dxy;
+                    movePoint.y+=dxy;
+                }
+                if(ptLocation.x<tileX && ptLocation.y<tileY){
+                    movePoint.x-=dxy;
+                    movePoint.y-=dxy;
+                }
+                if(ptLocation.x>tileX && ptLocation.y<tileY){
+                    movePoint.x+=dxy;
+                    movePoint.y-=dxy;
+                }
+            }
+        }
+        Vec2 ptInMap;
+        ptInMap.y = mapHeight - ptLocation.y+(tileSize.height/2);
+        ptInMap.x = ptLocation.x+(tileSize.width/2);
+        int tx = ptInMap.x / tileSize.width;
+        int ty = ptInMap.y / tileSize.height;
+        if((point.x<0 && tx<=0) || (point.x>0 && tx>=mapSize.width)){
+            movePoint.x=0;
+        }
+        if((point.y>0 && ty<=0) || (point.y<0 && ty>=mapSize.height)) {
+            movePoint.y=0;
+        }
+        
+        {//显示属性
+            Vec2 ptInMap;
+            ptInMap.y = mapHeight - ptLocation.y;
+            ptInMap.x = ptLocation.x;
+            int tx = ptInMap.x / tileSize.width;
+            int ty = ptInMap.y / tileSize.height;
+            int gid = getFaceToTileGID(tx,ty,"layer_1");
+            string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
+            m_upLabel->setString(goThrough);
+        }
+        this->setPosition(this->getPosition()+(movePoint/10*m_moveSpeed));
+    }
 }
 
 void Role::stopMove(Point point){
@@ -203,7 +196,24 @@ void Role::stopMove(Point point){
 }
 
 void Role::moveTo(Point point){
+    m_moveVector = point-getPositionInScreen();
+    m_moveToPoint = this->getPosition()+m_moveVector;
     
+//    this->setPosition(m_moveToPoint);
+//    m_container->setPosition(this->getPositionInScreen()-this->getPosition());
+    
+    this->unschedule(schedule_selector(Role::moveToSchedule));
+    this->schedule(schedule_selector(Role::moveToSchedule));
+}
+
+void Role::moveToSchedule(float dt){
+    if(m_moveToPoint.getDistance(this->getPosition())<10){
+        this->unschedule(schedule_selector(Role::moveToSchedule));
+    }else{
+//        m_moveVector = m_moveToPoint-this->getPosition();
+//        m_moveVector = m_moveVector.getNormalized();
+        move((m_moveVector/(10*m_moveSpeed)));
+    }
 }
 
 Point Role::getPositionInScreen(){

@@ -60,6 +60,8 @@
 		607FD0971E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD0941E096AD0003798E2 /* CCBLoadHelper.cpp */; };
 		607FD0991E097D6B003798E2 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 607FD0981E097D6B003798E2 /* ccbi */; };
 		607FD09A1E097D6B003798E2 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 607FD0981E097D6B003798E2 /* ccbi */; };
+		60871F751E12176F00C58C79 /* Wood.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F731E12176F00C58C79 /* Wood.cpp */; };
+		60871F761E12176F00C58C79 /* Wood.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F731E12176F00C58C79 /* Wood.cpp */; };
 		60B6B5701DF94FB40069A07A /* image in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B56F1DF94FB40069A07A /* image */; };
 		60B6B5711DF94FB40069A07A /* image in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B56F1DF94FB40069A07A /* image */; };
 		60B6B5781DF959330069A07A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B5771DF959330069A07A /* icon.png */; };
@@ -175,6 +177,8 @@
 		607FD0941E096AD0003798E2 /* CCBLoadHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCBLoadHelper.cpp; sourceTree = "<group>"; };
 		607FD0951E096AD0003798E2 /* CCBLoadHelper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CCBLoadHelper.hpp; sourceTree = "<group>"; };
 		607FD0981E097D6B003798E2 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ccbi; sourceTree = "<group>"; };
+		60871F731E12176F00C58C79 /* Wood.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wood.cpp; sourceTree = "<group>"; };
+		60871F741E12176F00C58C79 /* Wood.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Wood.hpp; sourceTree = "<group>"; };
 		60B6B56F1DF94FB40069A07A /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
 		60B6B5771DF959330069A07A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		60B8B6031E0B6F6500371D5D /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
@@ -466,6 +470,8 @@
 				60B8B6041E0B6F6500371D5D /* Player.hpp */,
 				60B8FC641E11164C0056EF94 /* Tree.cpp */,
 				60B8FC651E11164C0056EF94 /* Tree.hpp */,
+				60871F731E12176F00C58C79 /* Wood.cpp */,
+				60871F741E12176F00C58C79 /* Wood.hpp */,
 			);
 			path = role;
 			sourceTree = "<group>";
@@ -628,6 +634,7 @@
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				607FD0961E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */,
+				60871F751E12176F00C58C79 /* Wood.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				60B8B6141E0BD3F100371D5D /* PlayerController.cpp in Sources */,
@@ -658,6 +665,7 @@
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				601CAAF61E0A9062003BCC41 /* TouchUI.cpp in Sources */,
 				60B8B60A1E0B710C00371D5D /* Role.cpp in Sources */,
+				60871F761E12176F00C58C79 /* Wood.cpp in Sources */,
 				601CAB001E0A9537003BCC41 /* CommonUtils.cpp in Sources */,
 				607FD0901E096460003798E2 /* WorldScene.cpp in Sources */,
 				60B8B6151E0BD3F100371D5D /* PlayerController.cpp in Sources */,

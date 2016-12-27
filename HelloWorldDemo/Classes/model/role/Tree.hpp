@@ -19,6 +19,7 @@ public:
     virtual bool initWithPicName(string pic_name);
 
     virtual void showDescription(bool show);//显示简介
+    virtual int beAttackedByRole(Role* selfRole,int hurt);//被攻击 返回生命值
 protected:
     void onEnter();
     void onExit();

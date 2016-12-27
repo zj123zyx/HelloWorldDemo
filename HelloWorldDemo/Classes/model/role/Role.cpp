@@ -8,6 +8,7 @@
 
 #include "Role.hpp"
 #include "RolesController.hpp"
+#include "PlayerController.hpp"
 
 Role::Role(){
     
@@ -40,8 +41,9 @@ bool Role::initWithPicName(string pic_name){
     if(Node::init()){
         ret = true;
         m_rolePicName = pic_name;
-        m_moveSpeed = 1;
+        m_moveSpeed = 0;
         m_container = nullptr;
+        m_target = nullptr;
         m_direction = Vec2(0, -1);
         m_faceTo = FaceTo_NULL;
         m_tileX = 0;
@@ -54,7 +56,9 @@ bool Role::initWithPicName(string pic_name){
         m_width=0;//32;//自身宽度
         m_height=0;//32;//自身高度
         m_roleType=RoleType_Role;
+        m_selfValue = SelfValues();
         m_fightValue = FightValues();
+        m_resourceValue = ResourceValues();
         
         m_desNode = Node::create();
         this->addChild(m_desNode);
@@ -183,6 +187,13 @@ void Role::move(Point point){
             m_upLabel->setString(goThrough);
         }
         this->setPosition(this->getPosition()+(movePoint.getNormalized()*m_moveSpeed));
+        Point faceToPoint = getFaceToTilePoint();//得到朝向的点
+        Role* role = RolesController::getInstance()->getRoleByTile(faceToPoint);//是否有角色
+        if (role) {
+            setTarget(role);
+        }else{
+            removeTarget();
+        }
     }
 }
 
@@ -416,15 +427,46 @@ bool Role::isHaveRole(Vec2 vec){//是否有role
     }
 }
 
-void Role::roleAttack(Role* role){
-    int hitValue = m_fightValue.m_attack-role->m_fightValue.m_defense;
-    hitValue = MAX(hitValue, 0);
-    role->m_fightValue.m_health -= hitValue;
-    if (role->m_fightValue.m_health<=0) {
-        role->removeFromParent();
+void Role::roleAttackTarget(Role* selfRole){//攻击
+    if(m_target){
+        int hitValue = m_fightValue.m_attack-m_target->m_fightValue.m_defense;
+        hitValue = MAX(hitValue, 0);
+        int roleHealth = m_target->beAttackedByRole(selfRole,hitValue);
+//        if(roleHealth<=0){
+//            m_target=nullptr;
+//        }
+    }
+}
+
+int Role::beAttackedByRole(Role* selfRole,int hurt){//被攻击
+    m_fightValue.m_health -= hurt;
+    showDescription(true);
+    if (m_fightValue.m_health<=0) {
+        this->removeFromParent();
+        RolesController::getInstance()->removeRoleByTile(Vec2(m_tileX, m_tileY));//删除角色
+    }
+    return m_fightValue.m_health;
+}
+
+void Role::getThisItem(Role* role){//获得此物品
+    if (role->m_roleType==RoleType_Player) {
+        PlayerController::getInstance()->getItem(this);
+        this->removeFromParent();
+        RolesController::getInstance()->removeRoleByTile(Vec2(m_tileX, m_tileY));//删除角色
+        role->m_target=nullptr;
     }
 }
 
 void Role::showDescription(bool show){
     m_desNode->setVisible(show);
+}
+
+void Role::setTarget(Role* target){
+    m_target = target;
+}
+
+void Role::removeTarget(){
+    if(m_target){
+        m_target = nullptr;
+    }
 }

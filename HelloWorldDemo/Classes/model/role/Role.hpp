@@ -19,7 +19,8 @@
 enum RoleType{
     RoleType_Role=0,
     RoleType_Player,
-    RoleType_Tree
+    RoleType_Tree,
+    RoleType_Wood
 };
 
 enum FaceTo{
@@ -30,6 +31,15 @@ enum FaceTo{
     FaceTo_LEFT
 };
 
+class SelfValues{
+public:
+    SelfValues():m_name("")
+    ,m_description(""){};
+    ~SelfValues(){};
+
+    string m_name;
+    string m_description;
+};
 class FightValues{
 public:
     FightValues():m_health(0)
@@ -37,8 +47,6 @@ public:
     ,m_attack(0)
     ,m_attackCD(0)
     ,m_attackRange(0)
-    ,m_name("")
-    ,m_description("")
     {};
     ~FightValues(){};
     
@@ -47,8 +55,16 @@ public:
     int m_attack;
     int m_attackCD;
     int m_attackRange;
-    string m_name;
-    string m_description;
+};
+class ResourceValues{
+public:
+    ResourceValues():m_wood(0)
+    ,m_stone(0)
+    {};
+    ~ResourceValues(){};
+    
+    int m_wood;
+    int m_stone;
 };
 
 class Role:public Node
@@ -67,27 +83,31 @@ public:
     virtual void stopMove(Point point);
     virtual void moveTo(Point point);
     void moveToSchedule(float dt);
-    
     void setAnimation(const char* aniName,string frameName,int fromCount,int toCount,Size roleSize = Size(32, 32),float dTime = 0.2f);//设置动画
     int getLayerTileGIDAtPoint(string layerName, Point point);//获得该位置的GID
     Point getFaceToTilePoint();//获得面向的位置
     int getFaceToTileGID(string layerName);//获得面向位置的GID
     string getPropertyByGIDAndNameToString(int gid,string propertyName);//得到该GID对应的自定义属性名字
-    
     void setDirection(Point point);//设置朝向
     void onDirectionChanged();//朝向发生改变
     bool isVecCanGo(Vec2 vec);//是否可通过
     bool isHaveRole(Vec2 vec);//是否有role
-    
-    void roleAttack(Role* role);//攻击
+    void roleAttackTarget(Role* selfRole);//攻击
+    virtual int beAttackedByRole(Role* selfRole,int hurt);//被攻击 返回生命值
+    virtual void getThisItem(Role* role);//role获得此物品
     virtual void showDescription(bool show);//显示简介
+    virtual void setTarget(Role* target);//设置目标
+    virtual void removeTarget();//移除目标
     
+    Role* m_target;//目标
     float m_moveSpeed;
     map<string, Animation*> m_aniMap;
     Vec2 m_direction;
     FaceTo m_faceTo;
     
+    SelfValues m_selfValue;//自身属性
     FightValues m_fightValue;//战斗属性
+    ResourceValues m_resourceValue;//资源属性
     int m_tileX;//自身tile位置
     int m_tileY;//自身tile位置
     vector<Vec2> m_occupy;

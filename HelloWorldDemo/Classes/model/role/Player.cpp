@@ -32,8 +32,9 @@ bool Player::initWithPicName(string pic_name){
         m_roleType = RoleType_Player;
         m_width=30;//32;//自身宽度
         m_height=30;//32;//自身高度
-        m_target=nullptr;
         m_moveSpeed = 2;
+        m_fightValue.m_health=10;
+        m_fightValue.m_attack=2;
         
         SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
         m_roleSprite = Sprite::createWithSpriteFrame(frame);
@@ -66,13 +67,6 @@ void Player::onExit(){
 void Player::move(Point point){
     Role::move(point);
     m_container->setPosition(this->getPositionInScreen()-this->getPosition());
-    Point faceToPoint = getFaceToTilePoint();
-    Role* role = RolesController::getInstance()->getRoleByTile(faceToPoint);
-    if (role) {
-        setTarget(role);
-    }else{
-        removeTarget();
-    }
 }
 
 void Player::moveTo(Point point){
@@ -86,14 +80,32 @@ void Player::setPosition(const Vec2 &position){
     }
 }
 
+void Player::doAction(){
+    if (m_target) {
+        switch (m_target->m_roleType) {
+            case RoleType_Tree:
+                Role::roleAttackTarget(this);
+                break;
+            case RoleType_Wood:
+                m_target->getThisItem(this);
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
 void Player::setTarget(Role* target){
-    m_target = target;
-    target->showDescription(true);
+    Role::setTarget(target);
+    if(m_target){
+        m_target->showDescription(true);
+    }
 }
 
 void Player::removeTarget(){
     if(m_target){
         m_target->showDescription(false);
-        m_target = nullptr;
     }
+    Role::removeTarget();
 }

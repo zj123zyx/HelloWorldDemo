@@ -470,7 +470,7 @@
 								<string>BlockCCControl</string>
 								<key>value</key>
 								<array>
-									<string>onBtn1Click</string>
+									<string>onBtn2Click</string>
 									<integer>2</integer>
 									<integer>32</integer>
 								</array>
@@ -539,7 +539,7 @@
 								<key>type</key>
 								<string>Check</string>
 								<key>value</key>
-								<true/>
+								<false/>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -611,8 +611,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -749,7 +747,7 @@
 								<key>type</key>
 								<string>Check</string>
 								<key>value</key>
-								<true/>
+								<false/>
 							</dict>
 							<dict>
 								<key>name</key>

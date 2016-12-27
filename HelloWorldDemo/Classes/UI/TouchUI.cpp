@@ -111,11 +111,8 @@ void TouchUI::OnScrollLeft(float dt){
 
 void TouchUI::onBtn1Click(Ref* pSender, Control::EventType event){
     CCLOG("onBtn1Click");
-    if(listener->isSwallowTouches()==false){
-        m_uiDelegate->OnTouchUIRelease(this,callfunc_selector(TouchUI::startUseTouchUI));
-    }else{
-        listener->setSwallowTouches(false);
-    }
+    PlayerController::getInstance()->player->doAction();
+    
 }
 void TouchUI::onBtn2Click(Ref* pSender, Control::EventType event){
     CCLOG("onBtn2Click");

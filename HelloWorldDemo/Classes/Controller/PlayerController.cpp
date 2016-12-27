@@ -46,3 +46,9 @@ void PlayerController::OnUIStartScrollLeft(Point scrollPoint){
 void PlayerController::playerMoveTo(Point point){
     player->moveTo(point);
 }
+
+void PlayerController::getItem(Role* role){//获得物品
+    if (role->m_roleType==RoleType_Wood) {
+        CCLOG("player get %s:%d",role->m_selfValue.m_name.c_str(),role->m_resourceValue.m_wood);
+    }
+}

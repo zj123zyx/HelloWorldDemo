@@ -41,16 +41,9 @@ bool WorldScene::init()
     int px = m_player->m_tileX*tileSize.width+tileSize.width/2;
     m_player->setPosition(Vec2(px, py));
     _map->addChild(m_player,3);
-    {   //add tree
-        map<int,Role*>::iterator it = RolesController::getInstance()->m_RoleMap.begin();
-        for (; it!=RolesController::getInstance()->m_RoleMap.end(); it++) {
-            Role *tree = it->second;
-            int py = mapSize.height - (tree->m_tileY*tileSize.height+tileSize.height/2);
-            int px = tree->m_tileX*tileSize.width+tileSize.width/2;
-            tree->setPosition(Vec2(px, py));
-            _map->addChild(tree,3);
-        }
-    }
+    //add tree
+    RolesController::getInstance()->setTiledMap(_map);
+    RolesController::getInstance()->addAllRoleToScene();
     return true;
 }
 

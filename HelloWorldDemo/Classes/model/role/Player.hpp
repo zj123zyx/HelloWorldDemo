@@ -19,12 +19,12 @@ public:
     virtual bool initWithPicName(string pic_name);
     
     void setPosition(const Vec2 &position);
-    void move(Point point);
-    void moveTo(Point point);
+    virtual void move(Point point);
+    virtual void moveTo(Point point);
     
-    void setTarget(Role* target);
-    void removeTarget();
-    Role* m_target;
+    void doAction();//攻击
+    virtual void setTarget(Role* target);//设置目标
+    virtual void removeTarget();//移除目标
 protected:
     void onEnter();
     void onExit();

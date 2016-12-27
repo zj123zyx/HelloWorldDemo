@@ -24,6 +24,7 @@ public:
     void OnUIScrollLeft(Point scrollPoint);
     void OnUIStopScrollLeft(Point scrollPoint);
     void playerMoveTo(Point point);
+    void getItem(Role* role);
     Player* player;
 };
 

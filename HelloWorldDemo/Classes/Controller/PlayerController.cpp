@@ -20,7 +20,9 @@ PlayerController* PlayerController::getInstance()
 }
 
 PlayerController::PlayerController(){
-    player = Player::create();
+    player = Player::createWithPicName("res/Roles/assassin1a.png");
+    player->m_tileX = 11;
+    player->m_tileY = 91;
 }
 PlayerController::~PlayerController(){
     

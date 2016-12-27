@@ -1,6 +1,8 @@
 #include "WorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "PlayerController.hpp"
+#include "RolesController.hpp"
+#include "Role.hpp"
 
 USING_NS_CC;
 
@@ -19,7 +21,6 @@ bool WorldScene::init()
         return false;
     }
     _map = TMXTiledMap::create("image/tiled_test4.tmx");//tiled_test3
-    Size size = _map->getContentSize();
     this->addChild(_map);
     //touch
     m_touchDelegateView = TouchDelegateView::create();
@@ -30,12 +31,26 @@ bool WorldScene::init()
     TouchUI* touchUI = TouchUI::create();
     touchUI->setUiDelegate(this);
     this->addChild(touchUI);
+    
+    Size mapSize = _map->getContentSize();
+    Size tileSize = _map->getTileSize();
     //add player
     Player *m_player = PlayerController::getInstance()->player;
-    m_player->setPosition(m_player->getPositionInScreen()-_map->getPosition());
     m_player->setContainer(_map);
+    int py = mapSize.height - (m_player->m_tileY*tileSize.height+tileSize.height/2);
+    int px = m_player->m_tileX*tileSize.width+tileSize.width/2;
+    m_player->setPosition(Vec2(px, py));
     _map->addChild(m_player,3);
-    
+    {   //add tree
+        map<int,Role*>::iterator it = RolesController::getInstance()->m_RoleMap.begin();
+        for (; it!=RolesController::getInstance()->m_RoleMap.end(); it++) {
+            Role *tree = it->second;
+            int py = mapSize.height - (tree->m_tileY*tileSize.height+tileSize.height/2);
+            int px = tree->m_tileX*tileSize.width+tileSize.width/2;
+            tree->setPosition(Vec2(px, py));
+            _map->addChild(tree,3);
+        }
+    }
     return true;
 }
 

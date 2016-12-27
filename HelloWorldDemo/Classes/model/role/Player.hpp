@@ -15,11 +15,16 @@ class Player:public Role
 {
 public:
     
-    CREATE_FUNC(Player);
-    virtual bool init();
+    static Player* createWithPicName(string pic_name);
+    virtual bool initWithPicName(string pic_name);
     
+    void setPosition(const Vec2 &position);
     void move(Point point);
     void moveTo(Point point);
+    
+    void setTarget(Role* target);
+    void removeTarget();
+    Role* m_target;
 protected:
     void onEnter();
     void onExit();

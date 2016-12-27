@@ -35,6 +35,7 @@ private:
     virtual Control::Handler onResolveCCBCCControlSelector(Ref * pTarget, const char * pSelectorName);
     
     void onBtn1Click(Ref* pSender, Control::EventType event);
+    void onBtn2Click(Ref* pSender, Control::EventType event);
     void startUseTouchUI();
     
     UIDelegate* m_uiDelegate;
@@ -46,6 +47,7 @@ private:
     Sprite* m_yaoGanerSpr;
     Sprite* m_yaoGanerSprBg;
     ControlButton* m_btn1;
+    ControlButton* m_btn2;
     
     bool m_isLeftTouch;
     bool m_isNodeTouch;

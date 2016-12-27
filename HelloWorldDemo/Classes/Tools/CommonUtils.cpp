@@ -24,20 +24,51 @@ SpriteFrame* CommonUtils::createSpriteFrame(string pic_name){
     return frame;
 }
 
-bool CommonUtils::isRectInTile(Point rectCenter,float rectWidth,float rectHeight,int tileX,int tileY,float tileSize,float mapHeight){
+SpriteFrame* CommonUtils::createRoleSpriteFrameBySizeNumber(string pic_name,Size RoleSize, int Number){
+    SpriteFrame* frame = nullptr;
+    Texture2D *texture = Director::getInstance()->getTextureCache()->addImage(pic_name);
+    if (texture)
+    {
+        Size tSize = texture->getContentSize();
+        int rowNum = tSize.width/RoleSize.width;
+//        int colNum = tSize.height/RoleSize.height;
+        int row = Number/rowNum;
+        int col = Number%rowNum;
+        Rect rect = Rect::ZERO;
+        rect.size = RoleSize;
+        rect.origin.x = col*RoleSize.width;
+        rect.origin.y = row*RoleSize.height;
+        frame = SpriteFrame::create(pic_name, rect);
+    }
+    return frame;
+}
+
+bool CommonUtils::isRectInTile(Point rectCenter,float rectWidth,float rectHeight,Rect tileRect,float mapHeight){
     bool ret = true;
     float rectUp = rectCenter.y + rectHeight/2;
     float rectDown = rectCenter.y - rectHeight/2;
     float rectRight = rectCenter.x + rectWidth/2;
     float rectLeft = rectCenter.x - rectWidth/2;
     
-    float tileUp = mapHeight-tileY*tileSize;
-    float tileDown = mapHeight-(tileY+1)*tileSize;
-    float tileLeft = tileX*tileSize;
-    float tileRight = (tileX+1)*tileSize;
+    float tileUp = mapHeight-tileRect.origin.y*tileRect.size.height;
+    float tileDown = mapHeight-(tileRect.origin.y+1)*tileRect.size.height;
+    float tileLeft = tileRect.origin.x*tileRect.size.width;
+    float tileRight = (tileRect.origin.x+1)*tileRect.size.width;
     
     if(rectUp<tileDown || rectDown>tileUp || rectLeft>tileRight || rectRight<tileLeft){
         ret = false;
     }
+    return ret;
+}
+
+int CommonUtils::getTileIdByXY(int x,int y){
+    int idx = 0;
+    idx = x*1000+y;
+    return idx;
+}
+Vec2 CommonUtils::getTileXYById(int Tid){
+    Vec2 ret = Vec2::ZERO;
+    ret.x = Tid/1000;
+    ret.y = Tid%1000;
     return ret;
 }

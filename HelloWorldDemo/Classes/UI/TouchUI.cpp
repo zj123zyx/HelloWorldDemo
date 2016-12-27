@@ -44,10 +44,12 @@ bool TouchUI::onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVaria
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_yaoGanerSpr", Sprite*, m_yaoGanerSpr);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_yaoGanerSprBg", Sprite*, m_yaoGanerSprBg);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn1", ControlButton*, m_btn1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn2", ControlButton*, m_btn2);
     return false;
 }
 cocos2d::extension::Control::Handler TouchUI::onResolveCCBCCControlSelector(Ref * pTarget, const char * pSelectorName){
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onBtn1Click", TouchUI::onBtn1Click);
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onBtn2Click", TouchUI::onBtn2Click);
     return NULL;
 }
 
@@ -108,7 +110,15 @@ void TouchUI::OnScrollLeft(float dt){
 }
 
 void TouchUI::onBtn1Click(Ref* pSender, Control::EventType event){
-    CCLOG("onBtnClick");
+    CCLOG("onBtn1Click");
+    if(listener->isSwallowTouches()==false){
+        m_uiDelegate->OnTouchUIRelease(this,callfunc_selector(TouchUI::startUseTouchUI));
+    }else{
+        listener->setSwallowTouches(false);
+    }
+}
+void TouchUI::onBtn2Click(Ref* pSender, Control::EventType event){
+    CCLOG("onBtn2Click");
     if(listener->isSwallowTouches()==false){
         m_uiDelegate->OnTouchUIRelease(this,callfunc_selector(TouchUI::startUseTouchUI));
     }else{

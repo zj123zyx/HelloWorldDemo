@@ -62,6 +62,8 @@
 		607FD09A1E097D6B003798E2 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 607FD0981E097D6B003798E2 /* ccbi */; };
 		60871F751E12176F00C58C79 /* Wood.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F731E12176F00C58C79 /* Wood.cpp */; };
 		60871F761E12176F00C58C79 /* Wood.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F731E12176F00C58C79 /* Wood.cpp */; };
+		60871F7B1E12781600C58C79 /* BagView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F791E12781600C58C79 /* BagView.cpp */; };
+		60871F7C1E12781600C58C79 /* BagView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F791E12781600C58C79 /* BagView.cpp */; };
 		60B6B5701DF94FB40069A07A /* image in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B56F1DF94FB40069A07A /* image */; };
 		60B6B5711DF94FB40069A07A /* image in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B56F1DF94FB40069A07A /* image */; };
 		60B6B5781DF959330069A07A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B5771DF959330069A07A /* icon.png */; };
@@ -179,6 +181,8 @@
 		607FD0981E097D6B003798E2 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ccbi; sourceTree = "<group>"; };
 		60871F731E12176F00C58C79 /* Wood.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wood.cpp; sourceTree = "<group>"; };
 		60871F741E12176F00C58C79 /* Wood.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Wood.hpp; sourceTree = "<group>"; };
+		60871F791E12781600C58C79 /* BagView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BagView.cpp; sourceTree = "<group>"; };
+		60871F7A1E12781600C58C79 /* BagView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BagView.hpp; sourceTree = "<group>"; };
 		60B6B56F1DF94FB40069A07A /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
 		60B6B5771DF959330069A07A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		60B8B6031E0B6F6500371D5D /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
@@ -351,6 +355,7 @@
 				601CAAF21E0A9062003BCC41 /* UI */,
 				60B8B6011E0B6F6500371D5D /* model */,
 				60B8B6101E0BD3C900371D5D /* Controller */,
+				60871F781E1277E800C58C79 /* Views */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -451,6 +456,15 @@
 				607FD0951E096AD0003798E2 /* CCBLoadHelper.hpp */,
 			);
 			path = GUI;
+			sourceTree = "<group>";
+		};
+		60871F781E1277E800C58C79 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				60871F791E12781600C58C79 /* BagView.cpp */,
+				60871F7A1E12781600C58C79 /* BagView.hpp */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		60B8B6011E0B6F6500371D5D /* model */ = {
@@ -633,6 +647,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				60871F7B1E12781600C58C79 /* BagView.cpp in Sources */,
 				607FD0961E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */,
 				60871F751E12176F00C58C79 /* Wood.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
@@ -657,6 +672,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FD0971E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */,
+				60871F7C1E12781600C58C79 /* BagView.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				607FD08B1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */,
 				60B8FC671E11164C0056EF94 /* Tree.cpp in Sources */,

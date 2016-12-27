@@ -23,6 +23,8 @@ public:
 protected:
     void onEnter();
     void onExit();
+    
+    int totalHealth;
 };
 
 

@@ -62,13 +62,13 @@ bool Role::initWithPicName(string pic_name){
         
         m_desNode = Node::create();
         this->addChild(m_desNode);
-        
-        m_upLabel = Label::createWithSystemFont(".", "", 12);
-        m_upLabel->setAnchorPoint(Vec2(0.5, 0.5));
-        m_upLabel->setPositionY(20);
-        if(m_upLabel){
-            m_desNode->addChild(m_upLabel);
-        }
+        m_desNode->setPositionY(20);
+        m_desNode->setVisible(false);
+//        m_upLabel = Label::createWithSystemFont(".", "", 12);
+//        m_upLabel->setAnchorPoint(Vec2(0.5, 0.5));
+//        if(m_upLabel){
+//            m_desNode->addChild(m_upLabel);
+//        }
     }
     return ret;
 }

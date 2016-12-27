@@ -48,7 +48,7 @@ void PlayerController::playerMoveTo(Point point){
 }
 
 void PlayerController::getItem(Role* role){//获得物品
-    if (role->m_roleType==RoleType_Wood) {
-        CCLOG("player get %s:%d",role->m_selfValue.m_name.c_str(),role->m_resourceValue.m_wood);
+    if (role->m_roleType==RoleType_Resource) {
+        CCLOG("player get %s:%d",role->m_selfValue.m_name.c_str(),role->m_resourceValue.m_value);
     }
 }

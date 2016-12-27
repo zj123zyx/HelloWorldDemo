@@ -36,7 +36,9 @@ private:
     
     void onBtn1Click(Ref* pSender, Control::EventType event);
     void onBtn2Click(Ref* pSender, Control::EventType event);
+    void onBtn3Click(Ref* pSender, Control::EventType event);
     void startUseTouchUI();
+    void TouchUISchedule(float dt);
     
     UIDelegate* m_uiDelegate;
     
@@ -48,10 +50,13 @@ private:
     Sprite* m_yaoGanerSprBg;
     ControlButton* m_btn1;
     ControlButton* m_btn2;
+    ControlButton* m_btn3;
     
     bool m_isLeftTouch;
     bool m_isNodeTouch;
     bool m_isScrollingLeft;
+    
+    int m_btn1LeftCD;
 };
 
 #endif // __TouchUI_H__

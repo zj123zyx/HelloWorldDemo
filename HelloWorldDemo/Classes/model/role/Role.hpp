@@ -20,7 +20,12 @@ enum RoleType{
     RoleType_Role=0,
     RoleType_Player,
     RoleType_Tree,
-    RoleType_Wood
+    RoleType_Resource
+};
+
+enum ResourceType{
+    ResourceType_NULL=0,
+    ResourceType_Wood
 };
 
 enum FaceTo{
@@ -58,13 +63,13 @@ public:
 };
 class ResourceValues{
 public:
-    ResourceValues():m_wood(0)
-    ,m_stone(0)
+    ResourceValues():m_resourceType(ResourceType_NULL)
+    ,m_value(0)
     {};
     ~ResourceValues(){};
     
-    int m_wood;
-    int m_stone;
+    ResourceType m_resourceType;
+    int m_value;
 };
 
 class Role:public Node
@@ -130,6 +135,8 @@ protected:
     Sprite* m_roleSprite;
     Node* m_desNode;
     Label* m_upLabel;
+    Scale9Sprite *m_healthBar;
+    Scale9Sprite *m_healthBg;
     
     Point m_moveToPoint;
     Point m_moveVector;

@@ -35,6 +35,8 @@ bool Player::initWithPicName(string pic_name){
         m_moveSpeed = 2;
         m_fightValue.m_health=10;
         m_fightValue.m_attack=2;
+        m_fightValue.m_attackCD=3;
+        m_fightValue.m_attackRange=1;
         
         SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
         m_roleSprite = Sprite::createWithSpriteFrame(frame);
@@ -42,12 +44,11 @@ bool Player::initWithPicName(string pic_name){
             this->addChild(m_roleSprite);
         }
         
-//        m_upLabel = Label::createWithSystemFont(".", "", 12);
-//        m_upLabel->setAnchorPoint(Vec2(0.5, 0.5));
-//        m_upLabel->setPositionY(20);
-//        if(m_upLabel){
-//            this->addChild(m_upLabel);
-//        }
+        m_upLabel = Label::createWithSystemFont(".", "", 12);
+        m_upLabel->setAnchorPoint(Vec2(0.5, 0.5));
+        if(m_upLabel){
+            m_desNode->addChild(m_upLabel);
+        }
         //设置动画
         setAnimation(ROLW_MOVE_DOWN,"res/Roles/assassin1a.png",0,2);
         setAnimation(ROLW_MOVE_LEFT,"res/Roles/assassin1a.png",3,5);
@@ -86,7 +87,7 @@ void Player::doAction(){
             case RoleType_Tree:
                 Role::roleAttackTarget(this);
                 break;
-            case RoleType_Wood:
+            case RoleType_Resource:
                 m_target->getThisItem(this);
                 break;
                 

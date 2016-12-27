@@ -16,5 +16,6 @@ USING_NS_CC;
 using namespace std;
 using namespace cocosbuilder;
 using namespace cocos2d::extension;
+using namespace cocos2d::ui;
 
 #endif /* CommonHead_h */

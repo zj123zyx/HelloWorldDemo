@@ -62,7 +62,7 @@ bool Role::initWithPicName(string pic_name){
         
         m_desNode = Node::create();
         this->addChild(m_desNode);
-        m_desNode->setPositionY(20);
+        m_desNode->setPositionY(30);
         m_desNode->setVisible(false);
 //        m_upLabel = Label::createWithSystemFont(".", "", 12);
 //        m_upLabel->setAnchorPoint(Vec2(0.5, 0.5));
@@ -82,6 +82,7 @@ void Role::onExit(){
 }
 
 void Role::startMove(Point point){
+    m_faceTo=FaceTo_NULL;
     setDirection(point);
     this->unschedule(schedule_selector(Role::moveToSchedule));
 }

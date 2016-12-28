@@ -29,19 +29,21 @@ bool Wood::initWithPicName(string pic_name){
     if(Role::initWithPicName(pic_name)){
         ret = true;
         m_roleType = RoleType_Resource;
-        m_width=32;//自身宽度
-        m_height=32;//自身高度
+        m_width=64;//自身宽度
+        m_height=64;//自身高度
         m_selfValue.m_name="木材";
         m_resourceValue.m_resourceType=ResourceType_Wood;
         m_resourceValue.m_value=10;
         
         SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
         m_roleSprite = Sprite::createWithSpriteFrame(frame);
+        m_roleSprite->setScale(2);
         if(m_roleSprite){
             this->addChild(m_roleSprite);
         }
-        m_upLabel = Label::createWithSystemFont(".", "", 12);
-        m_upLabel->setAnchorPoint(Vec2(0.5, 0.5));
+        m_upLabel = Label::createWithSystemFont(".", "", 14);
+        m_upLabel->setAnchorPoint(Vec2(0.5, 0));
+        m_upLabel->setPositionY(4);
         if(m_upLabel){
             m_desNode->addChild(m_upLabel);
         }

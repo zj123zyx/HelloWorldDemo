@@ -20,7 +20,7 @@ bool WorldScene::init()
     {
         return false;
     }
-    _map = TMXTiledMap::create("image/tiled_test4.tmx");//tiled_test3
+    _map = TMXTiledMap::create("image/tiled_test5.tmx");//tiled_test3
     this->addChild(_map);
     //touch
     m_touchDelegateView = TouchDelegateView::create();

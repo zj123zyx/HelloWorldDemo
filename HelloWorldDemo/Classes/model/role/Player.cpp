@@ -30,8 +30,8 @@ bool Player::initWithPicName(string pic_name){
     if(Role::initWithPicName(pic_name)){
         ret = true;
         m_roleType = RoleType_Player;
-        m_width=30;//32;//自身宽度
-        m_height=30;//32;//自身高度
+        m_width=64;//32;//自身宽度
+        m_height=64;//32;//自身高度
         m_moveSpeed = 2;
         m_fightValue.m_health=10;
         m_fightValue.m_attack=2;
@@ -40,6 +40,7 @@ bool Player::initWithPicName(string pic_name){
         
         SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
         m_roleSprite = Sprite::createWithSpriteFrame(frame);
+        m_roleSprite->setScale(2);
         if(m_roleSprite){
             this->addChild(m_roleSprite);
         }

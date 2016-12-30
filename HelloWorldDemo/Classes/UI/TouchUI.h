@@ -14,20 +14,19 @@ public Node
 , public CCBMemberVariableAssigner
 {
 public:
+    static TouchUI* getInstance();
     virtual bool init();
     CREATE_FUNC(TouchUI);
-    
     void onEnter();
     void onExit();
-    
     void setUiDelegate(UIDelegate* delegate);
+    void addToLayer(Layer* layer);
+    ControlButton* m_btn2;
 protected:
     EventListenerTouchOneByOne* listener;
-    
     bool onTouchBegan(Touch* touch, Event* event);
     void onTouchMoved(Touch* touch, Event* event);
     void onTouchEnded(Touch* touch, Event* event);
-    
     void OnScrollLeft(float dt);
 private:
     virtual bool onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVariableName, Node * pNode);
@@ -49,7 +48,6 @@ private:
     Sprite* m_yaoGanerSpr;
     Sprite* m_yaoGanerSprBg;
     ControlButton* m_btn1;
-    ControlButton* m_btn2;
     ControlButton* m_btn3;
     
     bool m_isLeftTouch;

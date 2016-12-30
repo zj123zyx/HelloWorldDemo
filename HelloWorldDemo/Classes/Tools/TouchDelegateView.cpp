@@ -27,6 +27,7 @@ void TouchDelegateView::onEnter(){
     listener->onTouchesEnded = CC_CALLBACK_2(TouchDelegateView::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     m_isZoom = false;
+    m_isInit = true;
     zoomDistance = 0;
     scrollBeganPoint=Vec2(-1, -1);
 }
@@ -49,6 +50,7 @@ void TouchDelegateView::moveToPosition(Point point,float duration,Ref *target,SE
 }
 
 void TouchDelegateView::onTouchesBegan(const std::vector<Touch*>& pTouches, Event *pEvent){
+    m_isInit = false;
     CC_ASSERT(this->m_TargetNode);
     if(fabsf(m_tScrollDistance.x)>3 || fabsf(m_tScrollDistance.y)>3){
         m_tScrollDistance = Vec2(0, 0);
@@ -62,6 +64,7 @@ void TouchDelegateView::onTouchesBegan(const std::vector<Touch*>& pTouches, Even
     }
 }
 void TouchDelegateView::onTouchesMoved(const std::vector<Touch*>& pTouches, Event *pEvent){
+    if(m_isInit) return;
     CC_ASSERT(this->m_TargetNode);
     if(pTouches.size()==1){
         OnScroll(dynamic_cast<Touch*>(pTouches[0]));
@@ -72,6 +75,7 @@ void TouchDelegateView::onTouchesMoved(const std::vector<Touch*>& pTouches, Even
     }
 }
 void TouchDelegateView::onTouchesEnded(const std::vector<Touch*>& pTouches, Event *pEvent){
+    if(m_isInit) return;
     CC_ASSERT(this->m_TargetNode);
     if(pTouches.size()==1){
         EndScroll(dynamic_cast<Touch*>(pTouches[0]));

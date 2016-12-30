@@ -9,29 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/model/role/Player.cpp"
-            timestampString = "504535865.030654"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "Player::removeTarget()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "../Classes/model/role/Role.cpp"
-            timestampString = "504535707.125804"
+            timestampString = "504673392.450115"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "466"
-            endingLineNumber = "466"
-            landmarkName = "Role::setTarget(Role* target)"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "Role::moveToSchedule(float dt)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/model/role/Player.cpp"
-            timestampString = "504535865.030654"
+            filePath = "../Classes/model/role/ActionRole.cpp"
+            timestampString = "504676221.985277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "Player::setTarget(Role* target)"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "ActionRole::doAction(Role* sender)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/model/role/Tree.cpp"
-            timestampString = "504536164.401136"
+            filePath = "../Classes/Scene/TestHouseScene.cpp"
+            timestampString = "504708319.836574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "Tree::beAttackedByRole(Role* selfRole,int hurt)"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "TestHouseScene::onExit()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +57,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/UI/TouchUI.cpp"
-            timestampString = "504526928.499775"
+            filePath = "../Classes/Scene/WorldScene.cpp"
+            timestampString = "504708319.836574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "TouchUI::TouchUISchedule(float dt)"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "WorldScene::onEnter()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,13 +73,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/UI/TouchUI.cpp"
-            timestampString = "504526928.499775"
+            filePath = "../Classes/Scene/WorldScene.cpp"
+            timestampString = "504708319.836574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "TouchUI::onBtn1Click(Ref* pSender, Control::EventType event)"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "WorldScene::onExit()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,13 +89,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/UI/TouchUI.cpp"
-            timestampString = "504526928.499775"
+            filePath = "../Classes/model/role/House.cpp"
+            timestampString = "504676221.985277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "TouchUI::onBtn1Click(Ref* pSender, Control::EventType event)"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "House::doAction(Role* sender)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,45 +105,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/UI/TouchUI.cpp"
-            timestampString = "504526928.499775"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "TouchUI::onTouchMoved(Touch* touch, Event* event)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/Tools/CommonUtils.cpp"
-            timestampString = "504534573.269466"
+            filePath = "../Classes/Scene/WorldScene.cpp"
+            timestampString = "504708319.836574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
             endingLineNumber = "48"
-            landmarkName = "CommonUtils::isRectInTile(Point rectCenter,float rectWidth,float rectHeight,Rect tileRect,float mapHeight)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/model/role/Role.cpp"
-            timestampString = "504535707.125804"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
-            landmarkName = "Role::setDirection(Point point)"
+            landmarkName = "WorldScene::init()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

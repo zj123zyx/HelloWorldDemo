@@ -36,6 +36,7 @@ bool Tree::initWithPicName(string pic_name){
         m_height=64;//自身高度
         m_fightValue.m_health=totalHealth;
         m_selfValue.m_name="松树";
+        m_selfValue.m_sticky=true;
         
         SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
         m_roleSprite = Sprite::createWithSpriteFrame(frame);
@@ -85,9 +86,7 @@ int Tree::beAttackedByRole(Role* selfRole,int hurt){//被攻击 返回生命值
     int ret = Role::beAttackedByRole(selfRole,hurt);
     if(m_fightValue.m_health<=0){//如果生命为0就变为木材
         Wood* wood = Wood::createWithPicName("res/Roles/assassin1a.png");
-        wood->m_tileX = saveX;
-        wood->m_tileY = saveY;
-        wood->m_occupy.push_back(Vec2(wood->m_tileX,wood->m_tileY));
+        wood->setTileXY(saveX, saveY);
         RolesController::getInstance()->addControllerRole(wood,true);
         selfRole->setTarget(wood);
     }else{

@@ -54,16 +54,24 @@
 		607A94021E0A58C700473E9F /* Common in Resources */ = {isa = PBXBuildFile; fileRef = 607A94001E0A58C700473E9F /* Common */; };
 		607FD08A1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD0881E0961CF003798E2 /* GameLoadingScene.cpp */; };
 		607FD08B1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD0881E0961CF003798E2 /* GameLoadingScene.cpp */; };
-		607FD08F1E096460003798E2 /* WorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD08D1E096460003798E2 /* WorldScene.cpp */; };
-		607FD0901E096460003798E2 /* WorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD08D1E096460003798E2 /* WorldScene.cpp */; };
 		607FD0961E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD0941E096AD0003798E2 /* CCBLoadHelper.cpp */; };
 		607FD0971E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FD0941E096AD0003798E2 /* CCBLoadHelper.cpp */; };
 		607FD0991E097D6B003798E2 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 607FD0981E097D6B003798E2 /* ccbi */; };
 		607FD09A1E097D6B003798E2 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 607FD0981E097D6B003798E2 /* ccbi */; };
 		60871F751E12176F00C58C79 /* Wood.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F731E12176F00C58C79 /* Wood.cpp */; };
 		60871F761E12176F00C58C79 /* Wood.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F731E12176F00C58C79 /* Wood.cpp */; };
-		60871F7B1E12781600C58C79 /* BagView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F791E12781600C58C79 /* BagView.cpp */; };
-		60871F7C1E12781600C58C79 /* BagView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F791E12781600C58C79 /* BagView.cpp */; };
+		60871F7B1E12781600C58C79 /* EquipView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F791E12781600C58C79 /* EquipView.cpp */; };
+		60871F7C1E12781600C58C79 /* EquipView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F791E12781600C58C79 /* EquipView.cpp */; };
+		609A5DB91E14A5E5002E71D7 /* TestHouseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609A5DB51E14A5E5002E71D7 /* TestHouseScene.cpp */; };
+		609A5DBA1E14A5E5002E71D7 /* TestHouseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609A5DB51E14A5E5002E71D7 /* TestHouseScene.cpp */; };
+		609A5DBB1E14A5E5002E71D7 /* WorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609A5DB71E14A5E5002E71D7 /* WorldScene.cpp */; };
+		609A5DBC1E14A5E5002E71D7 /* WorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609A5DB71E14A5E5002E71D7 /* WorldScene.cpp */; };
+		60ABC29D1E13ACD700C8ECAF /* House.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC29B1E13ACD700C8ECAF /* House.cpp */; };
+		60ABC29E1E13ACD700C8ECAF /* House.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC29B1E13ACD700C8ECAF /* House.cpp */; };
+		60ABC2A81E13D65C00C8ECAF /* SceneController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC2A61E13D65C00C8ECAF /* SceneController.cpp */; };
+		60ABC2A91E13D65C00C8ECAF /* SceneController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC2A61E13D65C00C8ECAF /* SceneController.cpp */; };
+		60ABC2AC1E13EE1000C8ECAF /* ActionRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC2AA1E13EE1000C8ECAF /* ActionRole.cpp */; };
+		60ABC2AD1E13EE1000C8ECAF /* ActionRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC2AA1E13EE1000C8ECAF /* ActionRole.cpp */; };
 		60B6B5701DF94FB40069A07A /* image in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B56F1DF94FB40069A07A /* image */; };
 		60B6B5711DF94FB40069A07A /* image in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B56F1DF94FB40069A07A /* image */; };
 		60B6B5781DF959330069A07A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B6B5771DF959330069A07A /* icon.png */; };
@@ -174,15 +182,23 @@
 		607A94001E0A58C700473E9F /* Common */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Common; sourceTree = "<group>"; };
 		607FD0881E0961CF003798E2 /* GameLoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLoadingScene.cpp; sourceTree = "<group>"; };
 		607FD0891E0961CF003798E2 /* GameLoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLoadingScene.h; sourceTree = "<group>"; };
-		607FD08D1E096460003798E2 /* WorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldScene.cpp; sourceTree = "<group>"; };
-		607FD08E1E096460003798E2 /* WorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldScene.h; sourceTree = "<group>"; };
 		607FD0941E096AD0003798E2 /* CCBLoadHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCBLoadHelper.cpp; sourceTree = "<group>"; };
 		607FD0951E096AD0003798E2 /* CCBLoadHelper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CCBLoadHelper.hpp; sourceTree = "<group>"; };
 		607FD0981E097D6B003798E2 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ccbi; sourceTree = "<group>"; };
 		60871F731E12176F00C58C79 /* Wood.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wood.cpp; sourceTree = "<group>"; };
 		60871F741E12176F00C58C79 /* Wood.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Wood.hpp; sourceTree = "<group>"; };
-		60871F791E12781600C58C79 /* BagView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BagView.cpp; sourceTree = "<group>"; };
-		60871F7A1E12781600C58C79 /* BagView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BagView.hpp; sourceTree = "<group>"; };
+		60871F791E12781600C58C79 /* EquipView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EquipView.cpp; sourceTree = "<group>"; };
+		60871F7A1E12781600C58C79 /* EquipView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EquipView.hpp; sourceTree = "<group>"; };
+		609A5DB51E14A5E5002E71D7 /* TestHouseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestHouseScene.cpp; sourceTree = "<group>"; };
+		609A5DB61E14A5E5002E71D7 /* TestHouseScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TestHouseScene.hpp; sourceTree = "<group>"; };
+		609A5DB71E14A5E5002E71D7 /* WorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldScene.cpp; sourceTree = "<group>"; };
+		609A5DB81E14A5E5002E71D7 /* WorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldScene.h; sourceTree = "<group>"; };
+		60ABC29B1E13ACD700C8ECAF /* House.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = House.cpp; sourceTree = "<group>"; };
+		60ABC29C1E13ACD700C8ECAF /* House.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = House.hpp; sourceTree = "<group>"; };
+		60ABC2A61E13D65C00C8ECAF /* SceneController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneController.cpp; sourceTree = "<group>"; };
+		60ABC2A71E13D65C00C8ECAF /* SceneController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SceneController.hpp; sourceTree = "<group>"; };
+		60ABC2AA1E13EE1000C8ECAF /* ActionRole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionRole.cpp; sourceTree = "<group>"; };
+		60ABC2AB1E13EE1000C8ECAF /* ActionRole.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActionRole.hpp; sourceTree = "<group>"; };
 		60B6B56F1DF94FB40069A07A /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
 		60B6B5771DF959330069A07A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		60B8B6031E0B6F6500371D5D /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
@@ -350,11 +366,11 @@
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				607FD0921E096A9E003798E2 /* Ext */,
 				601CAAF71E0A94DB003BCC41 /* Tools */,
-				607FD08C1E096460003798E2 /* World */,
 				607FD0871E0961CF003798E2 /* Loading */,
 				601CAAF21E0A9062003BCC41 /* UI */,
 				60B8B6011E0B6F6500371D5D /* model */,
 				60B8B6101E0BD3C900371D5D /* Controller */,
+				609A5DB41E14A5E4002E71D7 /* Scene */,
 				60871F781E1277E800C58C79 /* Views */,
 			);
 			name = Classes;
@@ -432,15 +448,6 @@
 			path = Loading;
 			sourceTree = "<group>";
 		};
-		607FD08C1E096460003798E2 /* World */ = {
-			isa = PBXGroup;
-			children = (
-				607FD08D1E096460003798E2 /* WorldScene.cpp */,
-				607FD08E1E096460003798E2 /* WorldScene.h */,
-			);
-			path = World;
-			sourceTree = "<group>";
-		};
 		607FD0921E096A9E003798E2 /* Ext */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,10 +468,21 @@
 		60871F781E1277E800C58C79 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				60871F791E12781600C58C79 /* BagView.cpp */,
-				60871F7A1E12781600C58C79 /* BagView.hpp */,
+				60871F791E12781600C58C79 /* EquipView.cpp */,
+				60871F7A1E12781600C58C79 /* EquipView.hpp */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		609A5DB41E14A5E4002E71D7 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				609A5DB51E14A5E5002E71D7 /* TestHouseScene.cpp */,
+				609A5DB61E14A5E5002E71D7 /* TestHouseScene.hpp */,
+				609A5DB71E14A5E5002E71D7 /* WorldScene.cpp */,
+				609A5DB81E14A5E5002E71D7 /* WorldScene.h */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 		60B8B6011E0B6F6500371D5D /* model */ = {
@@ -486,6 +504,10 @@
 				60B8FC651E11164C0056EF94 /* Tree.hpp */,
 				60871F731E12176F00C58C79 /* Wood.cpp */,
 				60871F741E12176F00C58C79 /* Wood.hpp */,
+				60ABC29B1E13ACD700C8ECAF /* House.cpp */,
+				60ABC29C1E13ACD700C8ECAF /* House.hpp */,
+				60ABC2AA1E13EE1000C8ECAF /* ActionRole.cpp */,
+				60ABC2AB1E13EE1000C8ECAF /* ActionRole.hpp */,
 			);
 			path = role;
 			sourceTree = "<group>";
@@ -497,6 +519,8 @@
 				60B8B6131E0BD3F100371D5D /* PlayerController.hpp */,
 				60B8FC5F1E11114B0056EF94 /* RolesController.cpp */,
 				60B8FC601E11114B0056EF94 /* RolesController.hpp */,
+				60ABC2A61E13D65C00C8ECAF /* SceneController.cpp */,
+				60ABC2A71E13D65C00C8ECAF /* SceneController.hpp */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -647,19 +671,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
-				60871F7B1E12781600C58C79 /* BagView.cpp in Sources */,
+				60871F7B1E12781600C58C79 /* EquipView.cpp in Sources */,
 				607FD0961E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */,
+				60ABC2AC1E13EE1000C8ECAF /* ActionRole.cpp in Sources */,
 				60871F751E12176F00C58C79 /* Wood.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				60ABC29D1E13ACD700C8ECAF /* House.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				60B8B6141E0BD3F100371D5D /* PlayerController.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
-				607FD08F1E096460003798E2 /* WorldScene.cpp in Sources */,
+				609A5DB91E14A5E5002E71D7 /* TestHouseScene.cpp in Sources */,
 				607FD08A1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */,
 				601CAAFF1E0A9537003BCC41 /* CommonUtils.cpp in Sources */,
 				60B8FC661E11164C0056EF94 /* Tree.cpp in Sources */,
 				60B8B6051E0B6F6500371D5D /* Player.cpp in Sources */,
+				60ABC2A81E13D65C00C8ECAF /* SceneController.cpp in Sources */,
 				601CAAFB1E0A94DB003BCC41 /* TouchDelegateView.cpp in Sources */,
+				609A5DBB1E14A5E5002E71D7 /* WorldScene.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				601CAAF51E0A9062003BCC41 /* TouchUI.cpp in Sources */,
 				60B8B6091E0B710C00371D5D /* Role.cpp in Sources */,
@@ -672,18 +700,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FD0971E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */,
-				60871F7C1E12781600C58C79 /* BagView.cpp in Sources */,
+				60871F7C1E12781600C58C79 /* EquipView.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				607FD08B1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */,
 				60B8FC671E11164C0056EF94 /* Tree.cpp in Sources */,
+				609A5DBC1E14A5E5002E71D7 /* WorldScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				60B8B6061E0B6F6500371D5D /* Player.cpp in Sources */,
+				60ABC2A91E13D65C00C8ECAF /* SceneController.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				609A5DBA1E14A5E5002E71D7 /* TestHouseScene.cpp in Sources */,
 				601CAAF61E0A9062003BCC41 /* TouchUI.cpp in Sources */,
+				60ABC2AD1E13EE1000C8ECAF /* ActionRole.cpp in Sources */,
+				60ABC29E1E13ACD700C8ECAF /* House.cpp in Sources */,
 				60B8B60A1E0B710C00371D5D /* Role.cpp in Sources */,
 				60871F761E12176F00C58C79 /* Wood.cpp in Sources */,
 				601CAB001E0A9537003BCC41 /* CommonUtils.cpp in Sources */,
-				607FD0901E096460003798E2 /* WorldScene.cpp in Sources */,
 				60B8B6151E0BD3F100371D5D /* PlayerController.cpp in Sources */,
 				60B8FC621E11114B0056EF94 /* RolesController.cpp in Sources */,
 				601CAAFC1E0A94DB003BCC41 /* TouchDelegateView.cpp in Sources */,

@@ -53,6 +53,8 @@ bool Role::initWithPicName(string pic_name){
         m_nextTileXY = Vec2::ZERO;
         m_nextTileXX = Vec2::ZERO;
         m_nextTileYY = Vec2::ZERO;
+        m_actionPoint = Vec2::ZERO;
+//        m_actionShowPoint = Vec2::ZERO;
         m_width=0;//32;//自身宽度
         m_height=0;//32;//自身高度
         m_roleType=RoleType_Role;
@@ -125,47 +127,36 @@ void Role::move(Point point){
     
     setDirection(point);
     if(m_container){
+        bool goX = isVecCanGo(m_nextTileX);
+        bool goXX = isVecCanGo(m_nextTileXX,false);
+        bool goY = isVecCanGo(m_nextTileY);
+        bool goYY = isVecCanGo(m_nextTileYY,false);
+        bool goXY = isVecCanGo(m_nextTileXY);
+        
         float mapHeight = mapSize.height * tileSize.height;//地图高度，算y坐标使用
         Point movePoint = point;
-        if(isVecCanGo(m_nextTileX)==false || isVecCanGo(m_nextTileXX)==false){//
+        if(goX==false || goXX==false){//
             movePoint.x=0;
             if(isHaveRole(m_nextTileX)){
                 movePoint.y=0;
             }
         }
-        if(isVecCanGo(m_nextTileY)==false || isVecCanGo(m_nextTileYY)==false){//
+        if(goY==false || goYY==false){//
             movePoint.y=0;
             if(isHaveRole(m_nextTileY)){
                 movePoint.x=0;
             }
         }
-        if(isVecCanGo(m_nextTileXY)==false){
-            movePoint.x=0;
-            movePoint.y=0;
-            
-            float tileUp = mapHeight-m_nextTileXY.y*tileSize.width;
-            float tileDown = mapHeight-(m_nextTileXY.y+1)*tileSize.width;
-            float tileLeft = m_nextTileXY.x*tileSize.width;
-            float tileRight = (m_nextTileXY.x+1)*tileSize.width;
-            
-            float tileX = (tileUp+tileDown)/2;
-            float tileY = (tileLeft+tileRight)/2;
-            float dxy = 1;
-            if(ptLocation.x>tileX && ptLocation.y>tileY){
-                movePoint.x+=dxy;
-                movePoint.y+=dxy;
+        if(goXY==false){
+            if(goX==false){
+                movePoint.x=0;
             }
-            if(ptLocation.x<tileX && ptLocation.y>tileY){
-                movePoint.x-=dxy;
-                movePoint.y+=dxy;
+            if(goY==false){
+                movePoint.y=0;
             }
-            if(ptLocation.x<tileX && ptLocation.y<tileY){
-                movePoint.x-=dxy;
-                movePoint.y-=dxy;
-            }
-            if(ptLocation.x>tileX && ptLocation.y<tileY){
-                movePoint.x+=dxy;
-                movePoint.y-=dxy;
+            if (goX && goY) {
+                movePoint.x=-movePoint.x;
+                movePoint.y=-movePoint.y;
             }
         }
         Vec2 ptInMap;
@@ -191,7 +182,11 @@ void Role::move(Point point){
         Point faceToPoint = getFaceToTilePoint();//得到朝向的点
         Role* role = RolesController::getInstance()->getRoleByTile(faceToPoint);//是否有角色
         if (role) {
-            setTarget(role);
+            if(role->m_actionPoint!=Vec2::ZERO && role->m_actionPoint==faceToPoint){
+                role->doAction(this);
+            }else{
+                setTarget(role);
+            }
         }else{
             removeTarget();
         }
@@ -222,6 +217,7 @@ void Role::stopMove(Point point){
 }
 
 void Role::moveTo(Point point){
+    m_faceTo=FaceTo_NULL;
     m_moveVector = point-getPositionInScreen();
     m_moveToPoint = this->getPosition()+m_moveVector;
     this->unschedule(schedule_selector(Role::moveToSchedule));
@@ -273,8 +269,11 @@ int Role::getLayerTileGIDAtPoint(string layerName, Point point){
     Size mapSize = m_container->getMapSize();
     if(point.x>=0 && point.x<mapSize.width && point.y>=0 && point.y<mapSize.height){
         TMXLayer* layer = m_container->getLayer(layerName.c_str());//layerNamed("layer_0");
-        int gid = layer->getTileGIDAt(point);
-        return gid;
+        if (layer) {
+            int gid = layer->getTileGIDAt(point);
+            return gid;
+        }
+        return 0;
     }else{
         return 0;
     }
@@ -400,7 +399,7 @@ void Role::onDirectionChanged(){
     }
 }
 
-bool Role::isVecCanGo(Vec2 vec){
+bool Role::isVecCanGo(Vec2 vec,bool unschedule/*=true*/){
     
     int gid = getLayerTileGIDAtPoint("layer_1",vec);
     string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
@@ -409,19 +408,23 @@ bool Role::isVecCanGo(Vec2 vec){
     Size mapSize = m_container->getMapSize();
     float mapHeight = mapSize.height * tileSize.height;//地图高度，算y坐标使用
     if(goThrough=="1" && CommonUtils::isRectInTile(ptLocation, m_width, m_height, Rect(vec.x, vec.y, tileSize.width, tileSize.height),mapHeight)){
-        this->unschedule(schedule_selector(Role::moveToSchedule));
+        if(unschedule){
+            this->unschedule(schedule_selector(Role::moveToSchedule));
+        }
         return false;
     }
     Role* role = RolesController::getInstance()->getRoleByTile(vec);
-    if (role!=nullptr && CommonUtils::isRectInTile(ptLocation, m_width, m_height, Rect(vec.x, vec.y, role->m_width, role->m_height),mapHeight)) {
-        this->unschedule(schedule_selector(Role::moveToSchedule));
+    if (role!=nullptr && CommonUtils::isRectInTile(ptLocation, m_width, m_height, Rect(vec.x, vec.y, tileSize.width, tileSize.height),mapHeight)) {
+        if(unschedule){
+            this->unschedule(schedule_selector(Role::moveToSchedule));
+        }
         return false;
     }
     return true;
 }
 bool Role::isHaveRole(Vec2 vec){//是否有role
     Role* role = RolesController::getInstance()->getRoleByTile(vec);
-    if(role){
+    if(role && role->m_selfValue.m_sticky){
         return true;
     }else{
         return false;
@@ -469,5 +472,13 @@ void Role::setTarget(Role* target){
 void Role::removeTarget(){
     if(m_target){
         m_target = nullptr;
+    }
+}
+
+void Role::setTileXY(int tx,int ty,bool setOccupy/*=true*/){//设置XY
+    m_tileX = tx;
+    m_tileY = ty;
+    if(setOccupy){
+        m_occupy.push_back(Vec2(m_tileX,m_tileY));
     }
 }

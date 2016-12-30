@@ -28,6 +28,8 @@ public:
     
     void moveToPosition(Point point,float duration,Ref *target,SEL_CallFunc func);
     void addListener();
+    
+    bool m_isInit;
 protected:
     virtual void onTouchesBegan(const std::vector<Touch*>& pTouches, Event *pEvent);
     virtual void onTouchesMoved(const std::vector<Touch*>& pTouches, Event *pEvent);

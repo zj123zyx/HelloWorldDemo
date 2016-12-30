@@ -32,6 +32,7 @@ bool Wood::initWithPicName(string pic_name){
         m_width=64;//自身宽度
         m_height=64;//自身高度
         m_selfValue.m_name="木材";
+        m_selfValue.m_sticky=true;
         m_resourceValue.m_resourceType=ResourceType_Wood;
         m_resourceValue.m_value=10;
         

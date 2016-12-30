@@ -21,8 +21,6 @@ PlayerController* PlayerController::getInstance()
 
 PlayerController::PlayerController(){
     player = Player::createWithPicName("res/Roles/assassin1a.png");
-    player->m_tileX = 11;
-    player->m_tileY = 91;
 }
 PlayerController::~PlayerController(){
     
@@ -52,3 +50,17 @@ void PlayerController::getItem(Role* role){//获得物品
         CCLOG("player get %s:%d",role->m_selfValue.m_name.c_str(),role->m_resourceValue.m_value);
     }
 }
+
+Player* PlayerController::getPlayer(){
+    if(player->getParent()!=nullptr){
+        player->retain();
+        player->m_target=nullptr;
+        player->removeFromParent();
+    }
+    if(player->m_tileX==0 && player->m_tileY==0){
+        player->m_tileX = 11;
+        player->m_tileY = 91;
+    }
+    return player;
+}
+

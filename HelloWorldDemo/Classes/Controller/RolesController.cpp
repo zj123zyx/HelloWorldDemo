@@ -7,6 +7,8 @@
 //
 
 #include "RolesController.hpp"
+#include "Tree.hpp"
+#include "House.hpp"
 
 static RolesController* rolesController = NULL;
 
@@ -18,11 +20,7 @@ RolesController* RolesController::getInstance(){
 }
 
 RolesController::RolesController(){
-    Tree* tree = Tree::createWithPicName("res/Roles/assassin1a.png");
-    tree->m_tileX = 20;
-    tree->m_tileY = 90;
-    tree->m_occupy.push_back(Vec2(tree->m_tileX,tree->m_tileY));
-    addControllerRole(tree);
+    
 }
 
 RolesController::~RolesController(){
@@ -48,8 +46,12 @@ void RolesController::removeRoleByTile(Vec2 tile){
 }
 
 void RolesController::addControllerRole(Role* role,bool addToScene){
-    int tid = CommonUtils::getTileIdByXY(role->m_tileX, role->m_tileY);
-    m_RoleMap[tid] = role;
+    vector<Vec2> occupy = role->m_occupy;
+    for (int i=0; i<occupy.size(); i++) {
+        Vec2 tempVec2=occupy[i];
+        int tid = CommonUtils::getTileIdByXY(tempVec2.x, tempVec2.y);
+        m_RoleMap[tid] = role;
+    }
     if(addToScene){
         addRoleToScene(role);
     }
@@ -86,3 +88,13 @@ void RolesController::addAllRoleToScene(bool isForce){//往地图中添加所有
         addRoleToScene(role,isForce);
     }
 }
+
+void RolesController::clearRoleMap(){//清空m_RoleMap
+    m_RoleMap.clear();
+}
+
+
+
+
+
+

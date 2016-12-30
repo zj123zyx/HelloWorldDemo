@@ -39,11 +39,13 @@ enum FaceTo{
 class SelfValues{
 public:
     SelfValues():m_name("")
-    ,m_description(""){};
+    ,m_description("")
+    ,m_sticky(false){};
     ~SelfValues(){};
 
     string m_name;
     string m_description;
+    bool m_sticky;//粘性
 };
 class FightValues{
 public:
@@ -95,7 +97,7 @@ public:
     string getPropertyByGIDAndNameToString(int gid,string propertyName);//得到该GID对应的自定义属性名字
     void setDirection(Point point);//设置朝向
     void onDirectionChanged();//朝向发生改变
-    bool isVecCanGo(Vec2 vec);//是否可通过
+    bool isVecCanGo(Vec2 vec,bool unschedule = true);//是否可通过
     bool isHaveRole(Vec2 vec);//是否有role
     void roleAttackTarget(Role* selfRole);//攻击
     virtual int beAttackedByRole(Role* selfRole,int hurt);//被攻击 返回生命值
@@ -103,20 +105,24 @@ public:
     virtual void showDescription(bool show);//显示简介
     virtual void setTarget(Role* target);//设置目标
     virtual void removeTarget();//移除目标
+    virtual void setTileXY(int tx,int ty,bool setOccupy = true);//设置XY
+    virtual void doAction(Role* sender){};//处理事件
     
     Role* m_target;//目标
-    float m_moveSpeed;
+    float m_moveSpeed;//移动速度
     map<string, Animation*> m_aniMap;
-    Vec2 m_direction;
-    FaceTo m_faceTo;
+    Vec2 m_direction;//方向
+    FaceTo m_faceTo;//朝向
     
     SelfValues m_selfValue;//自身属性
     FightValues m_fightValue;//战斗属性
     ResourceValues m_resourceValue;//资源属性
     int m_tileX;//自身tile位置
     int m_tileY;//自身tile位置
-    vector<Vec2> m_occupy;
-    RoleType m_roleType;
+    vector<Vec2> m_occupy;//占用地块坐标
+    RoleType m_roleType;//角色类型
+    Point m_actionPoint;//事件点
+//    Point m_actionShowPoint;//事件进入后出现点
 protected:
     virtual void onEnter();
     virtual void onExit();

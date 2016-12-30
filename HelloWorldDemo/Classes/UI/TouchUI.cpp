@@ -1,9 +1,22 @@
 #include "TouchUI.h"
 #include "PlayerController.hpp"
+#include "EquipView.hpp"
 
 USING_NS_CC;
 
 static const float MAX_DISTANCE=100;
+
+static TouchUI* touchUI = NULL;
+
+TouchUI* TouchUI::getInstance()
+{
+    if (!touchUI)
+    {
+        touchUI = new TouchUI();
+        touchUI->init();
+    }
+    return touchUI;
+}
 
 bool TouchUI::init()
 {
@@ -18,23 +31,31 @@ bool TouchUI::init()
 //    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Common/Common_1.plist");
     CCBLoadFile("TouchUI",this,this);
     m_layerCover->setOpacity(0);
-    return true;
-}
-
-void TouchUI::onEnter(){
-    Node::onEnter();
+    
     listener = EventListenerTouchOneByOne::create();
     listener->onTouchBegan = CC_CALLBACK_2(TouchUI::onTouchBegan, this);
     listener->onTouchMoved = CC_CALLBACK_2(TouchUI::onTouchMoved, this);
     listener->onTouchEnded = CC_CALLBACK_2(TouchUI::onTouchEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    listener->setSwallowTouches(true);
     
+    return true;
+}
+
+void TouchUI::onEnter(){
+    Node::onEnter();
+//    listener = EventListenerTouchOneByOne::create();
+//    listener->onTouchBegan = CC_CALLBACK_2(TouchUI::onTouchBegan, this);
+//    listener->onTouchMoved = CC_CALLBACK_2(TouchUI::onTouchMoved, this);
+//    listener->onTouchEnded = CC_CALLBACK_2(TouchUI::onTouchEnded, this);
+//    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    m_isScrollingLeft=false;
     listener->setSwallowTouches(true);
     
 }
 void TouchUI::onExit(){
-    this->unschedule(schedule_selector(TouchUI::TouchUISchedule));
-    _eventDispatcher->removeEventListener(listener);
+//    this->unschedule(schedule_selector(TouchUI::TouchUISchedule));
+//    _eventDispatcher->removeEventListener(listener);
     Node::onExit();
 }
 
@@ -154,6 +175,8 @@ void TouchUI::onBtn2Click(Ref* pSender, Control::EventType event){
 }
 void TouchUI::onBtn3Click(Ref* pSender, Control::EventType event){
     CCLOG("onBtn3Click");
+    EquipView* equipView = EquipView::create();
+    this->addChild(equipView);
 }
 
 void TouchUI::startUseTouchUI(){
@@ -175,3 +198,17 @@ void TouchUI::TouchUISchedule(float dt){
         }
     }
 }
+
+void TouchUI::addToLayer(Layer* layer){
+    if(touchUI->getParent()){
+        touchUI->retain();
+        touchUI->removeFromParent();
+    }
+//    setUiDelegate(layer);
+    layer->addChild(touchUI);
+}
+
+
+
+
+

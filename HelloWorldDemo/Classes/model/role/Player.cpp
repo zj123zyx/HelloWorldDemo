@@ -30,8 +30,8 @@ bool Player::initWithPicName(string pic_name){
     if(Role::initWithPicName(pic_name)){
         ret = true;
         m_roleType = RoleType_Player;
-        m_width=64;//32;//自身宽度
-        m_height=64;//32;//自身高度
+        m_width=60;//32;//自身宽度
+        m_height=60;//32;//自身高度
         m_moveSpeed = 2;
         m_fightValue.m_health=10;
         m_fightValue.m_attack=2;

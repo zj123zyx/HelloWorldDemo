@@ -1,6 +1,6 @@
 #include "GameLoadingScene.h"
 #include "SimpleAudioEngine.h"
-#include "WorldScene.h"
+#include "SceneController.hpp"
 
 USING_NS_CC;
 
@@ -46,8 +46,9 @@ void GameLoadingScene::onExit(){
 
 void GameLoadingScene::gotoWorldScene(float dt){
 //    Director::getInstance()->purgeCachedData();
-    Scene *worldScene = WorldScene::createScene();
-    Director::getInstance()->replaceScene(worldScene);
+    SceneController::getInstance()->replaceSceneByType(SceneType_WORLD);
+//    Scene *worldScene = SceneController::getInstance()->getSceneByType(SceneType_WORLD); //WorldScene::createScene();
+//    Director::getInstance()->replaceScene(worldScene);
 }
 
 bool GameLoadingScene::onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVariableName, Node * pNode){

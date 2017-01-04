@@ -28,7 +28,7 @@ bool House::initWithPicName(string pic_name){
     bool ret = false;
     if(Role::initWithPicName(pic_name)){
         ret = true;
-        m_roleType = RoleType_Resource;
+        m_roleType = RoleType_House;
         m_width=192;//自身宽度
         m_height=192;//自身高度
         m_selfValue.m_name="房子";

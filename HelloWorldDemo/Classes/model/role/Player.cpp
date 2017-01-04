@@ -8,6 +8,7 @@
 
 #include "Player.hpp"
 #include "RolesController.hpp"
+#include "Resourse.hpp"
 
 Player* Player::createWithPicName(string pic_name)
 {
@@ -32,6 +33,7 @@ bool Player::initWithPicName(string pic_name){
         m_roleType = RoleType_Player;
         m_width=60;//32;//自身宽度
         m_height=60;//32;//自身高度
+        m_bagValue = 2;
         m_moveSpeed = 2;
         m_fightValue.m_health=10;
         m_fightValue.m_attack=2;
@@ -86,10 +88,15 @@ void Player::doAction(){
     if (m_target) {
         switch (m_target->m_roleType) {
             case RoleType_Tree:
+            {
                 Role::roleAttackTarget(this);
+            }
                 break;
             case RoleType_Resource:
-                m_target->getThisItem(this);
+            {
+                Resourse* resourse = (Resourse*)m_target;
+                resourse->getThisItem(this);
+            }
                 break;
                 
             default:

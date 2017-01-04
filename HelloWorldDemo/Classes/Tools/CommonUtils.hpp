@@ -14,6 +14,8 @@
 USING_NS_CC;
 using namespace std;
 
+inline const char* CC_ITOA(double v){return __String::createWithFormat("%.f", v)->getCString();}
+
 inline bool isTouchInside(Node* pNode, Touch* touch)
 {
     if (!pNode || !pNode->getParent())

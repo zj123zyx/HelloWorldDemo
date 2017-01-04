@@ -20,12 +20,8 @@ enum RoleType{
     RoleType_Role=0,
     RoleType_Player,
     RoleType_Tree,
-    RoleType_Resource
-};
-
-enum ResourceType{
-    ResourceType_NULL=0,
-    ResourceType_Wood
+    RoleType_Resource,
+    RoleType_House
 };
 
 enum FaceTo{
@@ -63,16 +59,6 @@ public:
     int m_attackCD;
     int m_attackRange;
 };
-class ResourceValues{
-public:
-    ResourceValues():m_resourceType(ResourceType_NULL)
-    ,m_value(0)
-    {};
-    ~ResourceValues(){};
-    
-    ResourceType m_resourceType;
-    int m_value;
-};
 
 class Role:public Node
 {
@@ -101,7 +87,6 @@ public:
     bool isHaveRole(Vec2 vec);//是否有role
     void roleAttackTarget(Role* selfRole);//攻击
     virtual int beAttackedByRole(Role* selfRole,int hurt);//被攻击 返回生命值
-    virtual void getThisItem(Role* role);//role获得此物品
     virtual void showDescription(bool show);//显示简介
     virtual void setTarget(Role* target);//设置目标
     virtual void removeTarget();//移除目标
@@ -116,13 +101,15 @@ public:
     
     SelfValues m_selfValue;//自身属性
     FightValues m_fightValue;//战斗属性
-    ResourceValues m_resourceValue;//资源属性
+   
     int m_tileX;//自身tile位置
     int m_tileY;//自身tile位置
     vector<Vec2> m_occupy;//占用地块坐标
     RoleType m_roleType;//角色类型
     Point m_actionPoint;//事件点
 //    Point m_actionShowPoint;//事件进入后出现点
+    
+    SpriteFrame* m_roleSpriteFrame;
 protected:
     virtual void onEnter();
     virtual void onExit();

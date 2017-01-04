@@ -45,11 +45,11 @@ void PlayerController::playerMoveTo(Point point){
     player->moveTo(point);
 }
 
-void PlayerController::getItem(Role* role){//获得物品
-    if (role->m_roleType==RoleType_Resource) {
-        CCLOG("player get %s:%d",role->m_selfValue.m_name.c_str(),role->m_resourceValue.m_value);
-    }
-}
+//void PlayerController::getItem(Resourse* resourse){//获得物品
+//    if (resourse->m_roleType==RoleType_Resource) {
+//        CCLOG("player get %s:%d",resourse->m_selfValue.m_name.c_str(),resourse->m_resourceValue);
+//    }
+//}
 
 Player* PlayerController::getPlayer(){
     if(player->getParent()!=nullptr){
@@ -64,3 +64,8 @@ Player* PlayerController::getPlayer(){
     return player;
 }
 
+int PlayerController::getBagValue(){
+    int ret = 0;
+    ret += player->m_bagValue;
+    return ret;
+}

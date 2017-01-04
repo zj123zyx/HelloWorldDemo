@@ -11,6 +11,7 @@
 
 #include "CommonHead.h"
 #include "Player.hpp"
+//#include "Resourse.hpp"
 
 class PlayerController:public Ref
 {
@@ -24,7 +25,9 @@ public:
     void OnUIScrollLeft(Point scrollPoint);
     void OnUIStopScrollLeft(Point scrollPoint);
     void playerMoveTo(Point point);
-    void getItem(Role* role);
+//    void getItem(Resourse* resourse);//获得物品
+    int getBagValue();//获得可携带数量
+
     Player* getPlayer();
     Player* player;
 };

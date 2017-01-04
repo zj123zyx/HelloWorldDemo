@@ -8,7 +8,7 @@
 
 #include "Role.hpp"
 #include "RolesController.hpp"
-#include "PlayerController.hpp"
+//#include "PlayerController.hpp"
 
 Role::Role(){
     
@@ -60,7 +60,6 @@ bool Role::initWithPicName(string pic_name){
         m_roleType=RoleType_Role;
         m_selfValue = SelfValues();
         m_fightValue = FightValues();
-        m_resourceValue = ResourceValues();
         
         m_desNode = Node::create();
         this->addChild(m_desNode);
@@ -155,8 +154,13 @@ void Role::move(Point point){
                 movePoint.y=0;
             }
             if (goX && goY) {
-                movePoint.x=-movePoint.x;
-                movePoint.y=-movePoint.y;
+                if(abs(movePoint.x)>abs(movePoint.y)){
+                    movePoint.x=-movePoint.x;
+                }else if(abs(movePoint.x)<abs(movePoint.y)){
+                    movePoint.y=-movePoint.y;
+                }
+//                movePoint.x=-movePoint.x;
+//                movePoint.y=-movePoint.y;
             }
         }
         Vec2 ptInMap;
@@ -213,7 +217,9 @@ void Role::stopMove(Point point){
         default:
             break;
     }
-    m_roleSprite->setSpriteFrame(frame);
+    if(frame){
+        m_roleSprite->setSpriteFrame(frame);
+    }
 }
 
 void Role::moveTo(Point point){
@@ -424,7 +430,7 @@ bool Role::isVecCanGo(Vec2 vec,bool unschedule/*=true*/){
 }
 bool Role::isHaveRole(Vec2 vec){//是否有role
     Role* role = RolesController::getInstance()->getRoleByTile(vec);
-    if(role && role->m_selfValue.m_sticky){
+    if(role && role->m_selfValue.m_sticky && m_target!=nullptr){
         return true;
     }else{
         return false;
@@ -450,15 +456,6 @@ int Role::beAttackedByRole(Role* selfRole,int hurt){//被攻击
         RolesController::getInstance()->removeRoleByTile(Vec2(m_tileX, m_tileY));//删除角色
     }
     return m_fightValue.m_health;
-}
-
-void Role::getThisItem(Role* role){//获得此物品
-    if (role->m_roleType==RoleType_Player) {
-        PlayerController::getInstance()->getItem(this);
-        this->removeFromParent();
-        RolesController::getInstance()->removeRoleByTile(Vec2(m_tileX, m_tileY));//删除角色
-        role->m_target=nullptr;
-    }
 }
 
 void Role::showDescription(bool show){

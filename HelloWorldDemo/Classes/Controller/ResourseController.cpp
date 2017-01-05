@@ -31,7 +31,10 @@ bool ResourseController::mergeResourse(Resourse* resourse){//合并物品
     bool ret = false;
     map<int, Resourse*>::iterator it = m_resourseMap.begin();
     for (; it!=m_resourseMap.end(); it++) {
-        if (it->second->m_resourceType==resourse->m_resourceType && it->second->m_resourceMaxValue>it->second->m_resourceValue) {
+        if (it->second->m_resourceMaxValue>1 &&
+            it->second->m_resourceValue>0 &&
+            it->second->m_resourceType==resourse->m_resourceType &&
+            it->second->m_resourceMaxValue>it->second->m_resourceValue) {
             int maxAddValue = it->second->m_resourceMaxValue-it->second->m_resourceValue;
             if(resourse->m_resourceValue<maxAddValue){
                 ret=true;
@@ -86,6 +89,39 @@ bool ResourseController::getItem(Resourse* resourse){//获得物品
     return ret;
 }
 
+Resourse* ResourseController::getEquipedRes(){
+    Resourse* ret = nullptr;
+    map<int, Resourse*>::iterator it = m_resourseMap.begin();
+    for (; it!=m_resourseMap.end(); it++) {
+        if (it->second->m_isEquiped) {
+            ret = it->second;
+            break;
+        }
+    }
+    return ret;
+}
+
+void ResourseController::setEquipedResByPos(int pos){
+    map<int, Resourse*>::iterator it = m_resourseMap.begin();
+    for (; it!=m_resourseMap.end(); it++) {
+        if(it->second->m_isEquiped==true){
+            it->second->m_isEquiped=false;
+            if (it->second->m_fightValue.m_enabled) {
+                PlayerController::getInstance()->removeFightValue(it->second->m_fightValue);
+            }
+        }
+    }
+    if(m_resourseMap.find(pos)!=m_resourseMap.end()){
+        if (m_resourseMap[pos]->m_isEquiped==false) {
+            m_resourseMap[pos]->m_isEquiped=true;
+            if (m_resourseMap[pos]->m_fightValue.m_enabled) {
+                PlayerController::getInstance()->addFightValue(m_resourseMap[pos]->m_fightValue);
+            }
+        }
+        //刷新UI通知
+        __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
+    }
+}
 
 
 

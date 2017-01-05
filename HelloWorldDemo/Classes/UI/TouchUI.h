@@ -2,6 +2,38 @@
 #define __TouchUI_H__
 
 #include "CommonHead.h"
+#include "TouchNode.hpp"
+
+class UIEquipCell:
+public TouchNode
+, public CCBSelectorResolver
+, public CCBMemberVariableAssigner
+{
+public:
+    virtual bool init(int pos,int sum);
+    static UIEquipCell* create(int pos,int sum);
+    void onEnter();
+    void onExit();
+    
+    void setData(int pos,int sum);
+protected:
+    bool onTouchBegan(Touch* touch, Event* event);
+    void onTouchMoved(Touch* touch, Event* event);
+    void onTouchEnded(Touch* touch, Event* event);
+private:
+    virtual bool onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVariableName, Node * pNode);
+    virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(Ref * pTarget, const char * pSelectorName){return NULL;}
+    virtual Control::Handler onResolveCCBCCControlSelector(Ref * pTarget, const char * pSelectorName);
+    
+    Node* m_touchNode;
+    Node* m_iconNode;
+    Node* m_numNode;
+    Label* m_desTxt;
+    
+    int m_pos;
+    int m_sum;
+    bool m_touchMove;
+};
 
 class UIDelegate{
 public:
@@ -22,6 +54,8 @@ public:
     void setUiDelegate(UIDelegate* delegate);
     void addToLayer(Layer* layer);
     ControlButton* m_btn2;
+    
+    void refreshEquipNode(Ref* ref);
 protected:
     EventListenerTouchOneByOne* listener;
     bool onTouchBegan(Touch* touch, Event* event);
@@ -49,6 +83,8 @@ private:
     Sprite* m_yaoGanerSprBg;
     ControlButton* m_btn1;
     ControlButton* m_btn3;
+    Node* m_equipNode;
+    Node* m_coverNode;
     
     bool m_isLeftTouch;
     bool m_isNodeTouch;

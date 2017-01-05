@@ -54,6 +54,7 @@ void EquipBagCell::setData(int pos,int sum){
     if(ResourseController::getInstance()->m_resourseMap.find(pos)!=ResourseController::getInstance()->m_resourseMap.end()){
         Resourse* resourse = ResourseController::getInstance()->m_resourseMap[pos];
         auto spr = Sprite::createWithSpriteFrame(resourse->m_roleSpriteFrame);
+        CommonUtils::setSpriteMaxSize(spr, 64);
         m_iconNode->addChild(spr);
         if(resourse->m_resourceMaxValue>1){
             m_numNode->setVisible(true);

@@ -15,7 +15,7 @@ class Wood:public Resourse
 {
 public:
     
-    static Wood* createWithPicName(string pic_name);
+    static Wood* createWithPicName(string pic_name="Res_wood.png");
     virtual bool initWithPicName(string pic_name);
     
     virtual void showDescription(bool show);//显示简介

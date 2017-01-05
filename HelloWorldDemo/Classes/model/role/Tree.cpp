@@ -85,7 +85,7 @@ int Tree::beAttackedByRole(Role* selfRole,int hurt){//被攻击 返回生命值
     int saveY = m_tileY;
     int ret = Role::beAttackedByRole(selfRole,hurt);
     if(m_fightValue.m_health<=0){//如果生命为0就变为木材
-        Wood* wood = Wood::createWithPicName("res/Roles/assassin1a.png");
+        Wood* wood = Wood::createWithPicName();
         wood->setTileXY(saveX, saveY);
         RolesController::getInstance()->addControllerRole(wood,true);
         selfRole->setTarget(wood);

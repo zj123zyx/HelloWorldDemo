@@ -45,7 +45,8 @@ public:
 };
 class FightValues{
 public:
-    FightValues():m_health(0)
+    FightValues():m_enabled(false)
+    ,m_health(0)
     ,m_defense(0)
     ,m_attack(0)
     ,m_attackCD(0)
@@ -53,11 +54,16 @@ public:
     {};
     ~FightValues(){};
     
+    bool m_enabled;
+    
     int m_health;
     int m_defense;
     int m_attack;
     int m_attackCD;
     int m_attackRange;
+    
+    void addValue(FightValues value);
+    void removeValue(FightValues value);
 };
 
 class Role:public Node

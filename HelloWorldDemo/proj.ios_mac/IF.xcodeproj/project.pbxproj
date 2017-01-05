@@ -60,6 +60,8 @@
 		607FD09A1E097D6B003798E2 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 607FD0981E097D6B003798E2 /* ccbi */; };
 		60871F7B1E12781600C58C79 /* EquipView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F791E12781600C58C79 /* EquipView.cpp */; };
 		60871F7C1E12781600C58C79 /* EquipView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F791E12781600C58C79 /* EquipView.cpp */; };
+		6088CC981E1DE96E00345904 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6088CC961E1DE96E00345904 /* Weapon.cpp */; };
+		6088CC991E1DE96E00345904 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6088CC961E1DE96E00345904 /* Weapon.cpp */; };
 		608ADE5C1E1CD3C80095EDB8 /* TouchNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608ADE5A1E1CD3C80095EDB8 /* TouchNode.cpp */; };
 		608ADE5D1E1CD3C80095EDB8 /* TouchNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608ADE5A1E1CD3C80095EDB8 /* TouchNode.cpp */; };
 		609A5DB91E14A5E5002E71D7 /* TestHouseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609A5DB51E14A5E5002E71D7 /* TestHouseScene.cpp */; };
@@ -193,6 +195,8 @@
 		607FD0981E097D6B003798E2 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ccbi; sourceTree = "<group>"; };
 		60871F791E12781600C58C79 /* EquipView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EquipView.cpp; sourceTree = "<group>"; };
 		60871F7A1E12781600C58C79 /* EquipView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EquipView.hpp; sourceTree = "<group>"; };
+		6088CC961E1DE96E00345904 /* Weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Weapon.cpp; sourceTree = "<group>"; };
+		6088CC971E1DE96E00345904 /* Weapon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Weapon.hpp; sourceTree = "<group>"; };
 		608ADE5A1E1CD3C80095EDB8 /* TouchNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TouchNode.cpp; sourceTree = "<group>"; };
 		608ADE5B1E1CD3C80095EDB8 /* TouchNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TouchNode.hpp; sourceTree = "<group>"; };
 		609A5DB51E14A5E5002E71D7 /* TestHouseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestHouseScene.cpp; sourceTree = "<group>"; };
@@ -500,10 +504,12 @@
 		609D5D001E165A1000752DFC /* Resourse */ = {
 			isa = PBXGroup;
 			children = (
-				609D5D011E165A2900752DFC /* Wood.cpp */,
-				609D5D021E165A2900752DFC /* Wood.hpp */,
 				609D5D051E165A3A00752DFC /* Resourse.cpp */,
 				609D5D061E165A3A00752DFC /* Resourse.hpp */,
+				609D5D011E165A2900752DFC /* Wood.cpp */,
+				609D5D021E165A2900752DFC /* Wood.hpp */,
+				6088CC961E1DE96E00345904 /* Weapon.cpp */,
+				6088CC971E1DE96E00345904 /* Weapon.hpp */,
 			);
 			path = Resourse;
 			sourceTree = "<group>";
@@ -701,6 +707,7 @@
 				607FD0961E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */,
 				60ABC2AC1E13EE1000C8ECAF /* ActionRole.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				6088CC981E1DE96E00345904 /* Weapon.cpp in Sources */,
 				609D5D071E165A3A00752DFC /* Resourse.cpp in Sources */,
 				60ABC29D1E13ACD700C8ECAF /* House.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -741,6 +748,7 @@
 				60ABC2A91E13D65C00C8ECAF /* SceneController.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				609A5DBA1E14A5E5002E71D7 /* TestHouseScene.cpp in Sources */,
+				6088CC991E1DE96E00345904 /* Weapon.cpp in Sources */,
 				601CAAF61E0A9062003BCC41 /* TouchUI.cpp in Sources */,
 				609D5CFE1E16575600752DFC /* ResourseController.cpp in Sources */,
 				60ABC2AD1E13EE1000C8ECAF /* ActionRole.cpp in Sources */,

@@ -31,12 +31,11 @@ bool Wood::initWithPicName(string pic_name){
         m_width=64;//自身宽度
         m_height=64;//自身高度
         m_selfValue.m_name="木材";
-        m_selfValue.m_sticky=true;
         m_resourceType=ResourceType_Wood;
         m_resourceValue=9;
         m_resourceMaxValue=20;
         
-        m_roleSpriteFrame = CommonUtils::createSpriteFrame("Res_wood.png");
+        m_roleSpriteFrame = CommonUtils::createSpriteFrame(pic_name);//"Res_wood.png"
         m_roleSprite = Sprite::createWithSpriteFrame(m_roleSpriteFrame);
         if(m_roleSprite){
             this->addChild(m_roleSprite);

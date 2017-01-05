@@ -72,3 +72,15 @@ Vec2 CommonUtils::getTileXYById(int Tid){
     ret.y = Tid%1000;
     return ret;
 }
+
+Sprite* CommonUtils::setSpriteMaxSize(Sprite* spr, int limitNum, bool isForce){
+    if( spr == NULL )
+        return NULL;
+    
+    if (isForce || spr->getContentSize().width>limitNum || spr->getContentSize().height>limitNum) {
+        float sc1 = limitNum*1.0/spr->getContentSize().width;
+        float sc2 = limitNum*1.0/spr->getContentSize().height;
+        spr->setScale( sc1<sc2?sc1:sc2 );
+    }
+    return spr;
+}

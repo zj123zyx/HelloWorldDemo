@@ -13,7 +13,9 @@
 
 enum ResourceType{
     ResourceType_NULL=0,
-    ResourceType_Wood
+    ResourceType_Wood,
+    ResourceType_Weapon,
+    ResourceType_End
 };
 
 class Resourse:public Role
@@ -23,6 +25,7 @@ public:
     ,m_resourceValue(0)
     ,m_resourceMaxValue(1)
     ,m_bagPosition(-1)
+    ,m_isEquiped(false)
     {}
     ~Resourse(){}
     
@@ -36,6 +39,7 @@ public:
     int m_resourceMaxValue;//资源叠加最大数量
     
     int m_bagPosition;
+    bool m_isEquiped;
 protected:
     void onEnter();
     void onExit();

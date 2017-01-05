@@ -10,6 +10,22 @@
 #include "RolesController.hpp"
 //#include "PlayerController.hpp"
 
+#pragma mark FightValues
+void FightValues::addValue(FightValues value){
+    m_health += value.m_health;
+    m_attack += value.m_attack;
+    m_attackCD = value.m_attackCD;
+    m_attackRange = value.m_attackRange;
+    m_defense += value.m_defense;
+}
+void FightValues::removeValue(FightValues value){
+    m_health -= value.m_health;
+    m_attack -= value.m_attack;
+    m_attackCD = 3;//默认3秒
+    m_attackRange = 1;//默认1
+    m_defense -= value.m_defense;
+}
+#pragma mark Role
 Role::Role(){
     
 }
@@ -441,7 +457,8 @@ void Role::roleAttackTarget(Role* selfRole){//攻击
     if(m_target){
         int hitValue = m_fightValue.m_attack-m_target->m_fightValue.m_defense;
         hitValue = MAX(hitValue, 0);
-        int roleHealth = m_target->beAttackedByRole(selfRole,hitValue);
+        m_target->beAttackedByRole(selfRole,hitValue);
+//        int roleHealth = m_target->beAttackedByRole(selfRole,hitValue);
 //        if(roleHealth<=0){
 //            m_target=nullptr;
 //        }

@@ -45,12 +45,6 @@ void PlayerController::playerMoveTo(Point point){
     player->moveTo(point);
 }
 
-//void PlayerController::getItem(Resourse* resourse){//获得物品
-//    if (resourse->m_roleType==RoleType_Resource) {
-//        CCLOG("player get %s:%d",resourse->m_selfValue.m_name.c_str(),resourse->m_resourceValue);
-//    }
-//}
-
 Player* PlayerController::getPlayer(){
     if(player->getParent()!=nullptr){
         player->retain();
@@ -69,3 +63,17 @@ int PlayerController::getBagValue(){
     ret += player->m_bagValue;
     return ret;
 }
+
+void PlayerController::addFightValue(FightValues fightValue){
+    if (fightValue.m_enabled) {
+        player->m_fightValue.addValue(fightValue);
+    }
+}
+void PlayerController::removeFightValue(FightValues fightValue){
+    player->m_fightValue.removeValue(fightValue);
+}
+
+
+
+
+

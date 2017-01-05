@@ -25,8 +25,9 @@ public:
     void OnUIScrollLeft(Point scrollPoint);
     void OnUIStopScrollLeft(Point scrollPoint);
     void playerMoveTo(Point point);
-//    void getItem(Resourse* resourse);//获得物品
     int getBagValue();//获得可携带数量
+    void addFightValue(FightValues fightValue);
+    void removeFightValue(FightValues fightValue);
 
     Player* getPlayer();
     Player* player;

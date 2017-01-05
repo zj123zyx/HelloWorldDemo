@@ -33,8 +33,9 @@ bool Player::initWithPicName(string pic_name){
         m_roleType = RoleType_Player;
         m_width=60;//32;//自身宽度
         m_height=60;//32;//自身高度
-        m_bagValue = 2;
+        m_bagValue = 8;
         m_moveSpeed = 2;
+        m_fightValue.m_enabled=true;
         m_fightValue.m_health=10;
         m_fightValue.m_attack=2;
         m_fightValue.m_attackCD=3;

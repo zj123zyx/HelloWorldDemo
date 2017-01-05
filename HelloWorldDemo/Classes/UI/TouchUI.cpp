@@ -1,11 +1,99 @@
 #include "TouchUI.h"
 #include "PlayerController.hpp"
 #include "EquipView.hpp"
+#include "ResourseController.hpp"
 
 USING_NS_CC;
 
 static const float MAX_DISTANCE=100;
 
+static const float EquipBagCellW = 75.0;
+#pragma mark UIEquipCell
+UIEquipCell* UIEquipCell::create(int pos,int sum){
+    UIEquipCell *pRet = new(std::nothrow) UIEquipCell();
+    if (pRet && pRet->init(pos,sum)){
+        pRet->autorelease();
+        return pRet;
+    }else{
+        delete pRet;
+        pRet = nullptr;
+        return nullptr;
+    }
+}
+
+bool UIEquipCell::init(int pos,int sum){
+    if ( !Node::init() ){
+        return false;
+    }
+    auto node = CCBLoadFile("UIEquipCell",this,this);
+    this->setContentSize(node->getContentSize());
+    
+    m_touchMove=false;
+    m_pos = pos;
+    m_sum = sum;
+    float px = (m_pos-(sum)/2.0)*EquipBagCellW;
+    float py = 0;
+    this->setPosition(px, py);
+    
+    setData(m_pos,m_sum);
+    
+    return true;
+}
+
+void UIEquipCell::setData(int pos,int sum){
+    m_pos = pos;
+    m_sum = sum;
+    m_iconNode->removeAllChildren();
+    m_numNode->setVisible(false);
+    if(ResourseController::getInstance()->m_resourseMap.find(pos)!=ResourseController::getInstance()->m_resourseMap.end()){
+        Resourse* resourse = ResourseController::getInstance()->m_resourseMap[pos];
+        auto spr = Sprite::createWithSpriteFrame(resourse->m_roleSpriteFrame);
+        CommonUtils::setSpriteMaxSize(spr, 64);
+        m_iconNode->addChild(spr);
+        if(resourse->m_isEquiped){
+            m_numNode->setVisible(true);
+            m_desTxt->setString("E");
+        }
+    }
+}
+void UIEquipCell::onEnter(){
+    TouchNode::onEnter();
+}
+void UIEquipCell::onExit(){
+    TouchNode::onExit();
+}
+
+bool UIEquipCell::onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVariableName, Node * pNode){
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_touchNode", Node*, m_touchNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_iconNode", Node*, m_iconNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_numNode", Node*, m_numNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_desTxt", Label*, m_desTxt);
+    
+    return false;
+}
+cocos2d::extension::Control::Handler UIEquipCell::onResolveCCBCCControlSelector(Ref * pTarget, const char * pSelectorName){
+    return NULL;
+}
+
+bool UIEquipCell::onTouchBegan(Touch* touch, Event* event){
+    m_touchMove=false;
+    if (isTouchInside(m_touchNode,touch)) {
+        return true;
+    }
+    return false;
+}
+void UIEquipCell::onTouchMoved(Touch* touch, Event* event){
+    if (touch->getLocation().getDistance(touch->getStartLocation())>10) {
+        m_touchMove=true;
+    }
+}
+void UIEquipCell::onTouchEnded(Touch* touch, Event* event){
+    if (isTouchInside(m_touchNode,touch) && m_touchMove==false) {
+        ResourseController::getInstance()->setEquipedResByPos(m_pos);
+    }
+}
+
+#pragma mark TouchUI
 static TouchUI* touchUI = NULL;
 
 TouchUI* TouchUI::getInstance()
@@ -44,20 +132,34 @@ bool TouchUI::init()
 
 void TouchUI::onEnter(){
     Node::onEnter();
-//    listener = EventListenerTouchOneByOne::create();
-//    listener->onTouchBegan = CC_CALLBACK_2(TouchUI::onTouchBegan, this);
-//    listener->onTouchMoved = CC_CALLBACK_2(TouchUI::onTouchMoved, this);
-//    listener->onTouchEnded = CC_CALLBACK_2(TouchUI::onTouchEnded, this);
-//    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    __NotificationCenter::getInstance()->addObserver(this, callfuncO_selector(TouchUI::refreshEquipNode), "TouchUI::refreshEquipNode", NULL);
     m_isScrollingLeft=false;
     listener->setSwallowTouches(true);
-    
+    refreshEquipNode(nullptr);
 }
 void TouchUI::onExit(){
-//    this->unschedule(schedule_selector(TouchUI::TouchUISchedule));
-//    _eventDispatcher->removeEventListener(listener);
+    __NotificationCenter::getInstance()->removeObserver(this, "TouchUI::refreshEquipNode");
     Node::onExit();
 }
+
+//刷新物品UI
+void TouchUI::refreshEquipNode(Ref* ref){
+    if(ResourseController::getInstance()->getEquipedRes()==nullptr){
+        ResourseController::getInstance()->setEquipedResByPos(0);
+    }
+    int bagValue = PlayerController::getInstance()->getBagValue();
+    for (int i=0; i<bagValue; i++) {
+        if(m_equipNode->getChildByTag(i)){
+            UIEquipCell* cell = dynamic_cast<UIEquipCell*>(m_equipNode->getChildByTag(i));
+            cell->setData(i,bagValue);
+        }else{
+            UIEquipCell* cell = UIEquipCell::create(i,bagValue);
+            cell->setTag(i);
+            m_equipNode->addChild(cell);
+        }
+    }
+}
+
 
 bool TouchUI::onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVariableName, Node * pNode){
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_layerCover", LayerColor*, m_layerCover);
@@ -69,6 +171,8 @@ bool TouchUI::onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVaria
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn1", ControlButton*, m_btn1);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn2", ControlButton*, m_btn2);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn2", ControlButton*, m_btn3);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_equipNode", Node*, m_equipNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_coverNode", Node*, m_coverNode);
     return false;
 }
 cocos2d::extension::Control::Handler TouchUI::onResolveCCBCCControlSelector(Ref * pTarget, const char * pSelectorName){
@@ -83,7 +187,8 @@ bool TouchUI::onTouchBegan(Touch* touch, Event* event){
         m_isLeftTouch=true;
         return true;
     }
-    if(isTouchInside(m_btn1,touch) || isTouchInside(m_btn2,touch) || isTouchInside(m_btn3,touch)){
+    if(isTouchInside(m_btn1,touch) || isTouchInside(m_btn2,touch) || isTouchInside(m_btn3,touch) || isTouchInside(m_coverNode,touch)){
+        m_isNodeTouch=false;
         return true;
     }
     if(isTouchInside(m_touchNode,touch)){

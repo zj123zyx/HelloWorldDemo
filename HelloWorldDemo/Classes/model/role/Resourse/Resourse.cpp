@@ -32,6 +32,7 @@ bool Resourse::initWithPicName(string pic_name){
     if(Role::initWithPicName(pic_name)){
         ret = true;
         m_roleType = RoleType_Resource;
+        m_selfValue.m_sticky=true;
     }
     return ret;
 }
@@ -49,6 +50,8 @@ void Resourse::getThisItem(Role* role){//获得此物品
             this->removeFromParent();
             RolesController::getInstance()->removeRoleByTile(Vec2(m_tileX, m_tileY));//删除角色
             role->m_target=nullptr;
+            //刷新UI通知 
+            __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
         }else{
             CCLOG("背包空位不足");
         }

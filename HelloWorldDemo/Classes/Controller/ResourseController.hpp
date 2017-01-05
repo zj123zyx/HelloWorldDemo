@@ -23,6 +23,8 @@ public:
     bool mergeResourse(Resourse* resourse);//合并物品
     int getBagPosition();//获得背包空位
     bool getItem(Resourse* resourse);//获得物品
+    Resourse* getEquipedRes();
+    void setEquipedResByPos(int pos);
     
     map<int, Resourse*> m_resourseMap;
 };

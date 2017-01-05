@@ -12,6 +12,7 @@
 #include "RolesController.hpp"
 #include "Role.hpp"
 #include "Wood.hpp"
+#include "Weapon.hpp"
 #include "ActionRole.hpp"
 
 USING_NS_CC;
@@ -67,21 +68,26 @@ void TestHouseScene::onEnter(){
     
     RolesController::getInstance()->setTiledMap(_map);
     //add tree
-    Wood* wood = Wood::createWithPicName("res/Roles/assassin1a.png");
+    Wood* wood = Wood::createWithPicName();
     wood->setTileXY(5,5);
     RolesController::getInstance()->addControllerRole(wood,true);
     
-    Wood* wood2 = Wood::createWithPicName("res/Roles/assassin1a.png");
+    Wood* wood2 = Wood::createWithPicName();
     wood2->setTileXY(6,5);
     RolesController::getInstance()->addControllerRole(wood2,true);
     
-    Wood* wood3 = Wood::createWithPicName("res/Roles/assassin1a.png");
+    Wood* wood3 = Wood::createWithPicName();
     wood3->setTileXY(7,5);
     RolesController::getInstance()->addControllerRole(wood3,true);
     
     ActionRole* actionRole = ActionRole::createWithPicName("res/Roles/assassin1a.png");
     actionRole->setTileXY(10,11);
     RolesController::getInstance()->addControllerRole(actionRole,true);
+    
+    Weapon* weapon = Weapon::createWithPicName("Equip0_1.png");
+    weapon->setTileXY(10,5);
+    RolesController::getInstance()->addControllerRole(weapon,true);
+    
     m_RoleMap = RolesController::getInstance()->m_RoleMap;
     
 }

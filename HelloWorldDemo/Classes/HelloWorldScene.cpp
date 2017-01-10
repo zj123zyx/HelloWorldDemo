@@ -39,7 +39,7 @@ bool HelloWorld::init()
 //    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
 //    label->setPosition(Vec2(origin.x + visibleSize.width/2,origin.y + visibleSize.height - label->getContentSize().height));
 //    this->addChild(label, 1);
-    auto sprite = Sprite::create("HelloWorld.png");
+//    auto sprite = Sprite::create("HelloWorld.png");
 //    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 //    this->addChild(sprite, 0);
     
@@ -131,7 +131,7 @@ void HelloWorld::TapView(Touch* pTouch){
     int ty = ptInMap.y / tileSize.height;
     
     //通过图层名称获取地图对象
-    TMXLayer* layer0 = _map->layerNamed("layer_0");
+    TMXLayer* layer0 = _map->getLayer("layer_0");
     
     //设置瓷砖的编号0表示隐藏瓷砖
     layer0->setTileGID(9, Point(tx, ty));

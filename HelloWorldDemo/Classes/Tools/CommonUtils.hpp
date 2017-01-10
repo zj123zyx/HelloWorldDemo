@@ -9,9 +9,11 @@
 #ifndef CommonUtils_hpp
 #define CommonUtils_hpp
 
+#include "CCBLoadHelper.hpp"
 #include "cocos2d.h"
 
 USING_NS_CC;
+USING_NS_CC_EXT;
 using namespace std;
 
 inline const char* CC_ITOA(double v){return __String::createWithFormat("%.f", v)->getCString();}
@@ -33,6 +35,8 @@ namespace CommonUtils {
     int getTileIdByXY(int x,int y);//通过坐标得到id
     Vec2 getTileXYById(int Tid);//通过id得到坐标
     Sprite* setSpriteMaxSize(Sprite* spr, int limitNum, bool isForce=false);//设置图片最大宽度
+    string getPropById(std::string xmlId, std::string propName);
+    void setButtonTitle(ControlButton *button, const char *str);
 }
 
 #endif /* CommonUtils_hpp */

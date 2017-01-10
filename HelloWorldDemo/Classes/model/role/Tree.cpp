@@ -28,7 +28,7 @@ Tree* Tree::createWithPicName(string pic_name)
 
 bool Tree::initWithPicName(string pic_name){
     bool ret = false;
-    if(Role::initWithPicName(pic_name)){
+    if(Role::init()){
         ret = true;
         totalHealth = 10;
         m_roleType = RoleType_Tree;
@@ -38,6 +38,7 @@ bool Tree::initWithPicName(string pic_name){
         m_selfValue.m_name="松树";
         m_selfValue.m_sticky=true;
         
+        setRoleSpriteFrame(pic_name);
         SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
         m_roleSprite = Sprite::createWithSpriteFrame(frame);
         m_roleSprite->setScale(2);

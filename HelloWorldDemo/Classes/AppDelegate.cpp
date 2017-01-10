@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "GameLoadingScene.h"
+#include "RapidXMLParser.hpp"
 
 USING_NS_CC;
 
@@ -73,6 +74,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 //    {        
 //        director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
 //    }
+    //读取XML
+    RapidXMLParser::getInstance()->initWithFile("data/database.local.xml");
 
     register_all_packages();
 

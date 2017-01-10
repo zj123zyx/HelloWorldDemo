@@ -26,7 +26,7 @@ House* House::createWithPicName(string pic_name)
 
 bool House::initWithPicName(string pic_name){
     bool ret = false;
-    if(Role::initWithPicName(pic_name)){
+    if(Role::init()){
         ret = true;
         m_roleType = RoleType_House;
         m_width=192;//自身宽度
@@ -38,6 +38,7 @@ bool House::initWithPicName(string pic_name){
         m_sceneInfo.m_sceneType=SceneType_HOURSE;
         m_sceneInfo.m_showPoint=Vec2(10,10);
         
+        setRoleSpriteFrame(pic_name);
         SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
         m_roleSprite = Sprite::createWithSpriteFrame(frame);
         m_roleSprite->setScale(6);

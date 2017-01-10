@@ -8,8 +8,8 @@
 
 #include "Resourse.hpp"
 #include "RolesController.hpp"
-//#include "PlayerController.hpp"
 #include "ResourseController.hpp"
+#include "TouchUI.h"
 
 Resourse* Resourse::createWithPicName(string pic_name)
 {
@@ -26,10 +26,31 @@ Resourse* Resourse::createWithPicName(string pic_name)
         return nullptr;
     }
 }
-
+Resourse* Resourse::create(){
+    Resourse *pRet = new(std::nothrow) Resourse();
+    if (pRet && pRet->init())
+    {
+        pRet->autorelease();
+        return pRet;
+    }
+    else
+    {
+        delete pRet;
+        pRet = nullptr;
+        return nullptr;
+    }
+}
 bool Resourse::initWithPicName(string pic_name){
     bool ret = false;
-    if(Role::initWithPicName(pic_name)){
+    if(init()){
+        ret = true;
+        setRoleSpriteFrame(pic_name);
+    }
+    return ret;
+}
+bool Resourse::init(){
+    bool ret = false;
+    if(Role::init()){
         ret = true;
         m_roleType = RoleType_Resource;
         m_selfValue.m_sticky=true;
@@ -54,6 +75,11 @@ void Resourse::getThisItem(Role* role){//获得此物品
             __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
         }else{
             CCLOG("背包空位不足");
+            TouchUI::getInstance()->flyHint("背包空位不足");
         }
     }
+}
+
+void Resourse::showDescription(bool show){//显示简介
+    Role::showDescription(show);
 }

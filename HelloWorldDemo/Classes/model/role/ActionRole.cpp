@@ -26,7 +26,7 @@ ActionRole* ActionRole::createWithPicName(string pic_name)
 
 bool ActionRole::initWithPicName(string pic_name){
     bool ret = false;
-    if(Role::initWithPicName(pic_name)){
+    if(Role::init()){
         ret = true;
         m_roleType = RoleType_Resource;
         m_width=64;//自身宽度
@@ -36,6 +36,7 @@ bool ActionRole::initWithPicName(string pic_name){
         m_sceneInfo.m_sceneType=SceneType_WORLD;
         m_sceneInfo.m_showPoint=Vec2(20,82);
         
+        setRoleSpriteFrame(pic_name);
         SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
         m_roleSprite = Sprite::createWithSpriteFrame(frame);
         m_roleSprite->setScale(2);

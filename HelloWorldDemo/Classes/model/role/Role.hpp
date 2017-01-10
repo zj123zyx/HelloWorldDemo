@@ -36,31 +36,37 @@ class SelfValues{
 public:
     SelfValues():m_name("")
     ,m_description("")
-    ,m_sticky(false){};
+    ,m_sticky(false)
+    ,m_XMLId("")
+    ,m_level(1){};
     ~SelfValues(){};
 
     string m_name;
     string m_description;
     bool m_sticky;//粘性
+    string m_XMLId;
+    int m_level;
 };
 class FightValues{
 public:
-    FightValues():m_enabled(false)
+    FightValues():m_useType(0)
     ,m_health(0)
     ,m_defense(0)
     ,m_attack(0)
     ,m_attackCD(0)
     ,m_attackRange(0)
+    ,m_moveSpeed(0.0)
     {};
     ~FightValues(){};
     
-    bool m_enabled;
+    int m_useType;//1:可以在ui使用,2:可以在背包装备,0:不可使用和装备
     
     int m_health;
     int m_defense;
     int m_attack;
     int m_attackCD;
     int m_attackRange;
+    float m_moveSpeed;//移动速度
     
     void addValue(FightValues value);
     void removeValue(FightValues value);
@@ -72,8 +78,8 @@ public:
     Role();
     ~Role();
     
-    static Role* createWithPicName(string pic_name);
-    virtual bool initWithPicName(string pic_name);
+    static Role* create();
+    virtual bool init();
     
     Point getPositionInScreen();
     void setContainer(TMXTiledMap* container);
@@ -90,6 +96,7 @@ public:
     void setDirection(Point point);//设置朝向
     void onDirectionChanged();//朝向发生改变
     bool isVecCanGo(Vec2 vec,bool unschedule = true);//是否可通过
+    bool isVecCanPut(Vec2 vec);//是否可放置物品
     bool isHaveRole(Vec2 vec);//是否有role
     void roleAttackTarget(Role* selfRole);//攻击
     virtual int beAttackedByRole(Role* selfRole,int hurt);//被攻击 返回生命值
@@ -98,9 +105,9 @@ public:
     virtual void removeTarget();//移除目标
     virtual void setTileXY(int tx,int ty,bool setOccupy = true);//设置XY
     virtual void doAction(Role* sender){};//处理事件
+    virtual void setRoleSpriteFrame(string name);//设置SpriteFrame
     
     Role* m_target;//目标
-    float m_moveSpeed;//移动速度
     map<string, Animation*> m_aniMap;
     Vec2 m_direction;//方向
     FaceTo m_faceTo;//朝向

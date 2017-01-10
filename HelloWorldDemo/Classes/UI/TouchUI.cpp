@@ -119,6 +119,7 @@ bool TouchUI::init()
 //    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Common/Common_1.plist");
     CCBLoadFile("TouchUI",this,this);
     m_layerCover->setOpacity(0);
+    m_hintNode->setScaleY(0);
     
     listener = EventListenerTouchOneByOne::create();
     listener->onTouchBegan = CC_CALLBACK_2(TouchUI::onTouchBegan, this);
@@ -173,6 +174,11 @@ bool TouchUI::onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVaria
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn2", ControlButton*, m_btn3);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_equipNode", Node*, m_equipNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_coverNode", Node*, m_coverNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_hintNode", Node*, m_hintNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_hintBg", LayerColor*, m_hintBg);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_hintTxt", Label*, m_hintTxt);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_addViewNode", Node*, m_addViewNode);
+
     return false;
 }
 cocos2d::extension::Control::Handler TouchUI::onResolveCCBCCControlSelector(Ref * pTarget, const char * pSelectorName){
@@ -268,6 +274,7 @@ void TouchUI::onBtn1Click(Ref* pSender, Control::EventType event){
         PlayerController::getInstance()->player->doAction();
     }else{
         CCLOG("没有目标");
+        flyHint("没有目标");
     }
 }
 void TouchUI::onBtn2Click(Ref* pSender, Control::EventType event){
@@ -281,7 +288,7 @@ void TouchUI::onBtn2Click(Ref* pSender, Control::EventType event){
 void TouchUI::onBtn3Click(Ref* pSender, Control::EventType event){
     CCLOG("onBtn3Click");
     EquipView* equipView = EquipView::create();
-    this->addChild(equipView);
+    m_addViewNode->addChild(equipView);
 }
 
 void TouchUI::startUseTouchUI(){
@@ -313,7 +320,20 @@ void TouchUI::addToLayer(Layer* layer){
     layer->addChild(touchUI);
 }
 
-
+void TouchUI::flyHint(string txt,float time/* = 3*/){
+    m_hintNode->stopAllActions();
+    m_hintNode->setScaleY(0);
+    if(m_hintNode->getScaleY()==0){
+        m_hintTxt->setString(txt);
+        Size txtSize = m_hintTxt->getContentSize();
+        m_hintBg->setContentSize(txtSize);
+        
+        ScaleTo* scaleTo1 = ScaleTo::create(0.2, 1);
+        DelayTime* delay = DelayTime::create(time);
+        ScaleTo* scaleTo2 = ScaleTo::create(0.2, 1, 0);
+        m_hintNode->runAction(Sequence::create(scaleTo1,delay,scaleTo2, NULL));
+    }
+}
 
 
 

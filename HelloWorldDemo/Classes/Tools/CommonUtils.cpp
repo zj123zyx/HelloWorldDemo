@@ -7,6 +7,7 @@
 //
 
 #include "CommonUtils.hpp"
+#include "RapidXMLParser.hpp"
 
 Sprite* CommonUtils::createSprite(string pic_name){
     Sprite* sprite = nullptr;
@@ -83,4 +84,27 @@ Sprite* CommonUtils::setSpriteMaxSize(Sprite* spr, int limitNum, bool isForce){
         spr->setScale( sc1<sc2?sc1:sc2 );
     }
     return spr;
+}
+
+string CommonUtils::getPropById(std::string xmlId, std::string propName){
+    __Dictionary* retDict = RapidXMLParser::getInstance()->getObjectByKey(xmlId);
+    
+    __String* ret = dynamic_cast<__String*>(retDict->objectForKey(propName));
+    if (ret == NULL || ret->length() == 0) {
+        CCASSERT(false, "getPropById err:'ret == NULL || ret->length() == 0'");
+        return std::string();
+    }
+    
+    return ret->_string;
+}
+
+void CommonUtils::setButtonTitle(ControlButton *button, const char *str) {
+    string title = str;
+    if (button) {
+        button->setTitleForState(title, Control::State::NORMAL);
+        button->setTitleForState(title, Control::State::HIGH_LIGHTED);
+        button->setTitleForState(title, Control::State::DISABLED);
+    }else {
+        CCLOG("CCCommonUtils::setButtonTitle - Invalid button pointer.");
+    }
 }

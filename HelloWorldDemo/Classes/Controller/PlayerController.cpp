@@ -27,9 +27,8 @@ PlayerController::~PlayerController(){
 }
 
 void PlayerController::OnUIScrollLeft(Point scrollPoint){
-    float distance = scrollPoint.getLength();
-    CCLOG("scrollPoint.x=%f,scrollPoint.y=%f,distance=%f",scrollPoint.x,scrollPoint.y,distance);
-    
+//    float distance = scrollPoint.getLength();
+//    CCLOG("scrollPoint.x=%f,scrollPoint.y=%f,distance=%f",scrollPoint.x,scrollPoint.y,distance);
     player->move(scrollPoint);
 }
 
@@ -65,7 +64,7 @@ int PlayerController::getBagValue(){
 }
 
 void PlayerController::addFightValue(FightValues fightValue){
-    if (fightValue.m_enabled) {
+    if (fightValue.m_useType==1 || fightValue.m_useType==2) {
         player->m_fightValue.addValue(fightValue);
     }
 }

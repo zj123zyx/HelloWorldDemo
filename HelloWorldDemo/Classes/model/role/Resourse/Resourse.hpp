@@ -14,7 +14,7 @@
 enum ResourceType{
     ResourceType_NULL=0,
     ResourceType_Wood,
-    ResourceType_Weapon,
+    ResourceType_Equip,
     ResourceType_End
 };
 
@@ -26,11 +26,17 @@ public:
     ,m_resourceMaxValue(1)
     ,m_bagPosition(-1)
     ,m_isEquiped(false)
+    ,m_useInBag(false)
     {}
     ~Resourse(){}
     
     static Resourse* createWithPicName(string pic_name);
     virtual bool initWithPicName(string pic_name);
+    
+    static Resourse* create();
+    virtual bool init();
+    
+    virtual void showDescription(bool show);//显示简介
     
     virtual void getThisItem(Role* role);//role获得此物品
     
@@ -38,8 +44,9 @@ public:
     int m_resourceValue;//资源叠加数量
     int m_resourceMaxValue;//资源叠加最大数量
     
-    int m_bagPosition;
-    bool m_isEquiped;
+    int m_bagPosition;//背包中位置
+    bool m_isEquiped;//ui中装备
+    bool m_useInBag;//背包中使用
 protected:
     void onEnter();
     void onExit();

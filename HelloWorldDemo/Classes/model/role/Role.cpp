@@ -14,9 +14,14 @@
 void FightValues::addValue(FightValues value){
     m_health += value.m_health;
     m_attack += value.m_attack;
-    m_attackCD = value.m_attackCD;
-    m_attackRange = value.m_attackRange;
+    if(value.m_attackCD>0){
+        m_attackCD = value.m_attackCD;
+    }
+    if(value.m_attackRange>0){
+       m_attackRange = value.m_attackRange;
+    }    
     m_defense += value.m_defense;
+    m_moveSpeed += value.m_moveSpeed;
 }
 void FightValues::removeValue(FightValues value){
     m_health -= value.m_health;
@@ -24,6 +29,7 @@ void FightValues::removeValue(FightValues value){
     m_attackCD = 3;//默认3秒
     m_attackRange = 1;//默认1
     m_defense -= value.m_defense;
+    m_moveSpeed -= value.m_moveSpeed;
 }
 #pragma mark Role
 Role::Role(){
@@ -36,10 +42,10 @@ Role::~Role(){
     }
 }
 
-Role* Role::createWithPicName(string pic_name)
+Role* Role::create()
 {
     Role *pRet = new(std::nothrow) Role();
-    if (pRet && pRet->initWithPicName(pic_name))
+    if (pRet && pRet->init())
     {
         pRet->autorelease();
         return pRet;
@@ -52,12 +58,12 @@ Role* Role::createWithPicName(string pic_name)
     }
 }
 
-bool Role::initWithPicName(string pic_name){
+bool Role::init(){
     bool ret = false;
     if(Node::init()){
         ret = true;
-        m_rolePicName = pic_name;
-        m_moveSpeed = 0;
+        m_rolePicName = "";
+        m_fightValue.m_moveSpeed = 0;
         m_container = nullptr;
         m_target = nullptr;
         m_direction = Vec2(0, -1);
@@ -198,7 +204,7 @@ void Role::move(Point point){
             string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
             m_upLabel->setString(goThrough);
         }
-        this->setPosition(this->getPosition()+(movePoint.getNormalized()*m_moveSpeed));
+        this->setPosition(this->getPosition()+(movePoint.getNormalized()*m_fightValue.m_moveSpeed));
         Point faceToPoint = getFaceToTilePoint();//得到朝向的点
         Role* role = RolesController::getInstance()->getRoleByTile(faceToPoint);//是否有角色
         if (role) {
@@ -444,6 +450,18 @@ bool Role::isVecCanGo(Vec2 vec,bool unschedule/*=true*/){
     }
     return true;
 }
+bool Role::isVecCanPut(Vec2 vec){//是否可放置物品
+    int gid = getLayerTileGIDAtPoint("layer_1",vec);
+    string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
+    if(goThrough=="1"){
+        return false;
+    }
+    Role* role = RolesController::getInstance()->getRoleByTile(vec);
+    if (role!=nullptr) {
+        return false;
+    }
+    return true;
+}
 bool Role::isHaveRole(Vec2 vec){//是否有role
     Role* role = RolesController::getInstance()->getRoleByTile(vec);
     if(role && role->m_selfValue.m_sticky && m_target!=nullptr){
@@ -490,9 +508,15 @@ void Role::removeTarget(){
 }
 
 void Role::setTileXY(int tx,int ty,bool setOccupy/*=true*/){//设置XY
+    showDescription(false);
     m_tileX = tx;
     m_tileY = ty;
     if(setOccupy){
         m_occupy.push_back(Vec2(m_tileX,m_tileY));
     }
+}
+
+void Role::setRoleSpriteFrame(string name){//设置SpriteFrame
+    m_rolePicName = name;
+    m_roleSpriteFrame = CommonUtils::createSpriteFrame(name);//"Res_wood.png"
 }

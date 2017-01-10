@@ -5,6 +5,7 @@
 #include "Role.hpp"
 #include "Tree.hpp"
 #include "House.hpp"
+#include "Shoes.hpp"
 
 USING_NS_CC;
 
@@ -67,6 +68,14 @@ void WorldScene::onEnter(){
     house->setTileXY(20, 80);
     RolesController::getInstance()->addControllerRole(house,true);
     m_RoleMap = RolesController::getInstance()->m_RoleMap;
+    
+    Shoes* shoes1 = Shoes::createWithShoesId("100040001");
+    shoes1->setTileXY(15, 90);
+    RolesController::getInstance()->addControllerRole(shoes1,true);
+    
+    Shoes* shoes2 = Shoes::createWithShoesId("100040002");
+    shoes2->setTileXY(16, 90);
+    RolesController::getInstance()->addControllerRole(shoes2,true);
     
 }
 void WorldScene::onExit(){

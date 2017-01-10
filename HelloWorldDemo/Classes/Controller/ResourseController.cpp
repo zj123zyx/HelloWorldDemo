@@ -8,6 +8,8 @@
 
 #include "ResourseController.hpp"
 #include "PlayerController.hpp"
+#include "RolesController.hpp"
+#include "TouchUI.h"
 
 static ResourseController* resourseController = NULL;
 
@@ -106,7 +108,7 @@ void ResourseController::setEquipedResByPos(int pos){
     for (; it!=m_resourseMap.end(); it++) {
         if(it->second->m_isEquiped==true){
             it->second->m_isEquiped=false;
-            if (it->second->m_fightValue.m_enabled) {
+            if (it->second->m_fightValue.m_useType==1) {
                 PlayerController::getInstance()->removeFightValue(it->second->m_fightValue);
             }
         }
@@ -114,7 +116,7 @@ void ResourseController::setEquipedResByPos(int pos){
     if(m_resourseMap.find(pos)!=m_resourseMap.end()){
         if (m_resourseMap[pos]->m_isEquiped==false) {
             m_resourseMap[pos]->m_isEquiped=true;
-            if (m_resourseMap[pos]->m_fightValue.m_enabled) {
+            if (m_resourseMap[pos]->m_fightValue.m_useType==1) {
                 PlayerController::getInstance()->addFightValue(m_resourseMap[pos]->m_fightValue);
             }
         }
@@ -123,10 +125,55 @@ void ResourseController::setEquipedResByPos(int pos){
     }
 }
 
+void ResourseController::abandonResourse(Resourse* resourse){//丢弃物品
+    if(resourse && m_resourseMap.find(resourse->m_bagPosition)!=m_resourseMap.end()){
+        Point faceTo = PlayerController::getInstance()->player->getFaceToTilePoint();
+        if(PlayerController::getInstance()->player->isVecCanPut(faceTo)){
+            m_resourseMap.erase(resourse->m_bagPosition);
+            __NotificationCenter::getInstance()->postNotification("EquipView::refreshData");
+            __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
+            //放置物品
+            resourse->setTileXY(faceTo.x,faceTo.y);
+            RolesController::getInstance()->addControllerRole(resourse,true);
+        }else{
+            TouchUI::getInstance()->flyHint("此位置不能放置物品");
+        }
+    }
+}
 
-
-
-
+void ResourseController::equipResourse(Equip* equip){//装备物品
+    if(equip && m_resourseMap.find(equip->m_bagPosition)!=m_resourseMap.end()){
+        m_resourseMap.erase(equip->m_bagPosition);
+        map<int, Equip*>::iterator eit = m_equipMap.begin();
+        for (; eit!=m_equipMap.end(); eit++) {
+            if(eit->second->m_equipType==equip->m_equipType){
+                m_equipMap.erase(eit->second->m_equipType);
+                PlayerController::getInstance()->removeFightValue(eit->second->m_fightValue);
+                eit->second->m_bagPosition = getBagPosition();
+                m_resourseMap[eit->second->m_bagPosition]=eit->second;
+                break;
+            }
+        }
+        m_equipMap[equip->m_equipType]=equip;
+        PlayerController::getInstance()->addFightValue(equip->m_fightValue);
+        __NotificationCenter::getInstance()->postNotification("EquipView::refreshData");
+        __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
+    }
+}
+void ResourseController::unwieldResourse(Equip* equip){//卸下装备
+    int pos = getBagPosition();
+    if(pos>-1){
+        equip->m_bagPosition = pos;
+        m_resourseMap[equip->m_bagPosition] = equip;
+        m_equipMap.erase(equip->m_equipType);
+        PlayerController::getInstance()->removeFightValue(equip->m_fightValue);
+        __NotificationCenter::getInstance()->postNotification("EquipView::refreshData");
+        __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
+    }else{
+        TouchUI::getInstance()->flyHint("没有足够空间放置卸下的装备");
+    }
+    
+}
 
 
 

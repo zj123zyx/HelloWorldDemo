@@ -10,7 +10,7 @@
 #define ResourseController_hpp
 
 #include "CommonHead.h"
-#include "Resourse.hpp"
+#include "Equip.hpp"
 
 class ResourseController:public Ref
 {
@@ -25,8 +25,12 @@ public:
     bool getItem(Resourse* resourse);//获得物品
     Resourse* getEquipedRes();
     void setEquipedResByPos(int pos);
+    void abandonResourse(Resourse* resourse);//丢弃物品
+    void equipResourse(Equip* equip);//装备物品
+    void unwieldResourse(Equip* equip);//卸下装备
     
     map<int, Resourse*> m_resourseMap;
+    map<int, Equip*> m_equipMap;
 };
 
 #endif /* ResourseController_hpp */

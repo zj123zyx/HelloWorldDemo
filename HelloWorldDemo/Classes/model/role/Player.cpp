@@ -28,19 +28,20 @@ Player* Player::createWithPicName(string pic_name)
 
 bool Player::initWithPicName(string pic_name){
     bool ret = false;
-    if(Role::initWithPicName(pic_name)){
+    if(Role::init()){
         ret = true;
         m_roleType = RoleType_Player;
         m_width=60;//32;//自身宽度
         m_height=60;//32;//自身高度
         m_bagValue = 8;
-        m_moveSpeed = 2;
-        m_fightValue.m_enabled=true;
+        m_fightValue.m_moveSpeed = 2;
+        m_fightValue.m_useType=1;
         m_fightValue.m_health=10;
         m_fightValue.m_attack=2;
         m_fightValue.m_attackCD=3;
         m_fightValue.m_attackRange=1;
         
+        setRoleSpriteFrame(pic_name);
         SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
         m_roleSprite = Sprite::createWithSpriteFrame(frame);
         m_roleSprite->setScale(2);

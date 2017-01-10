@@ -13,6 +13,7 @@
 #include "Role.hpp"
 #include "Wood.hpp"
 #include "Weapon.hpp"
+#include "Shoes.hpp"
 #include "ActionRole.hpp"
 
 USING_NS_CC;
@@ -87,6 +88,14 @@ void TestHouseScene::onEnter(){
     Weapon* weapon = Weapon::createWithPicName("Equip0_1.png");
     weapon->setTileXY(10,5);
     RolesController::getInstance()->addControllerRole(weapon,true);
+    
+    Weapon* weapon1 = Weapon::createWithWeaponId("100000001");
+    weapon1->setTileXY(11,5);
+    RolesController::getInstance()->addControllerRole(weapon1,true);
+    
+    Shoes* shoes = Shoes::createWithShoesId("100040001");
+    shoes->setTileXY(12,5);
+    RolesController::getInstance()->addControllerRole(shoes,true);
     
     m_RoleMap = RolesController::getInstance()->m_RoleMap;
     

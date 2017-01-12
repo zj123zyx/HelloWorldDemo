@@ -58,6 +58,7 @@ public:
     void refreshEquipNode(Ref* ref);
     
     void flyHint(string txt,float time = 1.5);
+    Node* m_addViewNode;//弹出界面父节点
 protected:
     EventListenerTouchOneByOne* listener;
     bool onTouchBegan(Touch* touch, Event* event);
@@ -90,7 +91,7 @@ private:
     Node* m_hintNode;
     LayerColor* m_hintBg;
     Label* m_hintTxt;
-    Node* m_addViewNode;
+    
     
     bool m_isLeftTouch;
     bool m_isNodeTouch;

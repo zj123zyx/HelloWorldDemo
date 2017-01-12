@@ -2,6 +2,7 @@
 #include "PlayerController.hpp"
 #include "EquipView.hpp"
 #include "ResourseController.hpp"
+#include "Goods.hpp"
 
 USING_NS_CC;
 
@@ -145,9 +146,9 @@ void TouchUI::onExit(){
 
 //刷新物品UI
 void TouchUI::refreshEquipNode(Ref* ref){
-    if(ResourseController::getInstance()->getEquipedResInUI()==nullptr){
-        ResourseController::getInstance()->setEquipedResInUIByPos(0);
-    }
+//    if(ResourseController::getInstance()->getEquipedResInUI()==nullptr){
+//        ResourseController::getInstance()->setEquipedResInUIByPos(0);
+//    }
     int bagValue = PlayerController::getInstance()->getBagValue();
     for (int i=0; i<bagValue; i++) {
         if(m_equipNode->getChildByTag(i)){
@@ -250,31 +251,36 @@ void TouchUI::OnScrollLeft(float dt){
 
 void TouchUI::onBtn1Click(Ref* pSender, Control::EventType event){
     CCLOG("onBtn1Click");
-    Role* playerTarget = PlayerController::getInstance()->player->m_target;
-    if(playerTarget){
-        m_btn1->setEnabled(false);
-        if (playerTarget->m_roleType==RoleType_Resource) {
-            m_btn1LeftCD=0;
-            m_btn1->setEnabled(true);
-        }else{
-            m_btn1LeftCD = PlayerController::getInstance()->player->m_fightValue.m_attackCD;
-            this->schedule(schedule_selector(TouchUI::TouchUISchedule), 1.0f);
-            //cd动画
-            Sprite *s=CommonUtils::createSprite("UI_btn1_1.png");
-            ProgressTimer *pt=ProgressTimer::create(s);
-            pt->setScale(m_btn1->getScale());
-            pt->setPosition(m_btn1->getPosition());
-            pt->setType(cocos2d::ProgressTimer::Type(ProgressTimer::Type::RADIAL));//转圈的CD实现
-            //pt->setType(cocos2d::CCProgressTimerType(kCCProgressTimerTypeBar));//从中间到外的出现
-            m_downUiNode->addChild(pt,1);
-            ProgressTo *t=ProgressTo::create(m_btn1LeftCD,100);
-            pt->runAction(t);
-            pt->setTag(100);
-        }
-        PlayerController::getInstance()->player->doAction();
+    Resourse* resourse = ResourseController::getInstance()->getEquipedResInUI();
+    if(resourse && resourse->m_useType==UseType_UseInUI){
+        PlayerController::getInstance()->player->doActionWithEquipedUIRes(resourse);
     }else{
-        CCLOG("没有目标");
-        flyHint("没有目标");
+        Role* playerTarget = PlayerController::getInstance()->player->m_target;
+        if(playerTarget){
+            m_btn1->setEnabled(false);
+            if (playerTarget->m_roleType==RoleType_Resource) {
+                m_btn1LeftCD=0;
+                m_btn1->setEnabled(true);
+            }else{
+                m_btn1LeftCD = PlayerController::getInstance()->player->m_fightValue.m_attackCD;
+                this->schedule(schedule_selector(TouchUI::TouchUISchedule), 1.0f);
+                //cd动画
+                Sprite *s=CommonUtils::createSprite("UI_btn1_1.png");
+                ProgressTimer *pt=ProgressTimer::create(s);
+                pt->setScale(m_btn1->getScale());
+                pt->setPosition(m_btn1->getPosition());
+                pt->setType(cocos2d::ProgressTimer::Type(ProgressTimer::Type::RADIAL));//转圈的CD实现
+                //pt->setType(cocos2d::CCProgressTimerType(kCCProgressTimerTypeBar));//从中间到外的出现
+                m_downUiNode->addChild(pt,1);
+                ProgressTo *t=ProgressTo::create(m_btn1LeftCD,100);
+                pt->runAction(t);
+                pt->setTag(100);
+            }
+            PlayerController::getInstance()->player->doActionToTarget();
+        }else{
+            CCLOG("没有目标");
+            flyHint("没有目标");
+        }
     }
 }
 void TouchUI::onBtn2Click(Ref* pSender, Control::EventType event){

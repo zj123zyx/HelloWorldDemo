@@ -7,6 +7,7 @@
 #include "House.hpp"
 #include "Shoes.hpp"
 #include "NPCRole.hpp"
+#include "Book.hpp"
 
 USING_NS_CC;
 
@@ -53,6 +54,21 @@ void WorldScene::onEnter(){
     Node::onEnter();
     //add tree house
     RolesController::getInstance()->setTiledMap(_map);
+    //add player
+    Player *m_player = PlayerController::getInstance()->getPlayer();
+    m_player->setContainer(_map);//player位置由controller控制
+    RolesController::getInstance()->addControllerRole(m_player,true);
+    //add npc
+    NPCRole *npcPlayer1 = NPCRole::createWithPicName("res/Roles/assassin1a.png");
+    npcPlayer1->setContainer(_map);
+    npcPlayer1->setTileXY(15, 91,false);
+    RolesController::getInstance()->addControllerRole(npcPlayer1,true);
+    //add npc
+    NPCRole *npcPlayer2 = NPCRole::createWithPicName("res/Roles/assassin1a.png");
+    npcPlayer2->setContainer(_map);
+    npcPlayer2->setTileXY(16, 91,false);
+    RolesController::getInstance()->addControllerRole(npcPlayer2,true);
+    
     //添加树
     Tree* tree = Tree::createWithPicName("res/Roles/assassin1a.png");
     tree->setTileXY(20, 90);
@@ -70,20 +86,12 @@ void WorldScene::onEnter(){
     Shoes* shoes2 = Shoes::createWithShoesId("100040002");
     shoes2->setTileXY(16, 90);
     RolesController::getInstance()->addControllerRole(shoes2,true);
-    //add npc
-    NPCRole *npcPlayer1 = NPCRole::createWithPicName("res/Roles/assassin1a.png");
-    npcPlayer1->setContainer(_map);
-    npcPlayer1->setTileXY(15, 91,false);
-    RolesController::getInstance()->addControllerRole(npcPlayer1,true);
-    //add npc
-    NPCRole *npcPlayer2 = NPCRole::createWithPicName("res/Roles/assassin1a.png");
-    npcPlayer2->setContainer(_map);
-    npcPlayer2->setTileXY(16, 91,false);
-    RolesController::getInstance()->addControllerRole(npcPlayer2,true);
-    //add player
-    Player *m_player = PlayerController::getInstance()->getPlayer();
-    m_player->setContainer(_map);//player位置由controller控制
-    RolesController::getInstance()->addControllerRole(m_player,true);
+    
+    Book* goodsBook = Book::createWithBookId("200000001");
+    goodsBook->setTileXY(8,90);
+    RolesController::getInstance()->addControllerRole(goodsBook,true);
+    
+    
 }
 void WorldScene::onExit(){
     RolesController::getInstance()->clearRoleMap();

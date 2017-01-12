@@ -96,6 +96,7 @@ bool Equip::initWithEquipId(string EquipId){
 void Equip::initCommonData(){
     m_width=64;//自身宽度
     m_height=64;//自身高度
+    m_equipType=EquipType_NULL;
     m_resourceType=ResourceType_Equip;
     m_upLabel = Label::createWithSystemFont(".", "", 14);
     m_upLabel->setAnchorPoint(Vec2(0.5, 0));

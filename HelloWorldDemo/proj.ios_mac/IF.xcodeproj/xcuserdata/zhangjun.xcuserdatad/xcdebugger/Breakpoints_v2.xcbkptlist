@@ -9,22 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/Scene/WorldScene.cpp"
-            timestampString = "505885331.22312"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "WorldScene::onEnter()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "../Classes/Controller/RolesController.cpp"
             timestampString = "505825772.725265"
             startingColumnNumber = "9223372036854775807"
@@ -175,7 +159,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "135"
             endingLineNumber = "135"
-            landmarkName = "NPCRole::doAction()"
+            landmarkName = "NPCRole::doActionToTarget()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -192,6 +176,22 @@
             startingLineNumber = "87"
             endingLineNumber = "87"
             landmarkName = "NPCRole::NPCSchedule(float dt)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/model/role/NPC/Player.cpp"
+            timestampString = "505917278.366558"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "Player::doActionWithEquipedUIRes(Resourse* resourse)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

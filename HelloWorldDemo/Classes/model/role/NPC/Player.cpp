@@ -8,7 +8,9 @@
 
 #include "Player.hpp"
 #include "RolesController.hpp"
-#include "Resourse.hpp"
+#include "Goods.hpp"
+#include "BookCreateView.hpp"
+#include "TouchUI.h"
 
 Player* Player::createWithPicName(string pic_name)
 {
@@ -94,7 +96,7 @@ void Player::setPosition(const Vec2 &position){
     }
 }
 
-void Player::doAction(){
+void Player::doActionToTarget(){//对目标操作
     if (m_target && !m_isDead) {
         switch (m_target->m_roleType) {
             case RoleType_NPCRole:
@@ -112,6 +114,18 @@ void Player::doAction(){
                 
             default:
                 break;
+        }
+    }
+}
+
+void Player::doActionWithEquipedUIRes(Resourse* resourse){//通过UI中装备实行操作
+    log("Player::doActionWithEquipedUIRes");
+    if(resourse->m_resourceType==ResourceType_Goods){
+        Goods* goods = dynamic_cast<Goods*>(resourse);
+        if(goods->m_GoodsType==GoodsType_Book){
+            log("GoodsType_Book");
+            BookCreateView* bookView = BookCreateView::create();
+            TouchUI::getInstance()->m_addViewNode->addChild(bookView);
         }
     }
 }

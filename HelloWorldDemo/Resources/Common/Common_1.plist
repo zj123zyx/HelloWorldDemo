@@ -121,6 +121,19 @@
                 <key>sourceSize</key>
                 <string>{80,80}</string>
             </dict>
+            <key>Goods_Book.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{646,136},{44,38}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{3,6},{44,38}}</string>
+                <key>sourceSize</key>
+                <string>{50,50}</string>
+            </dict>
             <key>Panel_close_btn.png</key>
             <dict>
                 <key>frame</key>
@@ -215,11 +228,11 @@
             <key>PaperBg_02_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{646,136},{53,40}}</string>
+                <string>{{196,519},{53,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{53,40}}</string>
                 <key>sourceSize</key>
@@ -228,11 +241,11 @@
             <key>PaperBg_02_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{705,136},{30,40}}</string>
+                <string>{{690,136},{30,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{30,40}}</string>
                 <key>sourceSize</key>
@@ -410,7 +423,7 @@
             <key>UI_Kuang6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{196,519},{54,38}}</string>
+                <string>{{196,578},{54,38}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -612,7 +625,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:248b6e9020ec3a21a78b371c812f19e1:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:cec6bcb5dbdb369b6008fc7c53e28b91:1/1$</string>
             <key>textureFileName</key>
             <string>Common_1.pvr</string>
         </dict>

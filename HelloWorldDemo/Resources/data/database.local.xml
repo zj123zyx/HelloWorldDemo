@@ -6,6 +6,9 @@
     <ItemSpec id="100040001" name="shoes1" description="shoes1_description" icon="Equip4_1.png" level="1" health="0" defense="1" attack="0" attackCD="0" attackRange="0" moveSpeed="2"/>
     <ItemSpec id="100040002" name="shoes2" description="shoes2_description" icon="Equip5_1.png" level="1" health="0" defense="1" attack="0" attackCD="0" attackRange="0" moveSpeed="2"/>
   </Group>
+  <Group id="goods">
+    <ItemSpec id="200000001" name="book" description="book_description" icon="Goods_Book.png" goods_type="0" param1="0"/>
+  </Group>
    <Group id="punder_exchange">
     <ItemSpec id="831401" goods="200082" killscore="6" exchangenum="1"/>
     <ItemSpec id="831402" goods="200002" killscore="6" exchangenum="1"/>

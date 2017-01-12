@@ -93,7 +93,7 @@ void NPCRole::NPCSchedule(float dt){
             stopMove(Vec2::ZERO);
         }
         if(m_fightValue.m_attackCD>=m_maxFightValue.m_attackCD){
-            doAction();
+            doActionToTarget();
         }else{
             m_fightValue.m_attackCD+=dt;
         }
@@ -118,7 +118,7 @@ void NPCRole::setPosition(const Vec2 &position){
     Node::setPosition(position);
 }
 
-void NPCRole::doAction(){
+void NPCRole::doActionToTarget(){
     if (m_target) {
         switch (m_target->m_roleType) {
             case RoleType_Player:

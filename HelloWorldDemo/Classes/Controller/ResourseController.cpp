@@ -120,9 +120,9 @@ void ResourseController::setEquipedResInUIByPos(int pos){
                 PlayerController::getInstance()->addResourseFightValue(m_resourseMap[pos]);
             }
         }
-        //刷新UI通知
-        __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
     }
+    //刷新UI通知
+    __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
 }
 
 void ResourseController::abandonResourse(Resourse* resourse){//丢弃物品

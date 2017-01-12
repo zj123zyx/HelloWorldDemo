@@ -15,6 +15,7 @@ enum ResourceType{
     ResourceType_NULL=0,
     ResourceType_Wood,
     ResourceType_Equip,
+    ResourceType_Goods,
     ResourceType_End
 };
 enum UseType{

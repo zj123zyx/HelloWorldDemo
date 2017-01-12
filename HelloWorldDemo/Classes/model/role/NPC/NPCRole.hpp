@@ -24,7 +24,7 @@ public:
     
     virtual void showDescription(bool show);//显示简介
     
-    virtual void doAction();//攻击
+    virtual void doActionToTarget();//攻击
     virtual void setTarget(Role* target);//设置目标
     virtual void removeTarget();//移除目标
     int m_bagValue;//可携带数量

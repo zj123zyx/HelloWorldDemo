@@ -10,6 +10,7 @@
 #define Player_hpp
 
 #include "NPCRole.hpp"
+#include "Resourse.hpp"
 
 class Player:public NPCRole
 {
@@ -22,7 +23,9 @@ public:
     virtual void move(Point point);
     virtual void moveTo(Point point);
     
-    virtual void doAction();//攻击
+    void doActionToTarget();//对目标操作
+    void doActionWithEquipedUIRes(Resourse* resourse);//通过UI中装备实行操作
+    
     virtual int beAttackedByRole(Role* selfRole,int hurt);//被攻击 返回生命值
     
     bool m_isDead;

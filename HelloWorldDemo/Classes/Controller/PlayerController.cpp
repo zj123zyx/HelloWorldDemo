@@ -63,13 +63,16 @@ int PlayerController::getBagValue(){
     return ret;
 }
 
-void PlayerController::addFightValue(FightValues fightValue){
-    if (fightValue.m_useType==1 || fightValue.m_useType==2) {
-        player->m_fightValue.addValue(fightValue);
+void addResourseFightValue(Resourse* resourse);
+void removeResourseFightValue(Resourse* resourse);
+
+void PlayerController::addResourseFightValue(Resourse* resourse){
+    if (resourse->m_useType==UseType_EquipInUI || resourse->m_useType==UseType_EquipInBag) {
+        player->m_fightValue.addValue(resourse->m_fightValue);
     }
 }
-void PlayerController::removeFightValue(FightValues fightValue){
-    player->m_fightValue.removeValue(fightValue);
+void PlayerController::removeResourseFightValue(Resourse* resourse){
+    player->m_fightValue.removeValue(resourse->m_fightValue,player);
 }
 
 

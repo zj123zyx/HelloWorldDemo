@@ -57,7 +57,8 @@ bool Weapon::initWithWeaponId(string weaponId){
 void Weapon::initCommonData(){
     Equip::initCommonData();
     m_equipType=EquipType_Weapon;
-    m_fightValue.m_useType=1;
+//    m_fightValue.m_useType=1;
+    m_useType=UseType_EquipInUI;
 }
 
 void Weapon::onEnter(){

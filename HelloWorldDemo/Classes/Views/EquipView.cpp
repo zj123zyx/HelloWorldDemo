@@ -223,9 +223,9 @@ void EquipView::onCloseBtnClick(Ref* pSender, Control::EventType event){
     this->removeFromParent();
 }
 void EquipView::onPopBtn1Click(Ref* pSender, Control::EventType event){
-    if(m_resourse->m_useInBag){//在背包中使用
+    if(m_resourse->m_useType==UseType_UseInBag){//在背包中使用
         log("使用");
-    }else if (m_resourse->m_fightValue.m_useType==2){//可以在背包装备
+    }else if (m_resourse->m_useType==UseType_EquipInBag){//可以在背包装备
         log("装备");
         ResourseController::getInstance()->equipResourse(dynamic_cast<Equip*>(m_resourse));
     }
@@ -303,10 +303,10 @@ void EquipView::showPopNode(Touch* touch,Resourse* resourse){
     m_resourse = resourse;
     m_popTxt->setString(m_resourse->m_selfValue.m_name);
     m_bagUpTxt->setString(m_resourse->m_selfValue.m_description);
-    if(m_resourse->m_useInBag){//在背包中使用
+    if(m_resourse->m_useType==UseType_UseInBag){//在背包中使用
         CommonUtils::setButtonTitle(m_popBtn1,"使用");
         m_popBtn1->setEnabled(true);
-    }else if (m_resourse->m_fightValue.m_useType==2){//可以在背包装备
+    }else if (m_resourse->m_useType==UseType_EquipInBag){//可以在背包装备
         CommonUtils::setButtonTitle(m_popBtn1,"装备");
         m_popBtn1->setEnabled(true);
     }else{

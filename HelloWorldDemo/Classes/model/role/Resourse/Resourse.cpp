@@ -69,7 +69,8 @@ void Resourse::getThisItem(Role* role){//获得此物品
     if (role->m_roleType==RoleType_Player) {
         if(ResourseController::getInstance()->getItem(this)){
             this->removeFromParent();
-            RolesController::getInstance()->removeRoleByTile(Vec2(m_tileX, m_tileY));//删除角色
+//            RolesController::getInstance()->removeRoleByTile(Vec2(m_tileX, m_tileY));//删除角色
+            RolesController::getInstance()->removeRole(this);//删除角色
             role->m_target=nullptr;
             //刷新UI通知 
             __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");

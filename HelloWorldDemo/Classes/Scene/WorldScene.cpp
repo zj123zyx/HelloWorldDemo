@@ -6,6 +6,7 @@
 #include "Tree.hpp"
 #include "House.hpp"
 #include "Shoes.hpp"
+#include "NPCRole.hpp"
 
 USING_NS_CC;
 
@@ -44,13 +45,6 @@ bool WorldScene::init()
     
     Size mapSize = _map->getContentSize();
     Size tileSize = _map->getTileSize();
-    //add player
-    Player *m_player = PlayerController::getInstance()->getPlayer();
-    m_player->setContainer(_map);
-    int py = mapSize.height - (m_player->m_tileY*tileSize.height+tileSize.height/2);
-    int px = m_player->m_tileX*tileSize.width+tileSize.width/2;
-    m_player->setPosition(Vec2(px, py));
-    _map->addChild(m_player,3);
     
     return true;
 }
@@ -76,7 +70,20 @@ void WorldScene::onEnter(){
     Shoes* shoes2 = Shoes::createWithShoesId("100040002");
     shoes2->setTileXY(16, 90);
     RolesController::getInstance()->addControllerRole(shoes2,true);
-    
+    //add npc
+    NPCRole *npcPlayer1 = NPCRole::createWithPicName("res/Roles/assassin1a.png");
+    npcPlayer1->setContainer(_map);
+    npcPlayer1->setTileXY(15, 91,false);
+    RolesController::getInstance()->addControllerRole(npcPlayer1,true);
+    //add npc
+    NPCRole *npcPlayer2 = NPCRole::createWithPicName("res/Roles/assassin1a.png");
+    npcPlayer2->setContainer(_map);
+    npcPlayer2->setTileXY(16, 91,false);
+    RolesController::getInstance()->addControllerRole(npcPlayer2,true);
+    //add player
+    Player *m_player = PlayerController::getInstance()->getPlayer();
+    m_player->setContainer(_map);//player位置由controller控制
+    RolesController::getInstance()->addControllerRole(m_player,true);
 }
 void WorldScene::onExit(){
     RolesController::getInstance()->clearRoleMap();

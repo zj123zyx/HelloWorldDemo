@@ -17,6 +17,14 @@ enum ResourceType{
     ResourceType_Equip,
     ResourceType_End
 };
+enum UseType{
+    UseType_NULL=0,
+    UseType_UseInUI,
+    UseType_EquipInUI,
+    UseType_UseInBag,
+    UseType_EquipInBag,
+    UseType_End
+};
 
 class Resourse:public Role
 {
@@ -25,8 +33,8 @@ public:
     ,m_resourceValue(0)
     ,m_resourceMaxValue(1)
     ,m_bagPosition(-1)
-    ,m_isEquiped(false)
-    ,m_useInBag(false)
+    ,m_isEquipedInUI(false)
+    ,m_useType(UseType_NULL)
     {}
     ~Resourse(){}
     
@@ -45,8 +53,9 @@ public:
     int m_resourceMaxValue;//资源叠加最大数量
     
     int m_bagPosition;//背包中位置
-    bool m_isEquiped;//ui中装备
-    bool m_useInBag;//背包中使用
+    bool m_isEquipedInUI;//ui装备中
+//    bool m_useInBag;//背包中使用
+    UseType m_useType;//1:可以在ui使用,2:可以在背包装备,0:不可使用和装备
 protected:
     void onEnter();
     void onExit();

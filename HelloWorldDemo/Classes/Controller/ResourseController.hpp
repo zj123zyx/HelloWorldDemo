@@ -23,8 +23,8 @@ public:
     bool mergeResourse(Resourse* resourse);//合并物品
     int getBagPosition();//获得背包空位
     bool getItem(Resourse* resourse);//获得物品
-    Resourse* getEquipedRes();
-    void setEquipedResByPos(int pos);
+    Resourse* getEquipedResInUI();
+    void setEquipedResInUIByPos(int pos);
     void abandonResourse(Resourse* resourse);//丢弃物品
     void equipResourse(Equip* equip);//装备物品
     void unwieldResourse(Equip* equip);//卸下装备

@@ -91,11 +91,11 @@ bool ResourseController::getItem(Resourse* resourse){//获得物品
     return ret;
 }
 
-Resourse* ResourseController::getEquipedRes(){
+Resourse* ResourseController::getEquipedResInUI(){
     Resourse* ret = nullptr;
     map<int, Resourse*>::iterator it = m_resourseMap.begin();
     for (; it!=m_resourseMap.end(); it++) {
-        if (it->second->m_isEquiped) {
+        if (it->second->m_isEquipedInUI) {
             ret = it->second;
             break;
         }
@@ -103,21 +103,21 @@ Resourse* ResourseController::getEquipedRes(){
     return ret;
 }
 
-void ResourseController::setEquipedResByPos(int pos){
+void ResourseController::setEquipedResInUIByPos(int pos){
     map<int, Resourse*>::iterator it = m_resourseMap.begin();
     for (; it!=m_resourseMap.end(); it++) {
-        if(it->second->m_isEquiped==true){
-            it->second->m_isEquiped=false;
-            if (it->second->m_fightValue.m_useType==1) {
-                PlayerController::getInstance()->removeFightValue(it->second->m_fightValue);
+        if(it->second->m_isEquipedInUI==true){
+            it->second->m_isEquipedInUI=false;
+            if (it->second->m_useType==UseType_EquipInUI) {
+                PlayerController::getInstance()->removeResourseFightValue(it->second);
             }
         }
     }
     if(m_resourseMap.find(pos)!=m_resourseMap.end()){
-        if (m_resourseMap[pos]->m_isEquiped==false) {
-            m_resourseMap[pos]->m_isEquiped=true;
-            if (m_resourseMap[pos]->m_fightValue.m_useType==1) {
-                PlayerController::getInstance()->addFightValue(m_resourseMap[pos]->m_fightValue);
+        if (m_resourseMap[pos]->m_isEquipedInUI==false) {
+            m_resourseMap[pos]->m_isEquipedInUI=true;
+            if (m_resourseMap[pos]->m_useType==UseType_EquipInUI) {
+                PlayerController::getInstance()->addResourseFightValue(m_resourseMap[pos]);
             }
         }
         //刷新UI通知
@@ -148,14 +148,14 @@ void ResourseController::equipResourse(Equip* equip){//装备物品
         for (; eit!=m_equipMap.end(); eit++) {
             if(eit->second->m_equipType==equip->m_equipType){
                 m_equipMap.erase(eit->second->m_equipType);
-                PlayerController::getInstance()->removeFightValue(eit->second->m_fightValue);
+                PlayerController::getInstance()->removeResourseFightValue(eit->second);
                 eit->second->m_bagPosition = getBagPosition();
                 m_resourseMap[eit->second->m_bagPosition]=eit->second;
                 break;
             }
         }
         m_equipMap[equip->m_equipType]=equip;
-        PlayerController::getInstance()->addFightValue(equip->m_fightValue);
+        PlayerController::getInstance()->addResourseFightValue(equip);
         __NotificationCenter::getInstance()->postNotification("EquipView::refreshData");
         __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
     }
@@ -166,7 +166,7 @@ void ResourseController::unwieldResourse(Equip* equip){//卸下装备
         equip->m_bagPosition = pos;
         m_resourseMap[equip->m_bagPosition] = equip;
         m_equipMap.erase(equip->m_equipType);
-        PlayerController::getInstance()->removeFightValue(equip->m_fightValue);
+        PlayerController::getInstance()->removeResourseFightValue(equip);
         __NotificationCenter::getInstance()->postNotification("EquipView::refreshData");
         __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
     }else{

@@ -16,9 +16,12 @@
 #define ROLW_MOVE_RIGHT "ROLW_MOVE_RIGHT"
 #define ROLW_MOVE_LEFT "ROLW_MOVE_LEFT"
 
+class Role;
+
 enum RoleType{
     RoleType_Role=0,
     RoleType_Player,
+    RoleType_NPCRole,
     RoleType_Tree,
     RoleType_Resource,
     RoleType_House
@@ -49,27 +52,27 @@ public:
 };
 class FightValues{
 public:
-    FightValues():m_useType(0)
-    ,m_health(0)
+    FightValues()://m_useType(0)
+    m_health(0)
     ,m_defense(0)
     ,m_attack(0)
-    ,m_attackCD(0)
+    ,m_attackCD(0.0)
     ,m_attackRange(0)
     ,m_moveSpeed(0.0)
     {};
     ~FightValues(){};
     
-    int m_useType;//1:可以在ui使用,2:可以在背包装备,0:不可使用和装备
+//    int m_useType;//1:可以在ui使用,2:可以在背包装备,0:不可使用和装备
     
     int m_health;
     int m_defense;
     int m_attack;
-    int m_attackCD;
+    float m_attackCD;
     int m_attackRange;
     float m_moveSpeed;//移动速度
     
     void addValue(FightValues value);
-    void removeValue(FightValues value);
+    void removeValue(FightValues value,Role* role);
 };
 
 class Role:public Node
@@ -114,6 +117,7 @@ public:
     
     SelfValues m_selfValue;//自身属性
     FightValues m_fightValue;//战斗属性
+    FightValues m_maxFightValue;//最大战斗属性(表里配的属性)
    
     int m_tileX;//自身tile位置
     int m_tileY;//自身tile位置
@@ -123,6 +127,9 @@ public:
 //    Point m_actionShowPoint;//事件进入后出现点
     
     SpriteFrame* m_roleSpriteFrame;
+    
+    float m_width;//自身宽度
+    float m_height;//自身高度
 protected:
     virtual void onEnter();
     virtual void onExit();
@@ -134,9 +141,6 @@ protected:
     Point m_nextTileXY;//斜角方向下一个tile位置
     Point m_nextTileXX;
     Point m_nextTileYY;
-    
-    float m_width;//自身宽度
-    float m_height;//自身高度
 
     Sprite* m_roleSprite;
     Node* m_desNode;

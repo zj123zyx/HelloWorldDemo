@@ -11,7 +11,7 @@
 
 #include "CommonHead.h"
 #include "Player.hpp"
-//#include "Resourse.hpp"
+#include "Resourse.hpp"
 
 class PlayerController:public Ref
 {
@@ -26,8 +26,8 @@ public:
     void OnUIStopScrollLeft(Point scrollPoint);
     void playerMoveTo(Point point);
     int getBagValue();//获得可携带数量
-    void addFightValue(FightValues fightValue);
-    void removeFightValue(FightValues fightValue);
+    void addResourseFightValue(Resourse* resourse);
+    void removeResourseFightValue(Resourse* resourse);
 
     Player* getPlayer();
     Player* player;

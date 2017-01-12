@@ -40,9 +40,24 @@ Role* RolesController::getRoleByTile(Vec2 tile){
     return role;
 }
 
-void RolesController::removeRoleByTile(Vec2 tile){
-    int tid = CommonUtils::getTileIdByXY(tile.x, tile.y);
-    m_RoleMap.erase(tid);
+//void RolesController::removeRoleByTile(Vec2 tile){
+//    int tid = CommonUtils::getTileIdByXY(tile.x, tile.y);
+//    m_RoleMap.erase(tid);
+//}
+
+void RolesController::removeRole(Role* role){
+    int tid = CommonUtils::getTileIdByXY(role->m_tileX, role->m_tileY);
+    if(m_RoleMap.find(tid)!=m_RoleMap.end()){
+        m_RoleMap.erase(tid);
+    }
+    vector<Role*>::iterator it = m_actRoleVec.begin();
+    for (; it!=m_actRoleVec.end(); it++) {
+        Role* temp = (*it);
+        if (temp==role) {
+            m_actRoleVec.erase(it);
+            break;
+        }
+    }
 }
 
 void RolesController::addControllerRole(Role* role,bool addToScene){
@@ -51,6 +66,9 @@ void RolesController::addControllerRole(Role* role,bool addToScene){
         Vec2 tempVec2=occupy[i];
         int tid = CommonUtils::getTileIdByXY(tempVec2.x, tempVec2.y);
         m_RoleMap[tid] = role;
+    }
+    if(role->m_roleType==RoleType_Player || role->m_roleType==RoleType_NPCRole){
+        m_actRoleVec.push_back(role);
     }
     if(addToScene){
         addRoleToScene(role);
@@ -91,9 +109,43 @@ void RolesController::addAllRoleToScene(bool isForce){//往地图中添加所有
 
 void RolesController::clearRoleMap(){//清空m_RoleMap
     m_RoleMap.clear();
+    m_actRoleVec.clear();
 }
 
-
+Role* RolesController::getActRoleByDistance(Role* self,float dis/*=64*/){
+    Role* role = nullptr;
+    vector<Role*>::iterator it = m_actRoleVec.begin();
+    for (; it!=m_actRoleVec.end(); it++) {
+        Role* temp = (*it);
+        if (temp==self) {
+            continue;
+        }else{
+            float ds=(temp->m_width+self->m_width)/2;
+            float minDs=MIN(ds, dis);
+            if(self->m_faceTo==FaceTo_UP &&
+               (temp->getPosition().y>self->getPosition().y) &&
+               (self->getPosition().getDistance(temp->getPosition())<=minDs)){
+                role = temp;
+            }
+            if(self->m_faceTo==FaceTo_DOWN &&
+               (temp->getPosition().y<self->getPosition().y) &&
+               (self->getPosition().getDistance(temp->getPosition())<=minDs)){
+                role = temp;
+            }
+            if(self->m_faceTo==FaceTo_LEFT &&
+               (temp->getPosition().x<self->getPosition().x) &&
+               (self->getPosition().getDistance(temp->getPosition())<=minDs)){
+                role = temp;
+            }
+            if(self->m_faceTo==FaceTo_RIGHT &&
+               (temp->getPosition().x>self->getPosition().x) &&
+               (self->getPosition().getDistance(temp->getPosition())<=minDs)){
+                role = temp;
+            }
+        }
+    }
+    return role;
+}
 
 
 

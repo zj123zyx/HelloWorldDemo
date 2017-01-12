@@ -23,14 +23,16 @@ public:
     void createTrees();
     
     Role* getRoleByTile(Vec2 tile);
-    void removeRoleByTile(Vec2 tile);
+    void removeRole(Role* role);
     void addControllerRole(Role* role,bool addToScene = true);
     void setTiledMap(TMXTiledMap* map);//设置瓦片地图
     void addRoleToScene(Role* role,bool isForce = false);//往地图中添加role
     void addAllRoleToScene(bool isForce = false);//往地图中添加所有role
-    
     void clearRoleMap();//清空m_RoleMap
+    Role* getActRoleByDistance(Role* self,float dis=64);
+    
     map<int,Role*> m_RoleMap;
+    vector<Role*> m_actRoleVec;
     
 private:
     TMXTiledMap* _map;

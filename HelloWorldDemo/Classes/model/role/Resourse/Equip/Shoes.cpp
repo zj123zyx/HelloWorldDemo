@@ -33,7 +33,8 @@ bool Shoes::initWithShoesId(string ShoesId){
 void Shoes::initCommonData(){
     Equip::initCommonData();
     m_equipType=EquipType_Shoes;
-    m_fightValue.m_useType=2;
+//    m_fightValue.m_useType=2;
+    m_useType=UseType_EquipInBag;
 }
 
 void Shoes::onEnter(){

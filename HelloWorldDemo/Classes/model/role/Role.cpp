@@ -23,13 +23,13 @@ void FightValues::addValue(FightValues value){
     m_defense += value.m_defense;
     m_moveSpeed += value.m_moveSpeed;
 }
-void FightValues::removeValue(FightValues value){
+void FightValues::removeValue(FightValues value,Role* role){
     m_health -= value.m_health;
     m_attack -= value.m_attack;
-    m_attackCD = 3;//默认3秒
-    m_attackRange = 1;//默认1
     m_defense -= value.m_defense;
     m_moveSpeed -= value.m_moveSpeed;
+    m_attackCD = role->m_maxFightValue.m_attackCD;//默认3秒
+    m_attackRange = role->m_maxFightValue.m_attackRange;//默认1
 }
 #pragma mark Role
 Role::Role(){
@@ -199,12 +199,12 @@ void Role::move(Point point){
             this->unschedule(schedule_selector(Role::moveToSchedule));
         }
         
-        {//显示属性
-            int gid = getFaceToTileGID("layer_1");
-            string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
-            m_upLabel->setString(goThrough);
-        }
-        this->setPosition(this->getPosition()+(movePoint.getNormalized()*m_fightValue.m_moveSpeed));
+//        {//显示属性
+//            int gid = getFaceToTileGID("layer_1");
+//            string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
+//            m_upLabel->setString(goThrough);
+//        }
+        
         Point faceToPoint = getFaceToTilePoint();//得到朝向的点
         Role* role = RolesController::getInstance()->getRoleByTile(faceToPoint);//是否有角色
         if (role) {
@@ -214,8 +214,14 @@ void Role::move(Point point){
                 setTarget(role);
             }
         }else{
-            removeTarget();
+            Role* actRole = RolesController::getInstance()->getActRoleByDistance(this);
+            if(actRole){
+                setTarget(actRole);
+            }else{
+                removeTarget();
+            }
         }
+        this->setPosition(this->getPosition()+(movePoint.getNormalized()*m_fightValue.m_moveSpeed));
     }
 }
 
@@ -438,6 +444,7 @@ bool Role::isVecCanGo(Vec2 vec,bool unschedule/*=true*/){
     if(goThrough=="1" && CommonUtils::isRectInTile(ptLocation, m_width, m_height, Rect(vec.x, vec.y, tileSize.width, tileSize.height),mapHeight)){
         if(unschedule){
             this->unschedule(schedule_selector(Role::moveToSchedule));
+//            stopMove(Vec2::ZERO);
         }
         return false;
     }
@@ -445,6 +452,15 @@ bool Role::isVecCanGo(Vec2 vec,bool unschedule/*=true*/){
     if (role!=nullptr && CommonUtils::isRectInTile(ptLocation, m_width, m_height, Rect(vec.x, vec.y, tileSize.width, tileSize.height),mapHeight)) {
         if(unschedule){
             this->unschedule(schedule_selector(Role::moveToSchedule));
+//            stopMove(Vec2::ZERO);
+        }
+        return false;
+    }
+    Role* actRole = RolesController::getInstance()->getActRoleByDistance(this);
+    if(actRole){
+        if(unschedule){
+            this->unschedule(schedule_selector(Role::moveToSchedule));
+            stopMove(Vec2::ZERO);            
         }
         return false;
     }
@@ -487,8 +503,10 @@ int Role::beAttackedByRole(Role* selfRole,int hurt){//被攻击
     m_fightValue.m_health -= hurt;
     showDescription(true);
     if (m_fightValue.m_health<=0) {
+        this->removeTarget();
+        selfRole->removeTarget();
         this->removeFromParent();
-        RolesController::getInstance()->removeRoleByTile(Vec2(m_tileX, m_tileY));//删除角色
+        RolesController::getInstance()->removeRole(this);//删除角色
     }
     return m_fightValue.m_health;
 }

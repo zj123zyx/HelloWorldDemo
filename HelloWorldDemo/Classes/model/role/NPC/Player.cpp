@@ -35,11 +35,14 @@ bool Player::initWithPicName(string pic_name){
         m_height=60;//32;//自身高度
         m_bagValue = 8;
         m_fightValue.m_moveSpeed = 2;
-        m_fightValue.m_useType=1;
+//        m_fightValue.m_useType=1;
         m_fightValue.m_health=10;
         m_fightValue.m_attack=2;
         m_fightValue.m_attackCD=3;
         m_fightValue.m_attackRange=1;
+        m_selfValue.m_name="me";
+        m_maxFightValue = m_fightValue;
+        m_isDead=false;
         
         setRoleSpriteFrame(pic_name);
         SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
@@ -49,8 +52,9 @@ bool Player::initWithPicName(string pic_name){
             this->addChild(m_roleSprite);
         }
         
-        m_upLabel = Label::createWithSystemFont(".", "", 12);
-        m_upLabel->setAnchorPoint(Vec2(0.5, 0.5));
+        m_upLabel = Label::createWithSystemFont(".", "", 14);
+        m_upLabel->setAnchorPoint(Vec2(0.5, 0));
+        m_upLabel->setPositionY(4);
         if(m_upLabel){
             m_desNode->addChild(m_upLabel);
         }
@@ -71,12 +75,16 @@ void Player::onExit(){
 }
 
 void Player::move(Point point){
-    Role::move(point);
-    m_container->setPosition(this->getPositionInScreen()-this->getPosition());
+    if(!m_isDead){
+        Role::move(point);
+        m_container->setPosition(this->getPositionInScreen()-this->getPosition());
+    }
 }
 
 void Player::moveTo(Point point){
-    Role::moveTo(point);
+    if(!m_isDead){
+        Role::moveTo(point);
+    }
 }
 
 void Player::setPosition(const Vec2 &position){
@@ -87,8 +95,9 @@ void Player::setPosition(const Vec2 &position){
 }
 
 void Player::doAction(){
-    if (m_target) {
+    if (m_target && !m_isDead) {
         switch (m_target->m_roleType) {
+            case RoleType_NPCRole:
             case RoleType_Tree:
             {
                 Role::roleAttackTarget(this);
@@ -107,16 +116,13 @@ void Player::doAction(){
     }
 }
 
-void Player::setTarget(Role* target){
-    Role::setTarget(target);
-    if(m_target){
-        m_target->showDescription(true);
+int Player::beAttackedByRole(Role* selfRole,int hurt){//被攻击 返回生命值
+    m_fightValue.m_health -= hurt;
+    showDescription(true);
+    if(m_fightValue.m_health<=0){//如果生命为0就变为木材
+        m_isDead=true;
     }
+    return m_fightValue.m_health;
 }
 
-void Player::removeTarget(){
-    if(m_target){
-        m_target->showDescription(false);
-    }
-    Role::removeTarget();
-}
+

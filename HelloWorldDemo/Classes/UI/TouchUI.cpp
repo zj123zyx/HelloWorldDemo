@@ -50,7 +50,7 @@ void UIEquipCell::setData(int pos,int sum){
         auto spr = Sprite::createWithSpriteFrame(resourse->m_roleSpriteFrame);
         CommonUtils::setSpriteMaxSize(spr, 64);
         m_iconNode->addChild(spr);
-        if(resourse->m_isEquiped){
+        if(resourse->m_isEquipedInUI){
             m_numNode->setVisible(true);
             m_desTxt->setString("E");
         }
@@ -89,7 +89,7 @@ void UIEquipCell::onTouchMoved(Touch* touch, Event* event){
 }
 void UIEquipCell::onTouchEnded(Touch* touch, Event* event){
     if (isTouchInside(m_touchNode,touch) && m_touchMove==false) {
-        ResourseController::getInstance()->setEquipedResByPos(m_pos);
+        ResourseController::getInstance()->setEquipedResInUIByPos(m_pos);
     }
 }
 
@@ -145,8 +145,8 @@ void TouchUI::onExit(){
 
 //刷新物品UI
 void TouchUI::refreshEquipNode(Ref* ref){
-    if(ResourseController::getInstance()->getEquipedRes()==nullptr){
-        ResourseController::getInstance()->setEquipedResByPos(0);
+    if(ResourseController::getInstance()->getEquipedResInUI()==nullptr){
+        ResourseController::getInstance()->setEquipedResInUIByPos(0);
     }
     int bagValue = PlayerController::getInstance()->getBagValue();
     for (int i=0; i<bagValue; i++) {

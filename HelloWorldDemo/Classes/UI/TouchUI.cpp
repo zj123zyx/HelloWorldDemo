@@ -3,6 +3,7 @@
 #include "EquipView.hpp"
 #include "ResourseController.hpp"
 #include "Goods.hpp"
+#include "RolesController.hpp"
 
 USING_NS_CC;
 
@@ -116,6 +117,8 @@ bool TouchUI::init()
     m_isLeftTouch=false;
     m_isScrollingLeft=false;
     m_isNodeTouch=false;
+    m_isSettingUI=false;
+    m_showType=UIShowType_Normal;
     
 //    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Common/Common_1.plist");
     CCBLoadFile("TouchUI",this,this);
@@ -173,6 +176,12 @@ bool TouchUI::onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVaria
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn1", ControlButton*, m_btn1);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn2", ControlButton*, m_btn2);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn2", ControlButton*, m_btn3);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn4", ControlButton*, m_btn4);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn5", ControlButton*, m_btn5);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btn6", ControlButton*, m_btn6);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_leftBtnNode1", Node*, m_leftBtnNode1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_leftBtnNode2", Node*, m_leftBtnNode2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_leftBtnNode3", Node*, m_leftBtnNode3);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_equipNode", Node*, m_equipNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_coverNode", Node*, m_coverNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_hintNode", Node*, m_hintNode);
@@ -186,10 +195,16 @@ cocos2d::extension::Control::Handler TouchUI::onResolveCCBCCControlSelector(Ref 
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onBtn1Click", TouchUI::onBtn1Click);
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onBtn2Click", TouchUI::onBtn2Click);
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onBtn3Click", TouchUI::onBtn3Click);
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onBtn4Click", TouchUI::onBtn4Click);
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onBtn5Click", TouchUI::onBtn5Click);
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onBtn6Click", TouchUI::onBtn6Click);
     return NULL;
 }
 
 bool TouchUI::onTouchBegan(Touch* touch, Event* event){
+    if(m_isSettingUI){
+        return true;
+    }
     if(isTouchInside(m_yaoGanerSprBg,touch)){
         m_isLeftTouch=true;
         return true;
@@ -205,6 +220,9 @@ bool TouchUI::onTouchBegan(Touch* touch, Event* event){
     return true;
 }
 void TouchUI::onTouchMoved(Touch* touch, Event* event){
+    if(m_isSettingUI){
+        return;
+    }
     if(listener->isSwallowTouches() && m_isLeftTouch){
         Point touchPoint = touch->getLocation();
         Point center = m_yaoGanerNode->getPosition();
@@ -230,6 +248,9 @@ void TouchUI::onTouchMoved(Touch* touch, Event* event){
     }
 }
 void TouchUI::onTouchEnded(Touch* touch, Event* event){
+    if(m_isSettingUI){
+        return;
+    }
     m_isLeftTouch=false;
     m_isScrollingLeft=false;
     if(listener->isSwallowTouches() && m_isNodeTouch){
@@ -251,6 +272,9 @@ void TouchUI::OnScrollLeft(float dt){
 
 void TouchUI::onBtn1Click(Ref* pSender, Control::EventType event){
     CCLOG("onBtn1Click");
+    if(m_isSettingUI){
+        return;
+    }
     Resourse* resourse = ResourseController::getInstance()->getEquipedResInUI();
     if(resourse && resourse->m_useType==UseType_UseInUI){
         PlayerController::getInstance()->player->doActionWithEquipedUIRes(resourse);
@@ -285,6 +309,10 @@ void TouchUI::onBtn1Click(Ref* pSender, Control::EventType event){
 }
 void TouchUI::onBtn2Click(Ref* pSender, Control::EventType event){
     CCLOG("onBtn2Click");
+    if(m_isSettingUI){
+        return;
+    }
+    setUiByType(UIShowType_Lookout);
     if(listener->isSwallowTouches()==false){
         m_uiDelegate->OnTouchUIRelease(this,callfunc_selector(TouchUI::startUseTouchUI));
     }else{
@@ -293,8 +321,39 @@ void TouchUI::onBtn2Click(Ref* pSender, Control::EventType event){
 }
 void TouchUI::onBtn3Click(Ref* pSender, Control::EventType event){
     CCLOG("onBtn3Click");
+    if(m_isSettingUI){
+        return;
+    }
     EquipView* equipView = EquipView::create();
     m_addViewNode->addChild(equipView);
+}
+
+void TouchUI::onBtn4Click(Ref* pSender, Control::EventType event){
+    CCLOG("onBtn4Click");
+    if(m_isSettingUI){
+        return;
+    }
+    
+}
+void TouchUI::onBtn5Click(Ref* pSender, Control::EventType event){
+    CCLOG("onBtn5Click");
+    if(m_isSettingUI){
+        return;
+    }
+    setUiByType(UIShowType_Normal);
+    RolesController::getInstance()->removeVirtualBuildFromTiledMap();
+}
+void TouchUI::onBtn6Click(Ref* pSender, Control::EventType event){
+    CCLOG("onBtn6Click");
+    if(m_isSettingUI){
+        return;
+    }
+    setUiByType(UIShowType_Normal);
+    if(listener->isSwallowTouches()==false){
+        m_uiDelegate->OnTouchUIRelease(this,callfunc_selector(TouchUI::startUseTouchUI));
+    }else{
+        listener->setSwallowTouches(false);
+    }
 }
 
 void TouchUI::startUseTouchUI(){
@@ -341,5 +400,84 @@ void TouchUI::flyHint(string txt,float time/* = 3*/){
     }
 }
 
+void TouchUI::setUiByType(UIShowType showType){
+    m_showType = showType;
+    m_isSettingUI=true;
+    float aniTime = 0.5;
+    if (m_showType==UIShowType_Normal) {
+        m_yaoGanerNode->setPositionY(-200);
+        m_leftBtnNode1->setPositionY(-300);
+        m_equipNode->setPositionY(-290);
+        
+        MoveTo* moveTo1 = MoveTo::create(aniTime, Vec2(100, 100));
+        DelayTime* delayTime1 = DelayTime::create(aniTime);
+        m_yaoGanerNode->runAction(Sequence::create(delayTime1,moveTo1, NULL));
+        MoveTo* moveTo2 = MoveTo::create(aniTime, Vec2(0, 0));
+        DelayTime* delayTime2 = DelayTime::create(aniTime);
+        m_leftBtnNode1->runAction(Sequence::create(delayTime2,moveTo2, NULL));
+        MoveTo* moveTo3 = MoveTo::create(aniTime, Vec2(568, 10));
+        DelayTime* delayTime3 = DelayTime::create(aniTime);
+        m_equipNode->runAction(Sequence::create(delayTime3,moveTo3, NULL));
+        
+        MoveTo* moveTo4 = MoveTo::create(aniTime, Vec2(0, -200));
+        m_leftBtnNode2->runAction(moveTo4);
+        MoveTo* moveTo5 = MoveTo::create(aniTime, Vec2(0, -300));
+        m_leftBtnNode3->runAction(moveTo5);
+    }else if (m_showType==UIShowType_Lookout){
+        m_leftBtnNode3->setPositionY(-300);
+        
+        MoveTo* moveTo5 = MoveTo::create(aniTime, Vec2(0, -180));
+        DelayTime* delayTime1 = DelayTime::create(aniTime);
+        m_leftBtnNode3->runAction(Sequence::create(delayTime1,moveTo5, NULL));
+        
+        MoveTo* moveTo1 = MoveTo::create(aniTime, Vec2(100, -200));
+        m_yaoGanerNode->runAction(moveTo1);
+        MoveTo* moveTo2 = MoveTo::create(aniTime, Vec2(0, -300));
+        m_leftBtnNode1->runAction(moveTo2);
+        MoveTo* moveTo3 = MoveTo::create(aniTime, Vec2(568, -290));
+        m_equipNode->runAction(moveTo3);
+        MoveTo* moveTo4 = MoveTo::create(aniTime, Vec2(0, -200));
+        m_leftBtnNode2->runAction(moveTo4);
+    }else if (m_showType==UIShowType_VirtualBuild){
+        m_yaoGanerNode->setPositionY(-200);
+        m_leftBtnNode2->setPositionY(-200);
+        
+        MoveTo* moveTo1 = MoveTo::create(aniTime, Vec2(100, 100));
+        DelayTime* delayTime1 = DelayTime::create(aniTime);
+        m_yaoGanerNode->runAction(Sequence::create(delayTime1,moveTo1, NULL));
+        MoveTo* moveTo4 = MoveTo::create(aniTime, Vec2(0, 0));
+        DelayTime* delayTime2 = DelayTime::create(aniTime);
+        m_leftBtnNode2->runAction(Sequence::create(delayTime2,moveTo4, NULL));
+        
+        MoveTo* moveTo2 = MoveTo::create(aniTime, Vec2(0, -300));
+        m_leftBtnNode1->runAction(moveTo2);
+        MoveTo* moveTo3 = MoveTo::create(aniTime, Vec2(568, -290));
+        m_equipNode->runAction(moveTo3);
+        MoveTo* moveTo5 = MoveTo::create(aniTime, Vec2(0, -300));
+        m_leftBtnNode3->runAction(moveTo5);
+    }
+    this->scheduleOnce(schedule_selector(TouchUI::onSetUIFinish), aniTime*2);
+}
 
-
+void TouchUI::onSetUIFinish(float dt){
+    m_isSettingUI=false;
+    if (m_showType==UIShowType_Normal) {
+        m_yaoGanerNode->setPosition(Vec2(100, 100));
+        m_leftBtnNode1->setPosition(Vec2(0, 0));
+        m_equipNode->setPosition(Vec2(568, 10));
+        m_leftBtnNode2->setPosition(Vec2(0, -200));
+        m_leftBtnNode3->setPosition(Vec2(0, -300));
+    }else if (m_showType==UIShowType_Lookout){
+        m_yaoGanerNode->setPosition(Vec2(100, -200));
+        m_leftBtnNode1->setPosition(Vec2(0, -300));
+        m_equipNode->setPosition(Vec2(568, -290));
+        m_leftBtnNode2->setPosition(Vec2(0, -200));
+        m_leftBtnNode3->setPosition(Vec2(0, -180));
+    }else if (m_showType==UIShowType_VirtualBuild){
+        m_yaoGanerNode->setPosition(Vec2(100, 100));
+        m_leftBtnNode1->setPosition(Vec2(0, -300));
+        m_equipNode->setPosition(Vec2(568, -290));
+        m_leftBtnNode2->setPosition(Vec2(0, 0));
+        m_leftBtnNode3->setPosition(Vec2(0, -300));
+    }
+}

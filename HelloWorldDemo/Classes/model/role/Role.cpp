@@ -299,19 +299,19 @@ void Role::setAnimation(const char* aniName,string frameName,int fromCount,int t
     }
 }
 
-int Role::getLayerTileGIDAtPoint(string layerName, Point point){
-    Size mapSize = m_container->getMapSize();
-    if(point.x>=0 && point.x<mapSize.width && point.y>=0 && point.y<mapSize.height){
-        TMXLayer* layer = m_container->getLayer(layerName.c_str());//layerNamed("layer_0");
-        if (layer) {
-            int gid = layer->getTileGIDAt(point);
-            return gid;
-        }
-        return 0;
-    }else{
-        return 0;
-    }
-}
+//int Role::getLayerTileGIDAtPoint(string layerName, Point point){
+//    Size mapSize = m_container->getMapSize();
+//    if(point.x>=0 && point.x<mapSize.width && point.y>=0 && point.y<mapSize.height){
+//        TMXLayer* layer = m_container->getLayer(layerName.c_str());//layerNamed("layer_0");
+//        if (layer) {
+//            int gid = layer->getTileGIDAt(point);
+//            return gid;
+//        }
+//        return 0;
+//    }else{
+//        return 0;
+//    }
+//}
 
 Point Role::getFaceToTilePoint(){//获得面向的位置
     Vec2 ret = Vec2::ZERO;
@@ -338,19 +338,19 @@ Point Role::getFaceToTilePoint(){//获得面向的位置
 }
 
 int Role::getFaceToTileGID(string layerName){
-    int gid = getLayerTileGIDAtPoint(layerName,getFaceToTilePoint());
+    int gid = RolesController::getInstance()->getLayerTileGIDAtPoint(layerName,getFaceToTilePoint());
     return gid;
 }
-string Role::getPropertyByGIDAndNameToString(int gid,string propertyName){
-    string ret = "";
-    if (gid>0) {
-        Value tValue = m_container->getPropertiesForGID(gid);
-        ValueMap tMap = tValue.asValueMap();
-        log("propertyName = %s ", tMap.at(propertyName.c_str()).asString().c_str());
-        ret = tMap.at(propertyName.c_str()).asString();
-    }
-    return ret;
-}
+//string Role::getPropertyByGIDAndNameToString(int gid,string propertyName){
+//    string ret = "";
+//    if (gid>0) {
+//        Value tValue = m_container->getPropertiesForGID(gid);
+//        ValueMap tMap = tValue.asValueMap();
+//        log("propertyName = %s ", tMap.at(propertyName.c_str()).asString().c_str());
+//        ret = tMap.at(propertyName.c_str()).asString();
+//    }
+//    return ret;
+//}
 
 void Role::setDirection(Point point){
     m_direction = point.getNormalized();
@@ -435,8 +435,8 @@ void Role::onDirectionChanged(){
 
 bool Role::isVecCanGo(Vec2 vec,bool unschedule/*=true*/){
     
-    int gid = getLayerTileGIDAtPoint("layer_1",vec);
-    string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
+    int gid = RolesController::getInstance()->getLayerTileGIDAtPoint("layer_1",vec);
+    string goThrough = RolesController::getInstance()->getPropertyByGIDAndNameToString(gid,"goThrough");
     Vec2 ptLocation = this->getPosition();
     Size tileSize = m_container->getTileSize();
     Size mapSize = m_container->getMapSize();
@@ -467,8 +467,8 @@ bool Role::isVecCanGo(Vec2 vec,bool unschedule/*=true*/){
     return true;
 }
 bool Role::isVecCanPut(Vec2 vec){//是否可放置物品
-    int gid = getLayerTileGIDAtPoint("layer_1",vec);
-    string goThrough = getPropertyByGIDAndNameToString(gid,"goThrough");
+    int gid = RolesController::getInstance()->getLayerTileGIDAtPoint("layer_1",vec);
+    string goThrough = RolesController::getInstance()->getPropertyByGIDAndNameToString(gid,"goThrough");
     if(goThrough=="1"){
         return false;
     }

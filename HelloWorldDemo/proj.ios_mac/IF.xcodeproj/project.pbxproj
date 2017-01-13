@@ -66,6 +66,8 @@
 		6084F6381E276E1600DA07AB /* Book.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6084F6351E276E1600DA07AB /* Book.cpp */; };
 		6084F63D1E27AB5200DA07AB /* BookCreateView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6084F63B1E27AB5200DA07AB /* BookCreateView.cpp */; };
 		6084F63E1E27AB5200DA07AB /* BookCreateView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6084F63B1E27AB5200DA07AB /* BookCreateView.cpp */; };
+		6084F6411E27B58100DA07AB /* VirtualBuild.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6084F63F1E27B58100DA07AB /* VirtualBuild.cpp */; };
+		6084F6421E27B58100DA07AB /* VirtualBuild.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6084F63F1E27B58100DA07AB /* VirtualBuild.cpp */; };
 		608609531E250D4200AEA9B5 /* NPCRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608609511E250D4200AEA9B5 /* NPCRole.cpp */; };
 		608609541E250D4200AEA9B5 /* NPCRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608609511E250D4200AEA9B5 /* NPCRole.cpp */; };
 		60871F7B1E12781600C58C79 /* EquipView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60871F791E12781600C58C79 /* EquipView.cpp */; };
@@ -217,6 +219,8 @@
 		6084F6361E276E1600DA07AB /* Book.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Book.hpp; sourceTree = "<group>"; };
 		6084F63B1E27AB5200DA07AB /* BookCreateView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BookCreateView.cpp; sourceTree = "<group>"; };
 		6084F63C1E27AB5200DA07AB /* BookCreateView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BookCreateView.hpp; sourceTree = "<group>"; };
+		6084F63F1E27B58100DA07AB /* VirtualBuild.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VirtualBuild.cpp; sourceTree = "<group>"; };
+		6084F6401E27B58100DA07AB /* VirtualBuild.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VirtualBuild.hpp; sourceTree = "<group>"; };
 		608609511E250D4200AEA9B5 /* NPCRole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NPCRole.cpp; sourceTree = "<group>"; };
 		608609521E250D4200AEA9B5 /* NPCRole.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NPCRole.hpp; sourceTree = "<group>"; };
 		60871F791E12781600C58C79 /* EquipView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EquipView.cpp; sourceTree = "<group>"; };
@@ -622,6 +626,8 @@
 				60ABC29C1E13ACD700C8ECAF /* House.hpp */,
 				60ABC2AA1E13EE1000C8ECAF /* ActionRole.cpp */,
 				60ABC2AB1E13EE1000C8ECAF /* ActionRole.hpp */,
+				6084F63F1E27B58100DA07AB /* VirtualBuild.cpp */,
+				6084F6401E27B58100DA07AB /* VirtualBuild.hpp */,
 				6086094F1E250D1500AEA9B5 /* NPC */,
 				609D5D001E165A1000752DFC /* Resourse */,
 			);
@@ -820,6 +826,7 @@
 				609D5D031E165A2900752DFC /* Wood.cpp in Sources */,
 				6088CCB91E1E443F00345904 /* Weapon.cpp in Sources */,
 				60B8B6091E0B710C00371D5D /* Role.cpp in Sources */,
+				6084F6411E27B58100DA07AB /* VirtualBuild.cpp in Sources */,
 				6088CC9C1E1E1F8100345904 /* RapidXMLParser.cpp in Sources */,
 				60B8FC611E11114B0056EF94 /* RolesController.cpp in Sources */,
 				608ADE5C1E1CD3C80095EDB8 /* TouchNode.cpp in Sources */,
@@ -854,6 +861,7 @@
 				60B8B60A1E0B710C00371D5D /* Role.cpp in Sources */,
 				601CAB001E0A9537003BCC41 /* CommonUtils.cpp in Sources */,
 				6088CCB61E1E443F00345904 /* Equip.cpp in Sources */,
+				6084F6421E27B58100DA07AB /* VirtualBuild.cpp in Sources */,
 				6084F6381E276E1600DA07AB /* Book.cpp in Sources */,
 				6084F6331E27637C00DA07AB /* Goods.cpp in Sources */,
 				6084F63E1E27AB5200DA07AB /* BookCreateView.cpp in Sources */,

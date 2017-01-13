@@ -80,6 +80,9 @@ void Player::move(Point point){
     if(!m_isDead){
         Role::move(point);
         m_container->setPosition(this->getPositionInScreen()-this->getPosition());
+        if(m_isLayingBuild && m_virtualBuild){
+            m_virtualBuild->refreshPosition(Vec2(m_tileX, m_tileY));
+        }
     }
 }
 
@@ -138,5 +141,26 @@ int Player::beAttackedByRole(Role* selfRole,int hurt){//被攻击 返回生命�
     }
     return m_fightValue.m_health;
 }
+
+void Player::layBuild(VirtualBuild* vb){//放置建筑
+    m_isLayingBuild=true;
+    m_virtualBuild = vb;
+    RolesController::getInstance()->addVirtualBuildToTiledMapByPoint(m_virtualBuild,Vec2(m_tileX, m_tileY));
+    TouchUI::getInstance()->setUiByType(UIShowType_VirtualBuild);
+//    this->getParent()->addChild(m_virtualBuild);
+//    Sprite* sprite = CommonUtils::createSprite("BlackFrame10X10.png");
+//    CommonUtils::setSpriteMaxSize(sprite, 64, true);
+//    this->addChild(sprite);
+}
+
+
+
+
+
+
+
+
+
+
 
 

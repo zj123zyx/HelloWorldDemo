@@ -9,6 +9,7 @@
 #include "RolesController.hpp"
 #include "Tree.hpp"
 #include "House.hpp"
+#include "PlayerController.hpp"
 
 static RolesController* rolesController = NULL;
 
@@ -146,6 +147,74 @@ Role* RolesController::getActRoleByDistance(Role* self,float dis/*=64*/){
     }
     return role;
 }
+
+void RolesController::addVirtualBuildToTiledMapByPoint(Node* virtualBuild,Vec2 playerPoint){//往地图中添加node
+    removeVirtualBuildFromTiledMap();
+    if(_map){
+        virtualBuild->setName("VirtualBuild");
+        _map->addChild(virtualBuild,4);
+        refreshVirtualBuildPosition(playerPoint);
+    }
+}
+
+void RolesController::refreshVirtualBuildPosition(Vec2 playerPoint){//更新VirtualBuild位置
+    if(_map){
+        Size mapSize = _map->getContentSize();
+        Size tileSize = _map->getTileSize();
+        int py = mapSize.height - (playerPoint.y*tileSize.height+tileSize.height/2);
+        int px = playerPoint.x*tileSize.width+tileSize.width/2;
+        if(_map->getChildByName("VirtualBuild")){
+            Node* node = _map->getChildByName("VirtualBuild");
+            node->setPosition(Vec2(px, py));
+        }
+    }
+}
+
+void RolesController::removeVirtualBuildFromTiledMap(){//删除VirtualBuild
+    if(_map && _map->getChildByName("VirtualBuild")){
+        Node* node = _map->getChildByName("VirtualBuild");
+        node->removeFromParent();
+        node=nullptr;
+        PlayerController::getInstance()->player->m_virtualBuild=nullptr;
+        PlayerController::getInstance()->player->m_isLayingBuild=false;
+    }
+}
+
+int RolesController::getLayerTileGIDAtPoint(string layerName, Point point){
+    Size mapSize = _map->getMapSize();
+    if(point.x>=0 && point.x<mapSize.width && point.y>=0 && point.y<mapSize.height){
+        TMXLayer* layer = _map->getLayer(layerName.c_str());//layerNamed("layer_0");
+        if (layer) {
+            int gid = layer->getTileGIDAt(point);
+            return gid;
+        }
+        return 0;
+    }else{
+        return 0;
+    }
+}
+
+string RolesController::getPropertyByGIDAndNameToString(int gid,string propertyName){
+    string ret = "";
+    if (gid>0) {
+        Value tValue = _map->getPropertiesForGID(gid);
+        ValueMap tMap = tValue.asValueMap();
+        log("propertyName = %s ", tMap.at(propertyName.c_str()).asString().c_str());
+        ret = tMap.at(propertyName.c_str()).asString();
+    }
+    return ret;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

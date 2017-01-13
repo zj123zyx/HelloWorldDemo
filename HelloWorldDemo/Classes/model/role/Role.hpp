@@ -92,10 +92,10 @@ public:
     virtual void moveTo(Point point);
     void moveToSchedule(float dt);
     void setAnimation(const char* aniName,string frameName,int fromCount,int toCount,Size roleSize = Size(32, 32),float dTime = 0.2f);//设置动画
-    int getLayerTileGIDAtPoint(string layerName, Point point);//获得该位置的GID
+//    int getLayerTileGIDAtPoint(string layerName, Point point);//获得该位置的GID
     Point getFaceToTilePoint();//获得面向的位置
     int getFaceToTileGID(string layerName);//获得面向位置的GID
-    string getPropertyByGIDAndNameToString(int gid,string propertyName);//得到该GID对应的自定义属性名字
+//    string getPropertyByGIDAndNameToString(int gid,string propertyName);//得到该GID对应的自定义属性名字
     void setDirection(Point point);//设置朝向
     void onDirectionChanged();//朝向发生改变
     bool isVecCanGo(Vec2 vec,bool unschedule = true);//是否可通过

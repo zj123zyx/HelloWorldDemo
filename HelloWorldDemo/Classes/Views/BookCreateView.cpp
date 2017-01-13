@@ -7,6 +7,8 @@
 //
 
 #include "BookCreateView.hpp"
+#include "PlayerController.hpp"
+#include "VirtualBuild.hpp"
 
 bool BookCreateView::init(){
     if ( !TouchNode::init() ){
@@ -50,6 +52,15 @@ void BookCreateView::onCloseBtnClick(Ref* pSender, Control::EventType event){
     this->removeFromParent();
 }
 void BookCreateView::onBtnClick(Ref* pSender, Control::EventType event){
+    VirtualBuild* vb = VirtualBuild::create();
+    vb->addPointToVec(Vec2(-1, 2));
+    vb->addPointToVec(Vec2(-1, 1));
+    vb->addPointToVec(Vec2(1, 2));
+    vb->addPointToVec(Vec2(1, 1));
+    vb->addPointToVec(Vec2(0, 2));
+    vb->addPointToVec(Vec2(0, 1));
+    
+    PlayerController::getInstance()->player->layBuild(vb);
     this->removeFromParent();
 }
 

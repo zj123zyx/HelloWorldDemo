@@ -1,6 +1,14 @@
 #ifndef __TouchUI_H__
 #define __TouchUI_H__
 
+enum UIShowType{
+    UIShowType_NULL=-1,
+    UIShowType_Normal,
+    UIShowType_Lookout,
+    UIShowType_VirtualBuild,
+    UIShowType_END
+};
+
 #include "CommonHead.h"
 #include "TouchNode.hpp"
 
@@ -57,6 +65,8 @@ public:
     
     void refreshEquipNode(Ref* ref);
     
+    void setUiByType(UIShowType showType);
+    
     void flyHint(string txt,float time = 1.5);
     Node* m_addViewNode;//弹出界面父节点
 protected:
@@ -65,6 +75,8 @@ protected:
     void onTouchMoved(Touch* touch, Event* event);
     void onTouchEnded(Touch* touch, Event* event);
     void OnScrollLeft(float dt);
+    
+    void onSetUIFinish(float dt);
 private:
     virtual bool onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVariableName, Node * pNode);
     virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(Ref * pTarget, const char * pSelectorName){return NULL;}
@@ -73,6 +85,9 @@ private:
     void onBtn1Click(Ref* pSender, Control::EventType event);
     void onBtn2Click(Ref* pSender, Control::EventType event);
     void onBtn3Click(Ref* pSender, Control::EventType event);
+    void onBtn4Click(Ref* pSender, Control::EventType event);
+    void onBtn5Click(Ref* pSender, Control::EventType event);
+    void onBtn6Click(Ref* pSender, Control::EventType event);
     void startUseTouchUI();
     void TouchUISchedule(float dt);
     
@@ -86,6 +101,12 @@ private:
     Sprite* m_yaoGanerSprBg;
     ControlButton* m_btn1;
     ControlButton* m_btn3;
+    ControlButton* m_btn4;
+    ControlButton* m_btn5;
+    ControlButton* m_btn6;
+    Node* m_leftBtnNode1;
+    Node* m_leftBtnNode2;
+    Node* m_leftBtnNode3;
     Node* m_equipNode;
     Node* m_coverNode;
     Node* m_hintNode;
@@ -96,8 +117,9 @@ private:
     bool m_isLeftTouch;
     bool m_isNodeTouch;
     bool m_isScrollingLeft;
-    
+    bool m_isSettingUI;
     int m_btn1LeftCD;
+    UIShowType m_showType;
 };
 
 #endif // __TouchUI_H__

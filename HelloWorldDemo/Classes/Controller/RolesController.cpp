@@ -8,7 +8,7 @@
 
 #include "RolesController.hpp"
 #include "Tree.hpp"
-#include "House.hpp"
+#include "HomeBuilding.hpp"
 #include "PlayerController.hpp"
 
 static RolesController* rolesController = NULL;
@@ -168,6 +168,20 @@ void RolesController::refreshVirtualBuildPosition(Vec2 playerPoint){//更新Virt
             node->setPosition(Vec2(px, py));
         }
     }
+}
+
+void RolesController::layVirtualBuild(){//放置VirtualBuild
+    //添加房屋
+    HomeBuilding* home = HomeBuilding::createWithHomeBuildingId("300000001");
+    
+    if(_map && _map->getChildByName("VirtualBuild")){
+        VirtualBuild* vb = dynamic_cast<VirtualBuild*>(_map->getChildByName("VirtualBuild"));
+        home->setDataByVirtualBuild(vb);
+    }
+    RolesController::getInstance()->addControllerRole(home,true);
+    
+    
+    removeVirtualBuildFromTiledMap();
 }
 
 void RolesController::removeVirtualBuildFromTiledMap(){//删除VirtualBuild

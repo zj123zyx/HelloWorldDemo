@@ -27,7 +27,7 @@ protected:
     void OnTouchUIRelease(Ref *target,SEL_CallFunc func);
 private:
     TMXTiledMap* _map;
-    map<int,Role*> m_RoleMap;
+//    map<int,Role*> m_RoleMap;
     TouchDelegateView* m_touchDelegateView;
 };
 

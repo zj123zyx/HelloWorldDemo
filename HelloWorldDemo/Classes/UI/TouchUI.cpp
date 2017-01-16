@@ -333,7 +333,8 @@ void TouchUI::onBtn4Click(Ref* pSender, Control::EventType event){
     if(m_isSettingUI){
         return;
     }
-    
+    setUiByType(UIShowType_Normal);
+    RolesController::getInstance()->layVirtualBuild();
 }
 void TouchUI::onBtn5Click(Ref* pSender, Control::EventType event){
     CCLOG("onBtn5Click");
@@ -403,7 +404,7 @@ void TouchUI::flyHint(string txt,float time/* = 3*/){
 void TouchUI::setUiByType(UIShowType showType){
     m_showType = showType;
     m_isSettingUI=true;
-    float aniTime = 0.5;
+    float aniTime = 0.2;
     if (m_showType==UIShowType_Normal) {
         m_yaoGanerNode->setPositionY(-200);
         m_leftBtnNode1->setPositionY(-300);

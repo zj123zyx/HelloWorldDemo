@@ -33,6 +33,7 @@ public:
     
     void addVirtualBuildToTiledMapByPoint(Node* virtualBuild,Vec2 playerPoint);//往地图中添加VirtualBuild
     void refreshVirtualBuildPosition(Vec2 playerPoint);//更新VirtualBuild位置
+    void layVirtualBuild();//放置VirtualBuild
     void removeVirtualBuildFromTiledMap();//删除VirtualBuild
     int getLayerTileGIDAtPoint(string layerName, Point point);//获得该位置的GID
     string getPropertyByGIDAndNameToString(int gid,string propertyName);//得到该GID对应的自定义属性名字

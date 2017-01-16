@@ -77,7 +77,6 @@ void WorldScene::onEnter(){
     House* house = House::createWithPicName("res/Roles/assassin1a.png");
     house->setTileXY(20, 80);
     RolesController::getInstance()->addControllerRole(house,true);
-    m_RoleMap = RolesController::getInstance()->m_RoleMap;
     
     Shoes* shoes1 = Shoes::createWithShoesId("100040001");
     shoes1->setTileXY(15, 90);
@@ -91,7 +90,7 @@ void WorldScene::onEnter(){
     goodsBook->setTileXY(8,90);
     RolesController::getInstance()->addControllerRole(goodsBook,true);
     
-    
+//    m_RoleMap = RolesController::getInstance()->m_RoleMap;
 }
 void WorldScene::onExit(){
     RolesController::getInstance()->clearRoleMap();

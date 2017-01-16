@@ -22,7 +22,7 @@ TestHouseScene::TestHouseScene(){
     
 }
 TestHouseScene::~TestHouseScene(){
-    RolesController::getInstance()->clearRoleMap();
+    
 }
 
 Scene* TestHouseScene::createScene()
@@ -97,7 +97,7 @@ void TestHouseScene::onEnter(){
     shoes->setTileXY(12,5);
     RolesController::getInstance()->addControllerRole(shoes,true);
     
-    m_RoleMap = RolesController::getInstance()->m_RoleMap;
+//    m_RoleMap = RolesController::getInstance()->m_RoleMap;
     
 }
 void TestHouseScene::onExit(){

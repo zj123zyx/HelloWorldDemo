@@ -41,60 +41,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/model/role/VirtualBuild.cpp"
-            timestampString = "505987455.599121"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "VirtualBuild::addPointToVec(Vec2 point)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/Controller/RolesController.cpp"
-            timestampString = "505995734.522902"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "RolesController::getLayerTileGIDAtPoint(string layerName, Point point)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/model/role/VirtualBuild.cpp"
-            timestampString = "505989263.123911"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "VirtualBuild::refreshPosition(Vec2 playerPoint)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "../Classes/UI/TouchUI.cpp"
-            timestampString = "505995461.662899"
+            timestampString = "506252410.296329"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
             landmarkName = "TouchUI::setUiByType(UIShowType showType)"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Controller/RolesController.cpp"
-            timestampString = "505995722.824276"
+            timestampString = "506257703.426874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "RolesController::removeVirtualBuildFromTiledMap()"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "RolesController::layVirtualBuild()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,13 +73,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/Views/EquipView.cpp"
-            timestampString = "506240561.937851"
+            filePath = "../Classes/model/role/Building/HomeBuilding.cpp"
+            timestampString = "506257383.154239"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "EquipBagCell::onTouchMoved(Touch* touch, Event* event)"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "HomeBuilding::setDataByVirtualBuild(VirtualBuild* vb)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -137,13 +89,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/Views/EquipView.cpp"
-            timestampString = "506245909.248324"
+            filePath = "../Classes/Scene/TestHouseScene.cpp"
+            timestampString = "506258390.173103"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
-            landmarkName = "EquipView::moveIconNode(Touch* touch,Resourse* resourse)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "TestHouseScene::onEnter()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -153,13 +105,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/Views/EquipView.cpp"
-            timestampString = "506244302.396166"
+            filePath = "../Classes/Controller/RolesController.cpp"
+            timestampString = "506261183.118878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "EquipBagCell::onTouchMoved(Touch* touch, Event* event)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "RolesController::addControllerRole(Role* role,bool addToScene)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -169,93 +121,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/Views/EquipView.cpp"
-            timestampString = "506244302.396166"
+            filePath = "../Classes/Controller/RolesController.cpp"
+            timestampString = "506261503.797346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "EquipBagCell::hideIconNode(Ref* ref)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/Views/EquipView.cpp"
-            timestampString = "506244302.396166"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "EquipBagCell::hideIconNode(Ref* ref)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/Views/EquipView.cpp"
-            timestampString = "506245909.248324"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "423"
-            endingLineNumber = "423"
-            landmarkName = "EquipView::exchangIconNode(int exPos,Resourse* resourse)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/Views/EquipView.cpp"
-            timestampString = "506245909.248324"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "413"
-            endingLineNumber = "413"
-            landmarkName = "EquipView::exchangIconNode(int exPos,Resourse* resourse)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/Views/EquipView.cpp"
-            timestampString = "506245909.248324"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
-            landmarkName = "EquipView::refreshData(Ref* ref)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/Views/EquipView.cpp"
-            timestampString = "506245805.476088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "EquipBagCell::onTouchEnded(Touch* touch, Event* event)"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "RolesController::removeRole(Role* role)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

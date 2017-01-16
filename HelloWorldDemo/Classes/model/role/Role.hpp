@@ -24,7 +24,7 @@ enum RoleType{
     RoleType_NPCRole,
     RoleType_Tree,
     RoleType_Resource,
-    RoleType_House
+    RoleType_Building
 };
 
 enum FaceTo{

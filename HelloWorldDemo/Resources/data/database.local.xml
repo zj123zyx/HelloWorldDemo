@@ -9,15 +9,7 @@
   <Group id="goods">
     <ItemSpec id="200000001" name="book" description="book_description" icon="Goods_Book.png" goods_type="0" param1="0"/>
   </Group>
-   <Group id="punder_exchange">
-    <ItemSpec id="831401" goods="200082" killscore="6" exchangenum="1"/>
-    <ItemSpec id="831402" goods="200002" killscore="6" exchangenum="1"/>
-    <ItemSpec id="831403" goods="200088" killscore="4" exchangenum="1"/>
-    <ItemSpec id="831404" goods="200087" killscore="4" exchangenum="1"/>
-    <ItemSpec id="831405" goods="200089" killscore="2" exchangenum="1"/>
-    <ItemSpec id="831406" goods="200204" killscore="2" exchangenum="1"/>
-    <ItemSpec id="831407" goods="200001" killscore="2" exchangenum="1"/>
-    <ItemSpec id="831408" goods="200092" killscore="2" exchangenum="1"/>
-    <ItemSpec id="831409" goods="200031" killscore="2" exchangenum="2"/>
+  <Group id="building">
+    <ItemSpec id="300000001" name="home" description="home_description" icon="Building_home.png" width="192" height="128"/>
   </Group>
 </tns:database>

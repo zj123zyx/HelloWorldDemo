@@ -16,6 +16,9 @@ class EquipViewDelegate{
 public:
     virtual void showPopNode(Touch* touch,Resourse* resourse)=0;
     virtual void closePopNode()=0;
+    
+    virtual void moveIconNode(Touch* touch,Resourse* resourse)=0;
+    virtual void exchangIconNode(int exPos,Resourse* resourse)=0;
 };
 
 class EquipBagCell:
@@ -40,6 +43,8 @@ private:
     virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(Ref * pTarget, const char * pSelectorName){return NULL;}
     virtual Control::Handler onResolveCCBCCControlSelector(Ref * pTarget, const char * pSelectorName);
     
+    void hideIconNode(Ref* ref);
+    
     Node* m_touchNode;
     Node* m_iconNode;
     Node* m_numNode;
@@ -49,6 +54,9 @@ private:
     int m_sum;
     bool m_touchMove;
     Resourse* m_resourse;
+    
+    int m_exchangePos;
+    bool m_iconBack;
 };
 
 class EquipView :
@@ -72,6 +80,8 @@ protected:
     
     virtual void showPopNode(Touch* touch,Resourse* resourse);
     virtual void closePopNode();
+    virtual void moveIconNode(Touch* touch,Resourse* resourse);
+    virtual void exchangIconNode(int exPos,Resourse* resourse);
 private:
     virtual bool onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVariableName, Node * pNode);
     virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(Ref * pTarget, const char * pSelectorName){return NULL;}

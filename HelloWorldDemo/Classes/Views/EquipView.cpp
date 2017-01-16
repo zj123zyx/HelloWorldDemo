@@ -52,6 +52,8 @@ bool EquipBagCell::init(int pos,int sum){
 void EquipBagCell::setData(int pos,int sum){
     m_resourse = nullptr;
     m_pos = pos;
+    m_exchangePos = m_pos;
+    m_iconBack = false;
     m_sum = sum;
     m_numNode->setVisible(false);
     if(ResourseController::getInstance()->m_resourseMap.find(pos)!=ResourseController::getInstance()->m_resourseMap.end()){
@@ -68,8 +70,10 @@ void EquipBagCell::setData(int pos,int sum){
 }
 void EquipBagCell::onEnter(){
     TouchNode::onEnter();
+    __NotificationCenter::getInstance()->addObserver(this, callfuncO_selector(EquipBagCell::hideIconNode), "EquipBagCell::hideIconNode", NULL);
 }
 void EquipBagCell::onExit(){
+    __NotificationCenter::getInstance()->removeObserver(this, "EquipBagCell::hideIconNode");
     TouchNode::onExit();
 }
 
@@ -98,11 +102,70 @@ bool EquipBagCell::onTouchBegan(Touch* touch, Event* event){
 void EquipBagCell::onTouchMoved(Touch* touch, Event* event){
     if(touch->getLocation().getDistance(touch->getStartLocation())>10){
         m_touchMove=true;
+        if(m_delegate && m_resourse) {
+            m_iconNode->setVisible(false);
+            m_delegate->moveIconNode(touch, m_resourse);
+            
+            for (int i=0; i<m_sum; i++) {
+                m_exchangePos=m_pos;
+                if(i==m_pos){
+                    continue;
+                }
+                float dx = (EquipBagNodeW-(EquipBagCellW*5))/6;
+                float px = dx+((i%5)*(EquipBagCellW+dx));
+                float py = (m_sum/5+1)*(EquipBagCellH+dx)-((i/5+1)*(EquipBagCellH+dx));
+                Point touchLocation=this->getParent()->convertToNodeSpace(touch->getLocation());
+                Rect bBox= Rect(px, py, EquipBagCellW, EquipBagCellH);
+                if(bBox.containsPoint(touchLocation)){
+                    m_exchangePos=i;
+                    break;
+                }
+            }
+            if(m_exchangePos!=m_pos && m_iconBack==false){
+                m_iconBack=true;
+                __Dictionary* dict = __Dictionary::create();
+                dict->setObject(__Integer::create(m_pos), "m_pos");
+                dict->setObject(__Integer::create(m_exchangePos), "m_exchangePos");
+                __NotificationCenter::getInstance()->postNotification("EquipBagCell::hideIconNode",dict);
+                m_delegate->exchangIconNode(m_exchangePos,m_resourse);
+            }else if (m_exchangePos==m_pos && m_iconBack){
+                m_iconBack=false;
+                __Dictionary* dict = __Dictionary::create();
+                dict->setObject(__Integer::create(m_pos), "m_pos");
+                dict->setObject(__Integer::create(m_exchangePos), "m_exchangePos");
+                __NotificationCenter::getInstance()->postNotification("EquipBagCell::hideIconNode",dict);
+                m_delegate->exchangIconNode(m_exchangePos,m_resourse);
+            }
+        }
     }
 }
+
+void EquipBagCell::hideIconNode(Ref* ref){
+    __Dictionary* dict = dynamic_cast<__Dictionary*>(ref);
+    int pos = dynamic_cast<__Integer*>(dict->objectForKey("m_pos"))->getValue();
+    int idx = dynamic_cast<__Integer*>(dict->objectForKey("m_exchangePos"))->getValue();
+    if(idx==m_pos){
+        m_iconNode->setVisible(false);
+    }else if (pos==idx){
+        m_iconNode->setVisible(true);
+    }
+}
+
 void EquipBagCell::onTouchEnded(Touch* touch, Event* event){
     if (m_delegate && m_resourse && isTouchInside(m_touchNode,touch) && m_touchMove==false) {
         m_delegate->showPopNode(touch, m_resourse);
+    }else if(m_touchMove && m_resourse){
+        if(m_exchangePos!=m_pos){
+            if(ResourseController::getInstance()->m_resourseMap.find(m_exchangePos)!=ResourseController::getInstance()->m_resourseMap.end()){
+                Resourse* exResourse = ResourseController::getInstance()->m_resourseMap[m_exchangePos];
+                exResourse->m_bagPosition = m_pos;
+                ResourseController::getInstance()->m_resourseMap[m_pos]=exResourse;
+                m_resourse->m_bagPosition = m_exchangePos;
+                ResourseController::getInstance()->m_resourseMap[m_exchangePos]=m_resourse;
+            }
+        }
+        __NotificationCenter::getInstance()->postNotification("EquipView::refreshData");
+        __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
     }
 }
 
@@ -162,6 +225,13 @@ void EquipView::refreshData(Ref* ref){
                     append("m_moveSpeed:").append(CC_ITOA(fightValue.m_moveSpeed));
     
     m_playerInfoTxt->setString(infoStr);
+    
+    if(this->getChildByName("moveIconNode")){
+        this->removeChildByName("moveIconNode");
+    }
+    if(m_scrollView->getContainer()->getChildByName("exchangIconNode")){
+        m_scrollView->getContainer()->getChildByName("exchangIconNode")->removeFromParentAndCleanup(true);
+    }
 }
 
 void EquipView::onEnter(){
@@ -323,9 +393,45 @@ void EquipView::closePopNode(){
     m_popNode2->setVisible(false);
 }
 
+void EquipView::moveIconNode(Touch* touch,Resourse* resourse){
+    Vec2 pt=touch->getLocation();
+    Vec2 nnt=this->convertToNodeSpace(pt);//+Vec2(0, 50)
+    if(this->getChildByName("moveIconNode")){
+        this->getChildByName("moveIconNode")->setPosition(nnt);
+    }else{
+        auto spr = Sprite::createWithSpriteFrame(resourse->m_roleSpriteFrame);
+        spr->setName("moveIconNode");
+        CommonUtils::setSpriteMaxSize(spr, 64);
+        spr->setPosition(nnt);
+        this->addChild(spr);
+    }
+    
+}
 
-
-
+void EquipView::exchangIconNode(int exPos,Resourse* resourse){
+    if(m_scrollView->getContainer()->getChildByName("exchangIconNode")){
+        m_scrollView->getContainer()->getChildByName("exchangIconNode")->removeFromParentAndCleanup(true);
+    }
+    if(exPos!=resourse->m_bagPosition) {
+        Node* exchangIconNode = Node::create();
+        exchangIconNode->setName("exchangIconNode");
+        
+        int bagValue = PlayerController::getInstance()->getBagValue();
+        float dx = (EquipBagNodeW-(EquipBagCellW*5))/6;
+        float px = dx+((resourse->m_bagPosition%5)*(EquipBagCellW+dx));
+        float py = (bagValue/5+1)*(EquipBagCellH+dx)-((resourse->m_bagPosition/5+1)*(EquipBagCellH+dx));
+        exchangIconNode->setPosition(px+38, py+38);
+        
+        m_scrollView->addChild(exchangIconNode);
+        
+        if(ResourseController::getInstance()->m_resourseMap.find(exPos)!=ResourseController::getInstance()->m_resourseMap.end()){
+            Resourse* exResourse = ResourseController::getInstance()->m_resourseMap[exPos];
+            auto spr = Sprite::createWithSpriteFrame(exResourse->m_roleSpriteFrame);
+            CommonUtils::setSpriteMaxSize(spr, 64);
+            exchangIconNode->addChild(spr);
+        }
+    }
+}
 
 
 

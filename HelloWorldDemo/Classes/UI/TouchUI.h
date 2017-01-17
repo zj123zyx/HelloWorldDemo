@@ -69,6 +69,7 @@ public:
     
     void flyHint(string txt,float time = 1.5);
     Node* m_addViewNode;//弹出界面父节点
+    void addViewToUi(Node* view);
 protected:
     EventListenerTouchOneByOne* listener;
     bool onTouchBegan(Touch* touch, Event* event);

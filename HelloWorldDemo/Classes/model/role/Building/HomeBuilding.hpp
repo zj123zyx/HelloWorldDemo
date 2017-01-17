@@ -21,7 +21,7 @@ public:
     virtual bool initWithHomeBuildingId(string id);
     
     void setDataByVirtualBuild(VirtualBuild* vb);
-    
+    void showDescription(bool show);
 protected:
     void onEnter();
     void onExit();

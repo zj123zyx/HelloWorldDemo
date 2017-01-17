@@ -37,6 +37,7 @@ namespace CommonUtils {
     Sprite* setSpriteMaxSize(Sprite* spr, int limitNum, bool isForce=false);//设置图片最大宽度
     string getPropById(std::string xmlId, std::string propName);
     void setButtonTitle(ControlButton *button, const char *str);
+    void splitString(const std::string& strSrc, const std::string& strFind, std::vector<std::string>& arSplit);//字符串分割
 }
 
 #endif /* CommonUtils_hpp */

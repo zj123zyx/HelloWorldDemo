@@ -180,7 +180,6 @@ void RolesController::layVirtualBuild(){//放置VirtualBuild
     }
     RolesController::getInstance()->addControllerRole(home,true);
     
-    
     removeVirtualBuildFromTiledMap();
 }
 

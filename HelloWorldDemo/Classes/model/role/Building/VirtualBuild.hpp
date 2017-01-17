@@ -16,8 +16,8 @@ class VirtualBuild:public Node
 public:
     VirtualBuild():m_size(64){};
     
-    static VirtualBuild* create();
-    virtual bool init();
+    static VirtualBuild* createWithBuildId(string buildId);
+    virtual bool initWithBuildId(string buildId);
 
     void onEnter();
     void onExit();

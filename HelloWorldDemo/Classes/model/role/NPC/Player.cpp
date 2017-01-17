@@ -11,6 +11,9 @@
 #include "Goods.hpp"
 #include "BookCreateView.hpp"
 #include "TouchUI.h"
+#include "Building.hpp"
+#include "BuildingView.hpp"
+#include "TouchUI.h"
 
 Player* Player::createWithPicName(string pic_name)
 {
@@ -106,15 +109,21 @@ void Player::doActionToTarget(){//对目标操作
             case RoleType_Tree:
             {
                 Role::roleAttackTarget(this);
-            }
                 break;
+            }
             case RoleType_Resource:
             {
                 Resourse* resourse = (Resourse*)m_target;
                 resourse->getThisItem(this);
-            }
                 break;
-                
+            }
+            case RoleType_Building:
+            {
+                Building* building = (Building*)m_target;
+                BuildingView* buildingView = BuildingView::createWithBuilding(building);
+                TouchUI::getInstance()->addViewToUi(buildingView);
+                break;
+            }
             default:
                 break;
         }

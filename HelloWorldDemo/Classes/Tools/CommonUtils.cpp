@@ -108,3 +108,23 @@ void CommonUtils::setButtonTitle(ControlButton *button, const char *str) {
         CCLOG("CCCommonUtils::setButtonTitle - Invalid button pointer.");
     }
 }
+
+void CommonUtils::splitString(const std::string& strSrc, const std::string& strFind, std::vector<std::string>& arSplit)
+{
+    string tmpStr(strSrc.data(),strSrc.length());
+    
+    if(tmpStr.length() > strFind.length())
+    {
+        while (!tmpStr.empty() && tmpStr.find(strFind.c_str()) == 0) {
+            tmpStr = tmpStr.substr(strFind.length(), tmpStr.length()-strFind.length());
+        }
+        while (!tmpStr.empty() && tmpStr.rfind(strFind.c_str()) == (tmpStr.length()-strFind.length())) {
+            tmpStr = tmpStr.substr(0, tmpStr.length()-strFind.length());
+        }
+    }
+    
+    char* src = const_cast<char*>(tmpStr.c_str());
+    while (src != NULL && !tmpStr.empty()) {
+        arSplit.push_back(std::string(strtok_r(src, strFind.c_str(), &src)));
+    }
+}

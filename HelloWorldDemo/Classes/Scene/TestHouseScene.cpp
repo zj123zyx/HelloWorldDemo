@@ -11,7 +11,8 @@
 #include "PlayerController.hpp"
 #include "RolesController.hpp"
 #include "Role.hpp"
-#include "Wood.hpp"
+//#include "Wood.hpp"
+#include "UsedRes.hpp"
 #include "Weapon.hpp"
 #include "Shoes.hpp"
 #include "ActionRole.hpp"
@@ -69,15 +70,18 @@ void TestHouseScene::onEnter(){
     
     RolesController::getInstance()->setTiledMap(_map);
     //add tree
-    Wood* wood = Wood::createWithPicName();
+    UsedRes* wood = UsedRes::createWithResId("400000001");
+    wood->m_resourceValue=9;
     wood->setTileXY(5,5);
     RolesController::getInstance()->addControllerRole(wood,true);
     
-    Wood* wood2 = Wood::createWithPicName();
+    UsedRes* wood2 = UsedRes::createWithResId("400000001");
+    wood2->m_resourceValue=9;
     wood2->setTileXY(6,5);
     RolesController::getInstance()->addControllerRole(wood2,true);
     
-    Wood* wood3 = Wood::createWithPicName();
+    UsedRes* wood3 = UsedRes::createWithResId("400000001");
+    wood3->m_resourceValue=9;
     wood3->setTileXY(7,5);
     RolesController::getInstance()->addControllerRole(wood3,true);
     

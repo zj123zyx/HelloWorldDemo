@@ -19,6 +19,14 @@ enum BuildingType{
     BuildingType_End
 };
 
+enum BuildingState{
+    BuildingState_NULL=0,
+    BuildingState_Building,
+    BuildingState_Damage,
+    BuildingState_Finish,
+    BuildingState_End
+};
+
 class Building:public Role
 {
 public:
@@ -32,8 +40,12 @@ public:
     virtual void showDescription(bool show);//显示简介
     void setTileXY(int tx,int ty,bool setOccupy = true);//设置XY
     
-    
     virtual void doAction(Role* sender);//处理事件
+    BuildingState m_buildingState;
+    float m_buildProgress;
+    float m_MAXbuildProgress;
+    map<string,int> m_buildNeedMap;
+    map<string,int> m_buildHaveMap;
 protected:
     void onEnter();
     void onExit();

@@ -628,6 +628,19 @@
                 <key>sourceSize</key>
                 <string>{61,62}</string>
             </dict>
+            <key>kong.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{797,14},{1,1}}</string>
+                <key>offset</key>
+                <string>{-4.5,3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{1,1}}</string>
+                <key>sourceSize</key>
+                <string>{10,7}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -638,7 +651,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:43b6ec6c5166abf3922f05b3bfa4b5cf:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:15fe0aa77f67248f68210cf5ca606aab:1/1$</string>
             <key>textureFileName</key>
             <string>Common_1.pvr</string>
         </dict>

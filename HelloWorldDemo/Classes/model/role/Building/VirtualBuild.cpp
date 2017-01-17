@@ -10,10 +10,10 @@
 #include "Player.hpp"
 #include "RolesController.hpp"
 
-VirtualBuild* VirtualBuild::create()
+VirtualBuild* VirtualBuild::createWithBuildId(string buildId)
 {
     VirtualBuild *pRet = new(std::nothrow) VirtualBuild();
-    if (pRet && pRet->init())
+    if (pRet && pRet->initWithBuildId(buildId))
     {
         pRet->autorelease();
         return pRet;
@@ -26,12 +26,26 @@ VirtualBuild* VirtualBuild::create()
     }
 }
 
-bool VirtualBuild::init(){
+bool VirtualBuild::initWithBuildId(string buildId){
     bool ret = false;
     if(Node::init()){
         ret = true;
         m_mainNode=Node::create();
         addPointToVec(Vec2(0, 0));
+        
+        string virtualBuild = CommonUtils::getPropById(buildId,"virtualBuild");
+        vector<string> vec;
+        CommonUtils::splitString(virtualBuild,"|",vec);
+        for (int i=0; i<vec.size(); i++) {
+            string tempStr = vec[i];
+            vector<string> vec2;
+            CommonUtils::splitString(tempStr,",",vec2);
+            if(vec2.size()==2){
+                float vx=atof(vec2[0].c_str());
+                float vy=atof(vec2[1].c_str());
+                addPointToVec(Vec2(vx, vy));
+            }
+        }
         this->addChild(m_mainNode);
     }
     return ret;

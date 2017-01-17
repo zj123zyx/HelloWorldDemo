@@ -52,14 +52,7 @@ void BookCreateView::onCloseBtnClick(Ref* pSender, Control::EventType event){
     this->removeFromParent();
 }
 void BookCreateView::onBtnClick(Ref* pSender, Control::EventType event){
-    VirtualBuild* vb = VirtualBuild::create();
-    vb->addPointToVec(Vec2(-1, 2));
-    vb->addPointToVec(Vec2(-1, 1));
-    vb->addPointToVec(Vec2(1, 2));
-    vb->addPointToVec(Vec2(1, 1));
-    vb->addPointToVec(Vec2(0, 2));
-    vb->addPointToVec(Vec2(0, 1));
-    
+    VirtualBuild* vb = VirtualBuild::createWithBuildId("300000001");//home    
     PlayerController::getInstance()->player->layBuild(vb);
     this->removeFromParent();
 }

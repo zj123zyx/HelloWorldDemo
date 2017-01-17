@@ -29,6 +29,7 @@ bool HomeBuilding::initWithHomeBuildingId(string id){
     bool ret = false;
     if(Building::initWithBuildingId(id)){
         ret = true;
+        m_buildingType = BuildingType_HomeBuilding;
         //label
         m_upLabel = Label::createWithSystemFont(".", "", 16);
         m_upLabel->setAnchorPoint(Vec2(0.5, 0));
@@ -60,9 +61,17 @@ void HomeBuilding::setDataByVirtualBuild(VirtualBuild* vb){
             m_occupy.push_back(sprPoint);
         }
     }
+    m_buildingState=BuildingState_Building;
+    m_buildProgress=1;
 }
 
-
+void HomeBuilding::showDescription(bool show){
+    Role::showDescription(show);
+    if(show){
+        string str = __String::createWithFormat("%s,%.f,%u",m_selfValue.m_name.c_str(),m_buildProgress,m_buildingState)->getCString();
+        m_upLabel->setString(str);
+    }
+}
 
 
 

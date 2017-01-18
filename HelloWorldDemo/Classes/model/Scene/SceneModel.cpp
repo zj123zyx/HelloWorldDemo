@@ -50,14 +50,18 @@ bool SceneModel::initWithTiledName(string tiledName)
     }
     _map = TMXTiledMap::create(tiledName);//tiled_test3
     this->addChild(_map);
-    TouchUI::getInstance()->setUiDelegate(this);
-    TouchUI::getInstance()->addToLayer(this);
+    addRoles();
+    
+    m_sceneType=SceneType_NULL;
     return true;
 }
 
 void SceneModel::onEnter(){
     Node::onEnter();
-    
+    TouchUI::getInstance()->setUiDelegate(this);
+    TouchUI::getInstance()->addToLayer(this);
+    RolesController::getInstance()->setTiledMap(_map);
+    RolesController::getInstance()->m_RoleMap = m_RoleMap;
 }
 void SceneModel::onExit(){
     Player* player = PlayerController::getInstance()->player;
@@ -66,4 +70,8 @@ void SceneModel::onExit(){
     }
     player->m_target=nullptr;
     Node::onExit();
+}
+
+void SceneModel::addRoles(){
+    RolesController::getInstance()->setTiledMap(_map);
 }

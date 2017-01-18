@@ -8,7 +8,7 @@ class WorldScene :public SceneModel
 ,public TouchDelegate
 {
 public:
-    WorldScene(){};
+    WorldScene():m_touchDelegateView(nullptr){};
     ~WorldScene(){};
     static cocos2d::Scene* createScene();
     virtual bool init();
@@ -22,8 +22,10 @@ protected:
     //delegate method
     void TapView(Touch* pTouch);
     void OnTouchUIRelease(Ref *target,SEL_CallFunc func);
+    virtual void addRoles();
 private:
     TouchDelegateView* m_touchDelegateView;
+    
 };
 
 #endif // __WorldScene_H__

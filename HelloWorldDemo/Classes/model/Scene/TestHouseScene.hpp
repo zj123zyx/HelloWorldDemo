@@ -23,6 +23,8 @@ public:
     
     virtual void onEnter();
     virtual void onExit();
+protected:
+    virtual void addRoles();
 };
 
 #endif /* TestHouseScene_hpp */

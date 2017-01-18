@@ -79,8 +79,6 @@ void House::setTileXY(int tx,int ty,bool setOccupy/* = true*/){//设置XY
 
 void House::doAction(Role* sender){//处理事件
     Building::doAction(sender);
-    CCLOG("HouseL::doAction()");
-    SceneController::getInstance()->replaceSceneBySceneInfo(m_sceneInfo);
 }
 
 

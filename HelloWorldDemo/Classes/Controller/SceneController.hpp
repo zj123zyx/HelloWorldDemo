@@ -10,12 +10,7 @@
 #define SceneController_hpp
 
 #include "CommonHead.h"
-
-enum SceneType{
-    SceneType_NULL=0,
-    SceneType_WORLD,
-    SceneType_HOURSE
-};
+#include "SceneModel.hpp"
 
 class SceneInfo
 {
@@ -38,6 +33,8 @@ public:
     Scene* getSceneByType(SceneType type);
     void replaceSceneByType(SceneType type);
     void replaceSceneBySceneInfo(SceneInfo sceneInfo);
+    
+    map<SceneType,Scene*> m_sceneMap;
 private:
 };
 

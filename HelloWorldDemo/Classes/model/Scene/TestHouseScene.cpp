@@ -37,20 +37,26 @@ bool TestHouseScene::init()
     {
         return false;
     }
-    //ui 
-    TouchUI::getInstance()->m_btn2->setEnabled(false);
     
+    m_sceneType=SceneType_HOURSE;
     return true;
 }
 
 void TestHouseScene::onEnter(){
     SceneModel::onEnter();
-    RolesController::getInstance()->setTiledMap(_map);
+    //ui
+    TouchUI::getInstance()->m_btn2->setEnabled(false);
     //add player
     Player *m_player = PlayerController::getInstance()->getPlayer();
     m_player->setContainer(_map);//player位置由controller控制
     RolesController::getInstance()->addControllerRole(m_player,true);
-    
+}
+void TestHouseScene::onExit(){
+    SceneModel::onExit();
+}
+
+void TestHouseScene::addRoles(){
+    SceneModel::addRoles();
     //add tree
     UsedRes* wood = UsedRes::createWithResId("400000001");
     wood->m_resourceValue=9;
@@ -80,14 +86,7 @@ void TestHouseScene::onEnter(){
     RolesController::getInstance()->addControllerRole(shoes,true);
     
     m_RoleMap = RolesController::getInstance()->m_RoleMap;
-    
 }
-void TestHouseScene::onExit(){
-    RolesController::getInstance()->clearRoleMap();
-    SceneModel::onExit();
-}
-
-
 
 
 

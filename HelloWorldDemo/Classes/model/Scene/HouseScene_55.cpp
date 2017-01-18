@@ -46,7 +46,7 @@ void HouseScene_55::addRoles(){
     SceneModel::addRoles();
  
     ActionRole* actionRole = ActionRole::createWithPicName("res/Roles/assassin1a.png");
-    actionRole->setTileXY(1,1);
+    actionRole->setTileXY(2,4);
     RolesController::getInstance()->addControllerRole(actionRole,true);
     
     m_RoleMap = RolesController::getInstance()->m_RoleMap;

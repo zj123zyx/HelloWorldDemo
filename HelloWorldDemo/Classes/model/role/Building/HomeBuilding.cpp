@@ -78,7 +78,7 @@ void HomeBuilding::buildFinish(){
     
     m_actionPoint=Vec2(m_tileX,m_tileY);
     m_sceneInfo.m_sceneType=SceneType_HOURSE55;
-    m_sceneInfo.m_showPoint=Vec2(3,3);
+    m_sceneInfo.m_showPoint=Vec2(2,3);
 }
 
 

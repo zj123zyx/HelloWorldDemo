@@ -21,6 +21,7 @@ enum BuildingType{
 
 enum BuildingState{
     BuildingState_NULL=0,
+    BuildingState_StartBuild,
     BuildingState_Building,
     BuildingState_Damage,
     BuildingState_Finish,

@@ -104,6 +104,8 @@
 		609EC70A1E2DC52300B7ADF9 /* BuildingView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609EC7071E2DC52300B7ADF9 /* BuildingView.cpp */; };
 		609EC70E1E2DF33100B7ADF9 /* UsedRes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609EC70C1E2DF33100B7ADF9 /* UsedRes.cpp */; };
 		609EC70F1E2DF33100B7ADF9 /* UsedRes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609EC70C1E2DF33100B7ADF9 /* UsedRes.cpp */; };
+		609EC7131E2E0B1300B7ADF9 /* ConfirmNumberView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609EC7111E2E0B1300B7ADF9 /* ConfirmNumberView.cpp */; };
+		609EC7141E2E0B1300B7ADF9 /* ConfirmNumberView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609EC7111E2E0B1300B7ADF9 /* ConfirmNumberView.cpp */; };
 		60ABC2A81E13D65C00C8ECAF /* SceneController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC2A61E13D65C00C8ECAF /* SceneController.cpp */; };
 		60ABC2A91E13D65C00C8ECAF /* SceneController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC2A61E13D65C00C8ECAF /* SceneController.cpp */; };
 		60ABC2AC1E13EE1000C8ECAF /* ActionRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC2AA1E13EE1000C8ECAF /* ActionRole.cpp */; };
@@ -268,6 +270,8 @@
 		609EC7081E2DC52300B7ADF9 /* BuildingView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BuildingView.hpp; sourceTree = "<group>"; };
 		609EC70C1E2DF33100B7ADF9 /* UsedRes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UsedRes.cpp; sourceTree = "<group>"; };
 		609EC70D1E2DF33100B7ADF9 /* UsedRes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UsedRes.hpp; sourceTree = "<group>"; };
+		609EC7111E2E0B1300B7ADF9 /* ConfirmNumberView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfirmNumberView.cpp; sourceTree = "<group>"; };
+		609EC7121E2E0B1300B7ADF9 /* ConfirmNumberView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConfirmNumberView.hpp; sourceTree = "<group>"; };
 		60ABC2A61E13D65C00C8ECAF /* SceneController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneController.cpp; sourceTree = "<group>"; };
 		60ABC2A71E13D65C00C8ECAF /* SceneController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SceneController.hpp; sourceTree = "<group>"; };
 		60ABC2AA1E13EE1000C8ECAF /* ActionRole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionRole.cpp; sourceTree = "<group>"; };
@@ -586,6 +590,8 @@
 				6084F63C1E27AB5200DA07AB /* BookCreateView.hpp */,
 				609EC7071E2DC52300B7ADF9 /* BuildingView.cpp */,
 				609EC7081E2DC52300B7ADF9 /* BuildingView.hpp */,
+				609EC7111E2E0B1300B7ADF9 /* ConfirmNumberView.cpp */,
+				609EC7121E2E0B1300B7ADF9 /* ConfirmNumberView.hpp */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -830,6 +836,7 @@
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				60871F7B1E12781600C58C79 /* EquipView.cpp in Sources */,
+				609EC7131E2E0B1300B7ADF9 /* ConfirmNumberView.cpp in Sources */,
 				607FD0961E096AD0003798E2 /* CCBLoadHelper.cpp in Sources */,
 				60ABC2AC1E13EE1000C8ECAF /* ActionRole.cpp in Sources */,
 				6084F6371E276E1600DA07AB /* Book.cpp in Sources */,
@@ -877,6 +884,7 @@
 				60871F7C1E12781600C58C79 /* EquipView.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				608609541E250D4200AEA9B5 /* NPCRole.cpp in Sources */,
+				609EC7141E2E0B1300B7ADF9 /* ConfirmNumberView.cpp in Sources */,
 				607FD08B1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */,
 				60B8FC671E11164C0056EF94 /* Tree.cpp in Sources */,
 				6088CC9D1E1E1F8100345904 /* RapidXMLParser.cpp in Sources */,

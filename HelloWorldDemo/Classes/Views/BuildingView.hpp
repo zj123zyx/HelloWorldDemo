@@ -11,11 +11,13 @@
 
 #include "TouchNode.hpp"
 #include "Building.hpp"
+#include "ConfirmNumberView.hpp"
 
 class BuildingView :
 public TouchNode
 , public CCBSelectorResolver
 , public CCBMemberVariableAssigner
+, public ConfirmNumberViewDelegate
 {
 public:
     virtual bool initWithBuilding(Building* building);
@@ -30,6 +32,7 @@ protected:
     void onTouchMoved(Touch* touch, Event* event);
     void onTouchEnded(Touch* touch, Event* event);
     
+    void onConfirmWithValue(int value,string itemId);
 private:
     virtual bool onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVariableName, Node * pNode);
     virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(Ref * pTarget, const char * pSelectorName){return NULL;}
@@ -39,6 +42,10 @@ private:
     void onBuildBtnClick(Ref* pSender, Control::EventType event);
     void onRemoveBtnClick(Ref* pSender, Control::EventType event);
     void onResBtn1Click(Ref* pSender, Control::EventType event);
+    void onResBtn2Click(Ref* pSender, Control::EventType event);
+    void onResBtn3Click(Ref* pSender, Control::EventType event);
+    void onResBtn4Click(Ref* pSender, Control::EventType event);
+    void showConfirmNumberView(int idx);
     
     Node* m_touchNode;
     ControlButton* m_closeBtn;
@@ -49,11 +56,12 @@ private:
     Label* m_buildDes;
     Sprite* m_buildSpr;
     Node* m_buildStartNode;
-    Node* m_resNode1;
-    Node* m_resIcon1;
-    Label* m_resTxt1;
+    Node* m_resNode[4];
+    Node* m_resIcon[4];
+    Label* m_resTxt[4];
     Node* m_buildingNode;
     
+    vector<string> resIdVec;
     
     bool m_isClose;
     Building* m_building;

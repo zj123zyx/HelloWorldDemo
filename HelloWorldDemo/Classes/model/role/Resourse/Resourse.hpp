@@ -13,7 +13,10 @@
 
 enum ResourceType{
     ResourceType_NULL=0,
-    ResourceType_Wood,
+    ResourceType_Wood,      //1
+    ResourceType_Food,      //2
+    ResourceType_Stone,     //3
+    ResourceType_Steel,     //4
     ResourceType_Equip,
     ResourceType_Goods,
     ResourceType_End
@@ -31,7 +34,7 @@ class Resourse:public Role
 {
 public:
     Resourse():m_resourceType(ResourceType_NULL)
-    ,m_resourceValue(0)
+    ,m_resourceValue(1)
     ,m_resourceMaxValue(1)
     ,m_bagPosition(-1)
     ,m_isEquipedInUI(false)

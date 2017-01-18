@@ -175,7 +175,28 @@ void ResourseController::unwieldResourse(Equip* equip){//卸下装备
     
 }
 
+void ResourseController::costResourse(Resourse* resourse,int costValue){//消耗物品
+    resourse->m_resourceValue-=costValue;
+//    if(resourse->m_resourceValue<=0){
+//        m_resourseMap.erase(resourse->m_bagPosition);
+//        __NotificationCenter::getInstance()->postNotification("EquipView::refreshData");
+//        __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
+//    }
+}
 
+void ResourseController::deleteZeroValueResourse(){//删除m_resourceValue=0的物品
+    map<int, Resourse*>::iterator it = m_resourseMap.begin();
+    for (; it!=m_resourseMap.end(); it++) {
+        Resourse* resourse = it->second;
+        if(resourse->m_resourceValue<=0){
+            m_resourseMap.erase(resourse->m_bagPosition);
+            deleteZeroValueResourse();
+            break;
+        }
+    }
+    __NotificationCenter::getInstance()->postNotification("EquipView::refreshData");
+    __NotificationCenter::getInstance()->postNotification("TouchUI::refreshEquipNode");
+}
 
 
 

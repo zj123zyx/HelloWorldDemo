@@ -75,15 +75,15 @@ void TestHouseScene::onEnter(){
     wood->setTileXY(5,5);
     RolesController::getInstance()->addControllerRole(wood,true);
     
-    UsedRes* wood2 = UsedRes::createWithResId("400000001");
-    wood2->m_resourceValue=9;
-    wood2->setTileXY(6,5);
-    RolesController::getInstance()->addControllerRole(wood2,true);
+    UsedRes* food = UsedRes::createWithResId("400000002");
+    food->m_resourceValue=9;
+    food->setTileXY(6,5);
+    RolesController::getInstance()->addControllerRole(food,true);
     
-    UsedRes* wood3 = UsedRes::createWithResId("400000001");
-    wood3->m_resourceValue=9;
-    wood3->setTileXY(7,5);
-    RolesController::getInstance()->addControllerRole(wood3,true);
+    UsedRes* stone = UsedRes::createWithResId("400000003");
+    stone->m_resourceValue=9;
+    stone->setTileXY(7,5);
+    RolesController::getInstance()->addControllerRole(stone,true);
     
     ActionRole* actionRole = ActionRole::createWithPicName("res/Roles/assassin1a.png");
     actionRole->setTileXY(10,11);

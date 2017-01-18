@@ -61,7 +61,7 @@ void HomeBuilding::setDataByVirtualBuild(VirtualBuild* vb){
             m_occupy.push_back(sprPoint);
         }
     }
-    m_buildingState=BuildingState_Building;
+    m_buildingState=BuildingState_StartBuild;
     m_buildProgress=1;
 }
 

@@ -28,6 +28,8 @@ public:
     void abandonResourse(Resourse* resourse);//丢弃物品
     void equipResourse(Equip* equip);//装备物品
     void unwieldResourse(Equip* equip);//卸下装备
+    void costResourse(Resourse* resourse,int costValue);//消耗物品
+    void deleteZeroValueResourse();//删除m_resourceValue=0的物品
     
     map<int, Resourse*> m_resourseMap;
     map<int, Equip*> m_equipMap;

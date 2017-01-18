@@ -153,12 +153,44 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/Views/BuildingView.cpp"
-            timestampString = "506325228.706077"
+            filePath = "../Classes/model/role/Building/Building.cpp"
+            timestampString = "506329659.947933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "Building::initWithBuildingId(string id)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/Views/BuildingView.cpp"
+            timestampString = "506352110.538052"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "BuildingView::onConfirmWithValue(int value,string itemId)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/Views/BuildingView.cpp"
+            timestampString = "506352110.538052"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "BuildingView::refreshData(Ref* ref)"
             landmarkType = "7">
          </BreakpointContent>
@@ -169,29 +201,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/model/role/Building/VirtualBuild.cpp"
-            timestampString = "506326653.415488"
+            filePath = "../Classes/Views/BuildingView.cpp"
+            timestampString = "506352110.538052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "VirtualBuild::initWithBuildId(string buildId)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/model/role/Building/Building.cpp"
-            timestampString = "506329659.947933"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "Building::initWithBuildingId(string id)"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "BuildingView::onBuildBtnClick(Ref* pSender, Control::EventType event)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

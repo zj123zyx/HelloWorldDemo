@@ -42,7 +42,7 @@ bool UsedRes::initWithResId(string resId){
         m_selfValue.m_description=description;
         m_resourceMaxValue=maxValue;
         m_resourceType=(ResourceType)resource_type;
-        m_resourceValue=1;//?
+//        m_resourceValue=1;//?
         //frame
         setRoleSpriteFrame(icon);
         m_roleSprite = Sprite::createWithSpriteFrame(m_roleSpriteFrame);

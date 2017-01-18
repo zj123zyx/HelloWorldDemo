@@ -27,9 +27,6 @@ class Equip:public Resourse
 {
 public:
     
-    static Equip* createWithPicName(string pic_name);
-    virtual bool initWithPicName(string pic_name);
-    
     static Equip* createWithEquipId(string EquipId);
     virtual bool initWithEquipId(string EquipId);
     

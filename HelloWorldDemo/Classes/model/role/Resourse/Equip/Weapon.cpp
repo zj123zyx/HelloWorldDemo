@@ -8,30 +8,6 @@
 
 #include "Weapon.hpp"
 
-Weapon* Weapon::createWithPicName(string pic_name)
-{
-    Weapon *pRet = new(std::nothrow) Weapon();
-    if (pRet && pRet->initWithPicName(pic_name))
-    {
-        pRet->autorelease();
-        return pRet;
-    }
-    else
-    {
-        delete pRet;
-        pRet = nullptr;
-        return nullptr;
-    }
-}
-
-bool Weapon::initWithPicName(string pic_name){
-    bool ret = false;
-    if(Equip::initWithPicName(pic_name)){
-        ret = true;
-    }
-    return ret;
-}
-
 Weapon* Weapon::createWithWeaponId(string weaponId){
     Weapon *pRet = new(std::nothrow) Weapon();
     if (pRet && pRet->initWithWeaponId(weaponId))
@@ -56,8 +32,7 @@ bool Weapon::initWithWeaponId(string weaponId){
 
 void Weapon::initCommonData(){
     Equip::initCommonData();
-    m_equipType=EquipType_Weapon;
-//    m_fightValue.m_useType=1;
+
     m_useType=UseType_EquipInUI;
 }
 

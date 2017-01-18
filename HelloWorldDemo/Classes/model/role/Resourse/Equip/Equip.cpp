@@ -8,39 +8,6 @@
 
 #include "Equip.hpp"
 
-Equip* Equip::createWithPicName(string pic_name)
-{
-    Equip *pRet = new(std::nothrow) Equip();
-    if (pRet && pRet->initWithPicName(pic_name))
-    {
-        pRet->autorelease();
-        return pRet;
-    }
-    else
-    {
-        delete pRet;
-        pRet = nullptr;
-        return nullptr;
-    }
-}
-
-bool Equip::initWithPicName(string pic_name){
-    bool ret = false;
-    if(Resourse::initWithPicName(pic_name)){
-        ret = true;
-        initCommonData();
-        m_selfValue.m_name="装备";
-        //frame
-        //m_roleSpriteFrame = CommonUtils::createSpriteFrame(pic_name);//"Equip0_1.png"在Resourse里设置了
-        m_roleSprite = Sprite::createWithSpriteFrame(m_roleSpriteFrame);
-        CommonUtils::setSpriteMaxSize(m_roleSprite,64);
-        if(m_roleSprite){
-            this->addChild(m_roleSprite);
-        }
-    }
-    return ret;
-}
-
 Equip* Equip::createWithEquipId(string EquipId){
     Equip *pRet = new(std::nothrow) Equip();
     if (pRet && pRet->initWithEquipId(EquipId))
@@ -71,6 +38,7 @@ bool Equip::initWithEquipId(string EquipId){
         int attackCD = atoi(CommonUtils::getPropById(EquipId, "attackCD").c_str());
         int attackRange = atoi(CommonUtils::getPropById(EquipId, "attackRange").c_str());
         float moveSpeed = atof(CommonUtils::getPropById(EquipId, "moveSpeed").c_str());
+        int equip_type = atoi(CommonUtils::getPropById(EquipId, "equip_type").c_str());
         //属性
         m_selfValue.m_XMLId=EquipId;
         m_selfValue.m_name=nameStr;
@@ -82,6 +50,7 @@ bool Equip::initWithEquipId(string EquipId){
         m_fightValue.m_attackRange=attackRange;
         m_fightValue.m_moveSpeed=moveSpeed;
         m_selfValue.m_level=level;
+        m_equipType=(EquipType)equip_type;
         //frame
         setRoleSpriteFrame(icon);
         m_roleSprite = Sprite::createWithSpriteFrame(m_roleSpriteFrame);

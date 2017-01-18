@@ -2,9 +2,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
   
   <Group id="equip">
-    <ItemSpec id="100000001" name="axe1" description="axe1_description" icon="Equip0_1.png" level="1" health="0" defense="0" attack="5" attackCD="1" attackRange="1" moveSpeed="0"/>
-    <ItemSpec id="100040001" name="shoes1" description="shoes1_description" icon="Equip4_1.png" level="1" health="0" defense="1" attack="0" attackCD="0" attackRange="0" moveSpeed="2"/>
-    <ItemSpec id="100040002" name="shoes2" description="shoes2_description" icon="Equip5_1.png" level="1" health="0" defense="1" attack="0" attackCD="0" attackRange="0" moveSpeed="2"/>
+    <ItemSpec id="100000001" name="axe1" description="axe1_description" icon="Equip0_1.png" level="1" equip_type="0" health="0" defense="0" attack="5" attackCD="1" attackRange="1" moveSpeed="0"/>
+    <ItemSpec id="100040001" name="shoes1" description="shoes1_description" icon="Equip4_1.png" level="1" equip_type="4" health="0" defense="1" attack="0" attackCD="0" attackRange="0" moveSpeed="2"/>
+    <ItemSpec id="100040002" name="shoes2" description="shoes2_description" icon="Equip5_1.png" level="1" equip_type="4" health="0" defense="1" attack="0" attackCD="0" attackRange="0" moveSpeed="2"/>
   </Group>
   <Group id="goods">
     <ItemSpec id="200000001" name="book" description="book_description" icon="Goods_Book.png" goods_type="0" param1="0"/>

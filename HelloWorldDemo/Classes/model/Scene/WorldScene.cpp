@@ -5,18 +5,11 @@
 #include "Role.hpp"
 #include "Tree.hpp"
 #include "House.hpp"
-#include "Shoes.hpp"
+#include "BodyEquip.hpp"
 #include "NPCRole.hpp"
 #include "Book.hpp"
 
 USING_NS_CC;
-
-WorldScene::WorldScene(){
-    
-}
-WorldScene::~WorldScene(){
-    
-}
 
 Scene* WorldScene::createScene()
 {
@@ -28,15 +21,11 @@ Scene* WorldScene::createScene()
 
 bool WorldScene::init()
 {
-    if ( !Layer::init() )
+    if ( !SceneModel::initWithTiledName("image/tiled_test5.tmx") )
     {
         return false;
     }
-    _map = TMXTiledMap::create("image/tiled_test5.tmx");//tiled_test3
-    this->addChild(_map);
     //ui
-    TouchUI::getInstance()->setUiDelegate(this);
-    TouchUI::getInstance()->addToLayer(this);
     TouchUI::getInstance()->m_btn2->setEnabled(true);
     //touch
     m_touchDelegateView = TouchDelegateView::create();
@@ -44,20 +33,17 @@ bool WorldScene::init()
     m_touchDelegateView->setTouchDelegate(this);
     this->addChild(m_touchDelegateView);
     
-    Size mapSize = _map->getContentSize();
-    Size tileSize = _map->getTileSize();
-    
     return true;
 }
 
 void WorldScene::onEnter(){
-    Node::onEnter();
-    //add tree house
+    SceneModel::onEnter();
     RolesController::getInstance()->setTiledMap(_map);
     //add player
     Player *m_player = PlayerController::getInstance()->getPlayer();
     m_player->setContainer(_map);//player位置由controller控制
     RolesController::getInstance()->addControllerRole(m_player,true);
+    
     //add npc
     NPCRole *npcPlayer1 = NPCRole::createWithPicName("res/Roles/assassin1a.png");
     npcPlayer1->setContainer(_map);
@@ -78,11 +64,11 @@ void WorldScene::onEnter(){
     house->setTileXY(20, 80);
     RolesController::getInstance()->addControllerRole(house,true);
     
-    Shoes* shoes1 = Shoes::createWithShoesId("100040001");
+    BodyEquip* shoes1 = BodyEquip::createWithBodyEquipId("100040001");
     shoes1->setTileXY(15, 90);
     RolesController::getInstance()->addControllerRole(shoes1,true);
     
-    Shoes* shoes2 = Shoes::createWithShoesId("100040002");
+    BodyEquip* shoes2 = BodyEquip::createWithBodyEquipId("100040002");
     shoes2->setTileXY(16, 90);
     RolesController::getInstance()->addControllerRole(shoes2,true);
     
@@ -90,11 +76,11 @@ void WorldScene::onEnter(){
     goodsBook->setTileXY(8,90);
     RolesController::getInstance()->addControllerRole(goodsBook,true);
     
-//    m_RoleMap = RolesController::getInstance()->m_RoleMap;
+    m_RoleMap = RolesController::getInstance()->m_RoleMap;
 }
 void WorldScene::onExit(){
     RolesController::getInstance()->clearRoleMap();
-    Node::onExit();
+    SceneModel::onExit();
 }
 
 void WorldScene::TapView(Touch* pTouch){

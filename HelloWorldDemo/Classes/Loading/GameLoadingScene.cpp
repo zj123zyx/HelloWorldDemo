@@ -45,10 +45,7 @@ void GameLoadingScene::onExit(){
 }
 
 void GameLoadingScene::gotoWorldScene(float dt){
-//    Director::getInstance()->purgeCachedData();
-    SceneController::getInstance()->replaceSceneByType(SceneType_WORLD);
-//    Scene *worldScene = SceneController::getInstance()->getSceneByType(SceneType_WORLD); //WorldScene::createScene();
-//    Director::getInstance()->replaceScene(worldScene);
+    SceneController::getInstance()->replaceSceneByType(SceneType_WORLD);//SceneType_HOURSE //SceneType_WORLD
 }
 
 bool GameLoadingScene::onAssignCCBMemberVariable(Ref * pTarget, const char * pMemberVariableName, Node * pNode){

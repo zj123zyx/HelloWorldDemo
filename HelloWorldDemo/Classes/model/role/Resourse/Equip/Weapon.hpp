@@ -14,10 +14,7 @@
 class Weapon:public Equip
 {
 public:
-    
-    static Weapon* createWithPicName(string pic_name);
-    virtual bool initWithPicName(string pic_name);
-    
+
     static Weapon* createWithWeaponId(string weaponId);
     virtual bool initWithWeaponId(string weaponId);
     

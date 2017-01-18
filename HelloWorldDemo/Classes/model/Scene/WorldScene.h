@@ -1,18 +1,15 @@
 #ifndef __WorldScene_H__
 #define __WorldScene_H__
 
-#include "CommonHead.h"
+#include "SceneModel.hpp"
 #include "TouchDelegateView.hpp"
-#include "TouchUI.h"
-#include "Player.hpp"
 
-class WorldScene :public cocos2d::Layer
+class WorldScene :public SceneModel
 ,public TouchDelegate
-,public UIDelegate
 {
 public:
-    WorldScene();
-    ~WorldScene();
+    WorldScene(){};
+    ~WorldScene(){};
     static cocos2d::Scene* createScene();
     virtual bool init();
     
@@ -26,8 +23,6 @@ protected:
     void TapView(Touch* pTouch);
     void OnTouchUIRelease(Ref *target,SEL_CallFunc func);
 private:
-    TMXTiledMap* _map;
-//    map<int,Role*> m_RoleMap;
     TouchDelegateView* m_touchDelegateView;
 };
 

@@ -8,8 +8,8 @@
 
 #include "SceneModel.hpp"
 #include "SimpleAudioEngine.h"
-#include "PlayerController.hpp"
-#include "RolesController.hpp"
+
+
 #include "Role.hpp"
 #include "UsedRes.hpp"
 #include "Weapon.hpp"
@@ -22,6 +22,7 @@ Scene* SceneModel::createScene()
 {
     auto scene = Scene::create();
     auto layer = SceneModel::create();
+    layer->setTag(1);
     scene->addChild(layer);
     return scene;
 }
@@ -64,6 +65,8 @@ void SceneModel::onEnter(){
     RolesController::getInstance()->m_RoleMap = m_RoleMap;
 }
 void SceneModel::onExit(){
+//    m_RoleMap = RolesController::getInstance()->m_RoleMap;
+    
     Player* player = PlayerController::getInstance()->player;
     if(player->getReferenceCount()<=1){
         player->retain();

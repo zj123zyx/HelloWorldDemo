@@ -68,6 +68,14 @@ void RolesController::addControllerRole(Role* role,bool addToScene){
         int tid = CommonUtils::getTileIdByXY(tempVec2.x, tempVec2.y);
         m_RoleMap[tid] = role;
     }
+    
+    SceneType curSceneType = SceneController::getInstance()->m_curSceneType;
+    map<SceneType,Scene*> sceneMap = SceneController::getInstance()->m_sceneMap;
+    if(sceneMap.find(curSceneType)!=sceneMap.end()){
+        SceneModel* sceneModel = (SceneModel*)sceneMap[curSceneType]->getChildByTag(1);
+        sceneModel->m_RoleMap = m_RoleMap;
+    }
+    
     if(role->m_roleType==RoleType_Player || role->m_roleType==RoleType_NPCRole){
         m_actRoleVec.push_back(role);
     }

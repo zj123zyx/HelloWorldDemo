@@ -14,12 +14,12 @@
 //#include "Wood.hpp"
 #include "UsedRes.hpp"
 #include "Weapon.hpp"
-#include "ActionRole.hpp"
 #include "Tree.hpp"
 #include "House.hpp"
 #include "BodyEquip.hpp"
 #include "NPCRole.hpp"
 #include "Book.hpp"
+#include "ActionRole.hpp"
 
 USING_NS_CC;
 
@@ -27,6 +27,7 @@ Scene* TestHouseScene::createScene()
 {
     auto scene = Scene::create();
     auto layer = TestHouseScene::create();
+    layer->setTag(1);
     scene->addChild(layer);
     return scene;
 }

@@ -15,6 +15,7 @@ Scene* WorldScene::createScene()
 {
     auto scene = Scene::create();
     auto layer = WorldScene::create();
+    layer->setTag(1);
     scene->addChild(layer);
     return scene;
 }

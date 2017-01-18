@@ -66,6 +66,8 @@
 		607FDE9B1E2F3DA50028FE64 /* WorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FDE961E2F3DA50028FE64 /* WorldScene.cpp */; };
 		607FDE9E1E2F3DF00028FE64 /* SceneModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FDE9C1E2F3DF00028FE64 /* SceneModel.cpp */; };
 		607FDE9F1E2F3DF00028FE64 /* SceneModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FDE9C1E2F3DF00028FE64 /* SceneModel.cpp */; };
+		607FDEA41E2F86970028FE64 /* HouseScene_55.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FDEA21E2F86970028FE64 /* HouseScene_55.cpp */; };
+		607FDEA51E2F86970028FE64 /* HouseScene_55.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 607FDEA21E2F86970028FE64 /* HouseScene_55.cpp */; };
 		608120D41E2CCDC0004C3372 /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608120D01E2CCDC0004C3372 /* Building.cpp */; };
 		608120D51E2CCDC0004C3372 /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608120D01E2CCDC0004C3372 /* Building.cpp */; };
 		608120D61E2CCDC0004C3372 /* House.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608120D21E2CCDC0004C3372 /* House.cpp */; };
@@ -231,6 +233,8 @@
 		607FDE971E2F3DA50028FE64 /* WorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldScene.h; sourceTree = "<group>"; };
 		607FDE9C1E2F3DF00028FE64 /* SceneModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneModel.cpp; sourceTree = "<group>"; };
 		607FDE9D1E2F3DF00028FE64 /* SceneModel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SceneModel.hpp; sourceTree = "<group>"; };
+		607FDEA21E2F86970028FE64 /* HouseScene_55.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HouseScene_55.cpp; sourceTree = "<group>"; };
+		607FDEA31E2F86970028FE64 /* HouseScene_55.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HouseScene_55.hpp; sourceTree = "<group>"; };
 		608120D01E2CCDC0004C3372 /* Building.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Building.cpp; sourceTree = "<group>"; };
 		608120D11E2CCDC0004C3372 /* Building.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Building.hpp; sourceTree = "<group>"; };
 		608120D21E2CCDC0004C3372 /* House.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = House.cpp; sourceTree = "<group>"; };
@@ -556,6 +560,8 @@
 				607FDE951E2F3DA50028FE64 /* TestHouseScene.hpp */,
 				607FDE961E2F3DA50028FE64 /* WorldScene.cpp */,
 				607FDE971E2F3DA50028FE64 /* WorldScene.h */,
+				607FDEA21E2F86970028FE64 /* HouseScene_55.cpp */,
+				607FDEA31E2F86970028FE64 /* HouseScene_55.hpp */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -880,6 +886,7 @@
 				6088CC9C1E1E1F8100345904 /* RapidXMLParser.cpp in Sources */,
 				60B8FC611E11114B0056EF94 /* RolesController.cpp in Sources */,
 				608ADE5C1E1CD3C80095EDB8 /* TouchNode.cpp in Sources */,
+				607FDEA41E2F86970028FE64 /* HouseScene_55.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,6 +906,7 @@
 				607FDE9B1E2F3DA50028FE64 /* WorldScene.cpp in Sources */,
 				6088CCBA1E1E443F00345904 /* Weapon.cpp in Sources */,
 				609D5D041E165A2900752DFC /* Wood.cpp in Sources */,
+				607FDEA51E2F86970028FE64 /* HouseScene_55.cpp in Sources */,
 				608120D51E2CCDC0004C3372 /* Building.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				607FDE9F1E2F3DF00028FE64 /* SceneModel.cpp in Sources */,

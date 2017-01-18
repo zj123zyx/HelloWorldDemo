@@ -12,7 +12,7 @@
 #include "RolesController.hpp"
 
 #include "TestHouseScene.hpp"
-
+#include "HouseScene_55.hpp"
 
 static SceneController* sceneController = NULL;
 
@@ -23,15 +23,8 @@ SceneController* SceneController::getInstance(){
     return sceneController;
 }
 
-SceneController::SceneController(){
-
-}
-
-SceneController::~SceneController(){
-    
-}
-
 Scene* SceneController::getSceneByType(SceneType type){
+    m_curSceneType = type;
     Scene* retScene = nullptr;
     switch (type) {
         case SceneType_WORLD:
@@ -48,6 +41,14 @@ Scene* SceneController::getSceneByType(SceneType type){
                 m_sceneMap[SceneType_HOURSE] = TestHouseScene::createScene();
             }
             retScene = m_sceneMap[SceneType_HOURSE];
+            break;
+        }
+        case SceneType_HOURSE55:
+        {
+            if(m_sceneMap.find(SceneType_HOURSE55)==m_sceneMap.end()){
+                m_sceneMap[SceneType_HOURSE55] = HouseScene_55::createScene();
+            }
+            retScene = m_sceneMap[SceneType_HOURSE55];
             break;
         }
         default:

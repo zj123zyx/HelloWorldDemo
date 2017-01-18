@@ -27,14 +27,15 @@ class SceneController:public Ref
 {
 public:
     static SceneController* getInstance();
-    SceneController();
-    ~SceneController();
+    SceneController():m_curSceneType(SceneType_NULL){};
+    ~SceneController(){};
     
     Scene* getSceneByType(SceneType type);
     void replaceSceneByType(SceneType type);
     void replaceSceneBySceneInfo(SceneInfo sceneInfo);
     
     map<SceneType,Scene*> m_sceneMap;
+    SceneType m_curSceneType;
 private:
 };
 

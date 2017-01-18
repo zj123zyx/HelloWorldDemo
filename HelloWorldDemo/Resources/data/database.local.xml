@@ -10,7 +10,7 @@
     <ItemSpec id="200000001" name="book" description="book_description" icon="Goods_Book.png" goods_type="0" param1="0"/>
   </Group>
   <Group id="building">
-    <ItemSpec id="300000001" name="home" description="home_description" icon="Building_home.png" width="192" height="128" maxProgress="100" virtualBuild="-1,2|-1,1|1,2|1,1|0,2|0,1" needMap="400000001,5|400000002,5|400000003,5"/>
+    <ItemSpec id="300000001" name="home" description="home_description" icon="Building_home.png" width="192" height="128" maxProgress="10" virtualBuild="-1,2|-1,1|1,2|1,1|0,2|0,1" needMap="400000001,5|400000002,5|400000003,5"/>
   </Group>
   <Group id="resourse">
     <ItemSpec id="400000001" name="wood" description="wood_description" icon="Res_wood.png" maxValue="20" resource_type="1"/>

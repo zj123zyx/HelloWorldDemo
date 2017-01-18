@@ -132,7 +132,9 @@ void Building::doAction(Role* sender){//处理事件
     }
 }
 
-
+void Building::buildFinish(){
+    
+}
 
 
 

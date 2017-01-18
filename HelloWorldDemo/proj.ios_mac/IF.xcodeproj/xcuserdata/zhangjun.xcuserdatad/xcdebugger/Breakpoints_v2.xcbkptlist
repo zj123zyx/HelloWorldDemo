@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Views/BuildingView.cpp"
-            timestampString = "506352110.538052"
+            timestampString = "506411728.26766"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "BuildingView::onConfirmWithValue(int value,string itemId)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Views/BuildingView.cpp"
-            timestampString = "506352110.538052"
+            timestampString = "506400898.825799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "BuildingView::refreshData(Ref* ref)"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,12 +202,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Views/BuildingView.cpp"
-            timestampString = "506352110.538052"
+            timestampString = "506411061.568143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "BuildingView::onBuildBtnClick(Ref* pSender, Control::EventType event)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/model/role/Building/HomeBuilding.cpp"
+            timestampString = "506411770.831365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "HomeBuilding::buildFinish()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

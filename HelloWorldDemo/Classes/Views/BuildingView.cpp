@@ -46,6 +46,13 @@ void BuildingView::refreshData(Ref* ref){
     }
     m_buildDes->setString(m_building->m_selfValue.m_description);
     
+    float progress = m_building->m_buildProgress;
+    float maxProgress = MAX(m_building->m_MAXbuildProgress,1);
+    
+    string progressStr = string(CC_ITOA(progress)).append("/").append(CC_ITOA(maxProgress));
+    m_progressTxt->setString(progressStr);
+    m_progressBar->setScaleX(progress/maxProgress);
+    
     if (m_building->m_buildingState==BuildingState_StartBuild) {
         log("build");
         m_buildStartNode->setVisible(true);
@@ -94,7 +101,8 @@ void BuildingView::refreshData(Ref* ref){
         log("look");
         m_buildStartNode->setVisible(false);
         m_buildingNode->setVisible(true);
-        CommonUtils::setButtonTitle(m_buildBtn,"upgreat");
+//        CommonUtils::setButtonTitle(m_buildBtn,"upgreat");
+        m_buildBtn->setVisible(false);
     }
 }
 
@@ -133,6 +141,8 @@ bool BuildingView::onAssignCCBMemberVariable(Ref * pTarget, const char * pMember
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_resTxt3", Label*, m_resTxt[2]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_resTxt4", Label*, m_resTxt[3]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_buildingNode", Node*, m_buildingNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_progressTxt", Label*, m_progressTxt);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_progressBar", Scale9Sprite*, m_progressBar);
     
     return false;
 }
@@ -153,14 +163,32 @@ void BuildingView::onCloseBtnClick(Ref* pSender, Control::EventType event){
 }
 void BuildingView::onBuildBtnClick(Ref* pSender, Control::EventType event){
     log("onBuildBtnClick");
-    
     if (m_building->m_buildingState==BuildingState_StartBuild) {
-        m_building->m_buildingState=BuildingState_Building;
-    }
-    if (m_building->m_buildingState==BuildingState_Building) {
+        m_buildStartNode->setVisible(true);
+        m_buildStartNode->setScale(1, 1);
+        ScaleTo* scaleTo1 = ScaleTo::create(0.2, 1, 0);
+        m_buildStartNode->runAction(scaleTo1);
         
+        m_buildingNode->setVisible(true);
+        m_buildingNode->setScale(1, 0);
+        DelayTime* delayTime1 = DelayTime::create(0.2);
+        ScaleTo* scaleTo2 = ScaleTo::create(0.2, 1, 1);
+
+        m_buildingNode->runAction(Sequence::create(delayTime1,scaleTo2, NULL));
+        m_building->m_buildingState=BuildingState_Building;
+        CommonUtils::setButtonTitle(m_buildBtn,"building");
+    }else if (m_building->m_buildingState==BuildingState_Building) {
+        if(m_building->m_buildProgress<m_building->m_MAXbuildProgress){
+            m_building->m_buildProgress++;
+        }
+        if(m_building->m_buildProgress==m_building->m_MAXbuildProgress){
+            m_building->m_buildingState=BuildingState_Finish;
+            m_building->buildFinish();
+        }
+
+        refreshData(nullptr);
     }
-    refreshData(nullptr);
+    
 }
 void BuildingView::onRemoveBtnClick(Ref* pSender, Control::EventType event){
     log("onRemoveBtnClick");

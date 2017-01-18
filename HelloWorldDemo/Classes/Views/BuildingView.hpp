@@ -60,6 +60,8 @@ private:
     Node* m_resIcon[4];
     Label* m_resTxt[4];
     Node* m_buildingNode;
+    Label* m_progressTxt;
+    Scale9Sprite *m_progressBar;
     
     vector<string> resIdVec;
     

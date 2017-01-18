@@ -42,11 +42,14 @@ public:
     void setTileXY(int tx,int ty,bool setOccupy = true);//设置XY
     
     virtual void doAction(Role* sender);//处理事件
+    virtual void buildFinish();
+    
     BuildingState m_buildingState;
     float m_buildProgress;
     float m_MAXbuildProgress;
     map<string,int> m_buildNeedMap;
     map<string,int> m_buildHaveMap;
+    
 protected:
     void onEnter();
     void onExit();

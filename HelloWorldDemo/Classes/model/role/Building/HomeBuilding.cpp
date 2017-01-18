@@ -73,7 +73,13 @@ void HomeBuilding::showDescription(bool show){
     }
 }
 
-
+void HomeBuilding::buildFinish(){
+    Building::buildFinish();
+    
+    m_actionPoint=Vec2(m_tileX,m_tileY);
+    m_sceneInfo.m_sceneType=SceneType_HOURSE;
+    m_sceneInfo.m_showPoint=Vec2(10,10);
+}
 
 
 

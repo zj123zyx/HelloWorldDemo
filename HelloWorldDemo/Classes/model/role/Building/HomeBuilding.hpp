@@ -22,6 +22,8 @@ public:
     
     void setDataByVirtualBuild(VirtualBuild* vb);
     void showDescription(bool show);
+    
+    virtual void buildFinish();
 protected:
     void onEnter();
     void onExit();

@@ -5,6 +5,9 @@
 #include "Goods.hpp"
 #include "RolesController.hpp"
 
+//test
+#include "SqliteHelper.hpp"
+
 USING_NS_CC;
 
 static const float MAX_DISTANCE=100;
@@ -307,6 +310,9 @@ void TouchUI::onBtn1Click(Ref* pSender, Control::EventType event){
         }else{
             CCLOG("没有目标");
             flyHint("没有目标");
+            bool b1 = SqliteHelper::getInstance()->ExecuteSql("create table student(ID integer primary key autoincrement,name text,sex text)");
+            bool b2 = SqliteHelper::getInstance()->ExecuteSql("insert into student (name, sex) values('student1','male')");
+            bool b3 = SqliteHelper::getInstance()->TableExists("student");
         }
     }
 }

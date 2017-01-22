@@ -98,6 +98,10 @@
 		6088CCBA1E1E443F00345904 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6088CCB31E1E443F00345904 /* Weapon.cpp */; };
 		608ADE5C1E1CD3C80095EDB8 /* TouchNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608ADE5A1E1CD3C80095EDB8 /* TouchNode.cpp */; };
 		608ADE5D1E1CD3C80095EDB8 /* TouchNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608ADE5A1E1CD3C80095EDB8 /* TouchNode.cpp */; };
+		608CB4351E30B7C800467B42 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 608CB4331E30B7C800467B42 /* sqlite3.c */; };
+		608CB4361E30B7C800467B42 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 608CB4331E30B7C800467B42 /* sqlite3.c */; };
+		608CB43A1E30C18B00467B42 /* SqliteHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608CB4381E30C18B00467B42 /* SqliteHelper.cpp */; };
+		608CB43B1E30C18B00467B42 /* SqliteHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 608CB4381E30C18B00467B42 /* SqliteHelper.cpp */; };
 		609D5CFD1E16575600752DFC /* ResourseController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609D5CFB1E16575600752DFC /* ResourseController.cpp */; };
 		609D5CFE1E16575600752DFC /* ResourseController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609D5CFB1E16575600752DFC /* ResourseController.cpp */; };
 		609D5D031E165A2900752DFC /* Wood.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609D5D011E165A2900752DFC /* Wood.cpp */; };
@@ -268,6 +272,10 @@
 		6088CCB41E1E443F00345904 /* Weapon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Weapon.hpp; sourceTree = "<group>"; };
 		608ADE5A1E1CD3C80095EDB8 /* TouchNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TouchNode.cpp; sourceTree = "<group>"; };
 		608ADE5B1E1CD3C80095EDB8 /* TouchNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TouchNode.hpp; sourceTree = "<group>"; };
+		608CB4331E30B7C800467B42 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
+		608CB4341E30B7C800467B42 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
+		608CB4381E30C18B00467B42 /* SqliteHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SqliteHelper.cpp; sourceTree = "<group>"; };
+		608CB4391E30C18B00467B42 /* SqliteHelper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SqliteHelper.hpp; sourceTree = "<group>"; };
 		609D5CFB1E16575600752DFC /* ResourseController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResourseController.cpp; sourceTree = "<group>"; };
 		609D5CFC1E16575600752DFC /* ResourseController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ResourseController.hpp; sourceTree = "<group>"; };
 		609D5D011E165A2900752DFC /* Wood.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wood.cpp; sourceTree = "<group>"; };
@@ -534,6 +542,7 @@
 		607FD0921E096A9E003798E2 /* Ext */ = {
 			isa = PBXGroup;
 			children = (
+				608CB4321E30B7C800467B42 /* Sqlite */,
 				607FD0931E096A9E003798E2 /* GUI */,
 				6088CC9E1E1E216300345904 /* rapidxml */,
 				6088CC9A1E1E1F8100345904 /* RapidXMLParser.cpp */,
@@ -642,6 +651,17 @@
 			path = Equip;
 			sourceTree = "<group>";
 		};
+		608CB4321E30B7C800467B42 /* Sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				608CB4331E30B7C800467B42 /* sqlite3.c */,
+				608CB4341E30B7C800467B42 /* sqlite3.h */,
+				608CB4381E30C18B00467B42 /* SqliteHelper.cpp */,
+				608CB4391E30C18B00467B42 /* SqliteHelper.hpp */,
+			);
+			path = Sqlite;
+			sourceTree = "<group>";
+		};
 		609D5D001E165A1000752DFC /* Resourse */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,7 +767,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = N6JW9AVXL5;
+						DevelopmentTeam = J3XX9WWYD9;
 					};
 				};
 			};
@@ -865,6 +885,7 @@
 				601CAAFF1E0A9537003BCC41 /* CommonUtils.cpp in Sources */,
 				607B6AAA1E265E0900C3052B /* Player.cpp in Sources */,
 				608120D41E2CCDC0004C3372 /* Building.cpp in Sources */,
+				608CB4351E30B7C800467B42 /* sqlite3.c in Sources */,
 				60B8FC661E11164C0056EF94 /* Tree.cpp in Sources */,
 				60ABC2A81E13D65C00C8ECAF /* SceneController.cpp in Sources */,
 				601CAAFB1E0A94DB003BCC41 /* TouchDelegateView.cpp in Sources */,
@@ -873,6 +894,7 @@
 				609EC70E1E2DF33100B7ADF9 /* UsedRes.cpp in Sources */,
 				608120D61E2CCDC0004C3372 /* House.cpp in Sources */,
 				6084F6321E27637C00DA07AB /* Goods.cpp in Sources */,
+				608CB43A1E30C18B00467B42 /* SqliteHelper.cpp in Sources */,
 				608120DA1E2CD37E004C3372 /* HomeBuilding.cpp in Sources */,
 				6084F63D1E27AB5200DA07AB /* BookCreateView.cpp in Sources */,
 				609EC7091E2DC52300B7ADF9 /* BuildingView.cpp in Sources */,
@@ -921,6 +943,7 @@
 				60B8B60A1E0B710C00371D5D /* Role.cpp in Sources */,
 				601CAB001E0A9537003BCC41 /* CommonUtils.cpp in Sources */,
 				609EC70A1E2DC52300B7ADF9 /* BuildingView.cpp in Sources */,
+				608CB43B1E30C18B00467B42 /* SqliteHelper.cpp in Sources */,
 				6088CCB61E1E443F00345904 /* Equip.cpp in Sources */,
 				607FDE991E2F3DA50028FE64 /* TestHouseScene.cpp in Sources */,
 				6084F6381E276E1600DA07AB /* Book.cpp in Sources */,
@@ -933,6 +956,7 @@
 				609D5D081E165A3A00752DFC /* Resourse.cpp in Sources */,
 				60B8FC621E11114B0056EF94 /* RolesController.cpp in Sources */,
 				601CAAFC1E0A94DB003BCC41 /* TouchDelegateView.cpp in Sources */,
+				608CB4361E30B7C800467B42 /* sqlite3.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -958,7 +982,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = N6JW9AVXL5;
+				DEVELOPMENT_TEAM = J3XX9WWYD9;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -978,6 +1002,7 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zj123zyx;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -992,7 +1017,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = N6JW9AVXL5;
+				DEVELOPMENT_TEAM = J3XX9WWYD9;
 				ENABLE_BITCODE = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1010,6 +1035,7 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zj123zyx;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";

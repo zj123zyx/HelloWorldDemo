@@ -63,9 +63,6 @@ int PlayerController::getBagValue(){
     return ret;
 }
 
-void addResourseFightValue(Resourse* resourse);
-void removeResourseFightValue(Resourse* resourse);
-
 void PlayerController::addResourseFightValue(Resourse* resourse){
     if (resourse->m_useType==UseType_EquipInUI || resourse->m_useType==UseType_EquipInBag) {
         player->m_fightValue.addValue(resourse->m_fightValue);

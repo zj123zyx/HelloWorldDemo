@@ -74,16 +74,23 @@ Vec2 CommonUtils::getTileXYById(int Tid){
     return ret;
 }
 
-Sprite* CommonUtils::setSpriteMaxSize(Sprite* spr, int limitNum, bool isForce){
+void CommonUtils::setSpriteMaxSize(Sprite* spr, int limitNum, bool isForce){
     if( spr == NULL )
-        return NULL;
+        return;
     
     if (isForce || spr->getContentSize().width>limitNum || spr->getContentSize().height>limitNum) {
         float sc1 = limitNum*1.0/spr->getContentSize().width;
         float sc2 = limitNum*1.0/spr->getContentSize().height;
         spr->setScale( sc1<sc2?sc1:sc2 );
     }
-    return spr;
+}
+
+void CommonUtils::setSpriteWHSize(Sprite* spr, float width, float height){//设置图片宽高
+    if( spr == NULL ) return;
+    float sc1 = width/spr->getContentSize().width;
+    spr->setScaleX(sc1);
+    float sc2 = height/spr->getContentSize().height;
+    spr->setScaleY(sc2);
 }
 
 string CommonUtils::getPropById(std::string xmlId, std::string propName){

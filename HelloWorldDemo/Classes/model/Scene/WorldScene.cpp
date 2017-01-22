@@ -9,6 +9,8 @@
 #include "NPCRole.hpp"
 #include "Book.hpp"
 #include "UsedRes.hpp"
+#include "MapRes.hpp"
+#include "Weapon.hpp"
 
 USING_NS_CC;
 
@@ -86,9 +88,13 @@ void WorldScene::addRoles(){
     SceneModel::addRoles();
     
     //添加树
-    Tree* tree = Tree::createWithPicName("res/Roles/assassin1a.png");
-    tree->setTileXY(20, 90);
-    RolesController::getInstance()->addControllerRole(tree,true);
+//    Tree* tree = Tree::createWithPicName("res/Roles/assassin1a.png");
+//    tree->setTileXY(20, 90);
+//    RolesController::getInstance()->addControllerRole(tree,true);
+    Weapon* weapon1 = Weapon::createWithWeaponId("100000001");
+    weapon1->setTileXY(11,95);
+    RolesController::getInstance()->addControllerRole(weapon1,true);
+    
     //添加房屋
     House* house = House::createWithPicName("res/Roles/assassin1a.png");
     house->setTileXY(20, 80);
@@ -140,6 +146,11 @@ void WorldScene::addRoles(){
         npcPlayer2->setTileXY(15, 91,false);
         RolesController::getInstance()->addControllerRole(npcPlayer2,true);
         SqliteHelper::getInstance()->ExecuteSql("insert into WorldElements (create_type, tile_x, tile_y, xml_id) values ( 'NPCRole', 15, 91, 500000002)");
+        
+        MapRes* mapRes = MapRes::createWithMapResId("600000001");
+        mapRes->setTileXY(5, 95);
+        RolesController::getInstance()->addControllerRole(mapRes,true);
+        SqliteHelper::getInstance()->ExecuteSql("insert into WorldElements (create_type, tile_x, tile_y, xml_id) values ( 'MapRes', 5, 95, 600000001)");
     }else{
         vector<map<int,DBKeyValue>> vec = SqliteHelper::getInstance()->SelectSql("select * from WorldElements");
         for (int i=0; i<vec.size(); i++) {
@@ -186,6 +197,11 @@ void WorldScene::addRoles(){
                 npcPlayer1->setContainer(_map);
                 npcPlayer1->setTileXY(tile_x, tile_y,false);
                 RolesController::getInstance()->addControllerRole(npcPlayer1,true);
+            }
+            if(create_type=="MapRes"){
+                MapRes* mapRes = MapRes::createWithMapResId(xml_id);
+                mapRes->setTileXY(tile_x, tile_y);
+                RolesController::getInstance()->addControllerRole(mapRes,true);
             }
             
         }

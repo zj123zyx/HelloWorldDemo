@@ -51,6 +51,15 @@ void RolesController::removeRole(Role* role){
     if(m_RoleMap.find(tid)!=m_RoleMap.end()){
         m_RoleMap.erase(tid);
     }
+    vector<Vec2> occupy = role->m_occupy;
+    for (int i=0; i<occupy.size(); i++) {
+        Vec2 occupyPoint = occupy[i];
+        int tid = CommonUtils::getTileIdByXY(occupyPoint.x, occupyPoint.y);
+        if(m_RoleMap.find(tid)!=m_RoleMap.end()){
+            m_RoleMap.erase(tid);
+        }
+    }
+    
     vector<Role*>::iterator it = m_actRoleVec.begin();
     for (; it!=m_actRoleVec.end(); it++) {
         Role* temp = (*it);

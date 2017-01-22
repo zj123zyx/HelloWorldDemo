@@ -35,7 +35,8 @@ namespace CommonUtils {
     bool isRectInTile(Point rectCenter,float rectWidth,float rectHeight,Rect tileRect,float mapHeight);//瓦片地图碰撞检测
     int getTileIdByXY(int x,int y);//通过坐标得到id
     Vec2 getTileXYById(int Tid);//通过id得到坐标
-    Sprite* setSpriteMaxSize(Sprite* spr, int limitNum, bool isForce=false);//设置图片最大宽度
+    void setSpriteMaxSize(Sprite* spr, int limitNum, bool isForce=false);//设置图片最大宽度
+    void setSpriteWHSize(Sprite* spr, float width, float height);//设置图片宽高
     string getPropById(std::string xmlId, std::string propName);
     void setButtonTitle(ControlButton *button, const char *str);
     void splitString(const std::string& strSrc, const std::string& strFind, std::vector<std::string>& arSplit);//字符串分割

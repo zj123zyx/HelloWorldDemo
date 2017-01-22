@@ -505,8 +505,9 @@ int Role::beAttackedByRole(Role* selfRole,int hurt){//被攻击
     if (m_fightValue.m_health<=0) {
         this->removeTarget();
         selfRole->removeTarget();
-        this->removeFromParent();
         RolesController::getInstance()->removeRole(this);//删除角色
+        this->removeFromParent();
+        
     }
     return m_fightValue.m_health;
 }

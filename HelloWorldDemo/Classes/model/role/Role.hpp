@@ -22,7 +22,7 @@ enum RoleType{
     RoleType_Role=0,
     RoleType_Player,
     RoleType_NPCRole,
-    RoleType_Tree,
+    RoleType_MapRes,
     RoleType_Resource,
     RoleType_Building
 };

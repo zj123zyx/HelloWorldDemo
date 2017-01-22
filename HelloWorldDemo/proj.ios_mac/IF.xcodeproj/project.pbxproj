@@ -114,6 +114,10 @@
 		609EC70F1E2DF33100B7ADF9 /* UsedRes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609EC70C1E2DF33100B7ADF9 /* UsedRes.cpp */; };
 		609EC7131E2E0B1300B7ADF9 /* ConfirmNumberView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609EC7111E2E0B1300B7ADF9 /* ConfirmNumberView.cpp */; };
 		609EC7141E2E0B1300B7ADF9 /* ConfirmNumberView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 609EC7111E2E0B1300B7ADF9 /* ConfirmNumberView.cpp */; };
+		60A1A0611E34AB00000173E1 /* Tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60A1A05F1E34AB00000173E1 /* Tree.cpp */; };
+		60A1A0621E34AB00000173E1 /* Tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60A1A05F1E34AB00000173E1 /* Tree.cpp */; };
+		60A1A0651E34AB8F000173E1 /* MapRes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60A1A0631E34AB8F000173E1 /* MapRes.cpp */; };
+		60A1A0661E34AB8F000173E1 /* MapRes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60A1A0631E34AB8F000173E1 /* MapRes.cpp */; };
 		60ABC2A81E13D65C00C8ECAF /* SceneController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC2A61E13D65C00C8ECAF /* SceneController.cpp */; };
 		60ABC2A91E13D65C00C8ECAF /* SceneController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC2A61E13D65C00C8ECAF /* SceneController.cpp */; };
 		60ABC2AC1E13EE1000C8ECAF /* ActionRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60ABC2AA1E13EE1000C8ECAF /* ActionRole.cpp */; };
@@ -128,8 +132,6 @@
 		60B8B6151E0BD3F100371D5D /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B8B6121E0BD3F100371D5D /* PlayerController.cpp */; };
 		60B8FC611E11114B0056EF94 /* RolesController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B8FC5F1E11114B0056EF94 /* RolesController.cpp */; };
 		60B8FC621E11114B0056EF94 /* RolesController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B8FC5F1E11114B0056EF94 /* RolesController.cpp */; };
-		60B8FC661E11164C0056EF94 /* Tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B8FC641E11164C0056EF94 /* Tree.cpp */; };
-		60B8FC671E11164C0056EF94 /* Tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60B8FC641E11164C0056EF94 /* Tree.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -288,6 +290,10 @@
 		609EC70D1E2DF33100B7ADF9 /* UsedRes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UsedRes.hpp; sourceTree = "<group>"; };
 		609EC7111E2E0B1300B7ADF9 /* ConfirmNumberView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfirmNumberView.cpp; sourceTree = "<group>"; };
 		609EC7121E2E0B1300B7ADF9 /* ConfirmNumberView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConfirmNumberView.hpp; sourceTree = "<group>"; };
+		60A1A05F1E34AB00000173E1 /* Tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tree.cpp; sourceTree = "<group>"; };
+		60A1A0601E34AB00000173E1 /* Tree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tree.hpp; sourceTree = "<group>"; };
+		60A1A0631E34AB8F000173E1 /* MapRes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapRes.cpp; sourceTree = "<group>"; };
+		60A1A0641E34AB8F000173E1 /* MapRes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MapRes.hpp; sourceTree = "<group>"; };
 		60ABC2A61E13D65C00C8ECAF /* SceneController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneController.cpp; sourceTree = "<group>"; };
 		60ABC2A71E13D65C00C8ECAF /* SceneController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SceneController.hpp; sourceTree = "<group>"; };
 		60ABC2AA1E13EE1000C8ECAF /* ActionRole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionRole.cpp; sourceTree = "<group>"; };
@@ -300,8 +306,6 @@
 		60B8B6131E0BD3F100371D5D /* PlayerController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerController.hpp; sourceTree = "<group>"; };
 		60B8FC5F1E11114B0056EF94 /* RolesController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RolesController.cpp; sourceTree = "<group>"; };
 		60B8FC601E11114B0056EF94 /* RolesController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RolesController.hpp; sourceTree = "<group>"; };
-		60B8FC641E11164C0056EF94 /* Tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tree.cpp; sourceTree = "<group>"; };
-		60B8FC651E11164C0056EF94 /* Tree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tree.hpp; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -677,13 +681,24 @@
 			path = Resourse;
 			sourceTree = "<group>";
 		};
+		60A1A05E1E34AB00000173E1 /* MapRes */ = {
+			isa = PBXGroup;
+			children = (
+				60A1A0631E34AB8F000173E1 /* MapRes.cpp */,
+				60A1A0641E34AB8F000173E1 /* MapRes.hpp */,
+				60A1A05F1E34AB00000173E1 /* Tree.cpp */,
+				60A1A0601E34AB00000173E1 /* Tree.hpp */,
+			);
+			path = MapRes;
+			sourceTree = "<group>";
+		};
 		60B8B6011E0B6F6500371D5D /* model */ = {
 			isa = PBXGroup;
 			children = (
-				607FDE931E2F3DA50028FE64 /* Scene */,
-				60B8B6021E0B6F6500371D5D /* role */,
 				608ADE5A1E1CD3C80095EDB8 /* TouchNode.cpp */,
 				608ADE5B1E1CD3C80095EDB8 /* TouchNode.hpp */,
+				607FDE931E2F3DA50028FE64 /* Scene */,
+				60B8B6021E0B6F6500371D5D /* role */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -693,12 +708,11 @@
 			children = (
 				60B8B6071E0B710C00371D5D /* Role.cpp */,
 				60B8B6081E0B710C00371D5D /* Role.hpp */,
-				60B8FC641E11164C0056EF94 /* Tree.cpp */,
-				60B8FC651E11164C0056EF94 /* Tree.hpp */,
 				60ABC2AA1E13EE1000C8ECAF /* ActionRole.cpp */,
 				60ABC2AB1E13EE1000C8ECAF /* ActionRole.hpp */,
 				6086094F1E250D1500AEA9B5 /* NPC */,
 				609D5D001E165A1000752DFC /* Resourse */,
+				60A1A05E1E34AB00000173E1 /* MapRes */,
 				608120CF1E2CCDC0004C3372 /* Building */,
 			);
 			path = role;
@@ -881,12 +895,13 @@
 				60B8B6141E0BD3F100371D5D /* PlayerController.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				607FDE9E1E2F3DF00028FE64 /* SceneModel.cpp in Sources */,
+				60A1A0651E34AB8F000173E1 /* MapRes.cpp in Sources */,
 				607FD08A1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */,
 				601CAAFF1E0A9537003BCC41 /* CommonUtils.cpp in Sources */,
 				607B6AAA1E265E0900C3052B /* Player.cpp in Sources */,
+				60A1A0611E34AB00000173E1 /* Tree.cpp in Sources */,
 				608120D41E2CCDC0004C3372 /* Building.cpp in Sources */,
 				608CB4351E30B7C800467B42 /* sqlite3.c in Sources */,
-				60B8FC661E11164C0056EF94 /* Tree.cpp in Sources */,
 				60ABC2A81E13D65C00C8ECAF /* SceneController.cpp in Sources */,
 				601CAAFB1E0A94DB003BCC41 /* TouchDelegateView.cpp in Sources */,
 				609D5CFD1E16575600752DFC /* ResourseController.cpp in Sources */,
@@ -922,7 +937,6 @@
 				608609541E250D4200AEA9B5 /* NPCRole.cpp in Sources */,
 				609EC7141E2E0B1300B7ADF9 /* ConfirmNumberView.cpp in Sources */,
 				607FD08B1E0961CF003798E2 /* GameLoadingScene.cpp in Sources */,
-				60B8FC671E11164C0056EF94 /* Tree.cpp in Sources */,
 				6088CC9D1E1E1F8100345904 /* RapidXMLParser.cpp in Sources */,
 				607B6AAB1E265E0900C3052B /* Player.cpp in Sources */,
 				607FDE9B1E2F3DA50028FE64 /* WorldScene.cpp in Sources */,
@@ -930,6 +944,7 @@
 				609D5D041E165A2900752DFC /* Wood.cpp in Sources */,
 				607FDEA51E2F86970028FE64 /* HouseScene_55.cpp in Sources */,
 				608120D51E2CCDC0004C3372 /* Building.cpp in Sources */,
+				60A1A0661E34AB8F000173E1 /* MapRes.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				607FDE9F1E2F3DF00028FE64 /* SceneModel.cpp in Sources */,
 				608ADE5D1E1CD3C80095EDB8 /* TouchNode.cpp in Sources */,
@@ -937,6 +952,7 @@
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				6088CCB81E1E443F00345904 /* BodyEquip.cpp in Sources */,
 				601CAAF61E0A9062003BCC41 /* TouchUI.cpp in Sources */,
+				60A1A0621E34AB00000173E1 /* Tree.cpp in Sources */,
 				609EC70F1E2DF33100B7ADF9 /* UsedRes.cpp in Sources */,
 				609D5CFE1E16575600752DFC /* ResourseController.cpp in Sources */,
 				60ABC2AD1E13EE1000C8ECAF /* ActionRole.cpp in Sources */,

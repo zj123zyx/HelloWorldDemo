@@ -13,11 +13,7 @@
 
 class NPCRole:public Role
 {
-public:
-    
-//    static NPCRole* createWithPicName(string pic_name);
-//    virtual bool initWithPicName(string pic_name);
-    
+public:    
     static NPCRole* createWithNpcId(string npcId);
     virtual bool initWithNpcId(string npcId);
     

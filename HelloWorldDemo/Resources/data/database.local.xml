@@ -22,6 +22,18 @@
     <ItemSpec id="500000001" name="npc1" description="npc1_description" picture="res/Roles/knight2b.png" width="60" height="60" bagValue="8" moveSpeed="1.5" health="10" attack="2" attackCD="3" attackRange="1" sticky="1" />
     <ItemSpec id="500000002" name="npc2" description="npc2_description" picture="res/Roles/priest2b.png" width="60" height="60" bagValue="8" moveSpeed="1.5" health="5" attack="2" attackCD="3" attackRange="1" sticky="1" />
   </Group>
+  <Group id="mapres">
+    <ItemSpec id="600000001" name="tree" description="tree_description" icon="Map_tree.png" health="10" sticky="1" width="64" height="192" occupy="0,1|0,2" />
+  </Group>
+
+
+
+
+
+
+
+
+
   <Group id="sql">
     <ItemSpec id="create_WorldElements" sql="CREATE TABLE WorldElements ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, xml_id text, create_type text, tile_x text, tile_y text )"/>
   </Group>

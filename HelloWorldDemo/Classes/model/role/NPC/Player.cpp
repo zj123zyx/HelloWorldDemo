@@ -106,7 +106,7 @@ void Player::doActionToTarget(){//对目标操作
     if (m_target && !m_isDead) {
         switch (m_target->m_roleType) {
             case RoleType_NPCRole:
-            case RoleType_Tree:
+            case RoleType_MapRes:
             {
                 Role::roleAttackTarget(this);
                 break;

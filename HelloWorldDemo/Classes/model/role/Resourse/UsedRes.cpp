@@ -42,7 +42,19 @@ bool UsedRes::initWithResId(string resId){
         m_selfValue.m_description=description;
         m_resourceMaxValue=maxValue;
         m_resourceType=(ResourceType)resource_type;
-//        m_resourceValue=1;//?
+
+        if(m_resourceType==ResourceType_Wood){
+            m_resourceValue=10;
+        }else if(m_resourceType==ResourceType_Food){
+            m_resourceValue=10;
+        }else if(m_resourceType==ResourceType_Stone){
+            m_resourceValue=5;
+        }else if(m_resourceType==ResourceType_Steel){
+            m_resourceValue=5;
+        }else{
+            m_resourceValue=0;
+        }
+        m_resourceValue=9;
         //frame
         setRoleSpriteFrame(icon);
         m_roleSprite = Sprite::createWithSpriteFrame(m_roleSpriteFrame);

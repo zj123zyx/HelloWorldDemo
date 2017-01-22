@@ -11,6 +11,7 @@
 
 #include "CCBLoadHelper.hpp"
 #include "CommonUtils.hpp"
+#include "SqliteHelper.hpp"
 
 USING_NS_CC;
 using namespace std;

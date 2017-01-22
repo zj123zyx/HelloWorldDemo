@@ -23,6 +23,7 @@ protected:
     void TapView(Touch* pTouch);
     void OnTouchUIRelease(Ref *target,SEL_CallFunc func);
     virtual void addRoles();
+    
 private:
     TouchDelegateView* m_touchDelegateView;
     

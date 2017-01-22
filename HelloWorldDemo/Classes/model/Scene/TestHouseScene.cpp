@@ -60,17 +60,14 @@ void TestHouseScene::addRoles(){
     SceneModel::addRoles();
     //add tree
     UsedRes* wood = UsedRes::createWithResId("400000001");
-    wood->m_resourceValue=9;
     wood->setTileXY(5,5);
     RolesController::getInstance()->addControllerRole(wood,true);
     
     UsedRes* food = UsedRes::createWithResId("400000002");
-    food->m_resourceValue=9;
     food->setTileXY(6,5);
     RolesController::getInstance()->addControllerRole(food,true);
     
     UsedRes* stone = UsedRes::createWithResId("400000003");
-    stone->m_resourceValue=9;
     stone->setTileXY(7,5);
     RolesController::getInstance()->addControllerRole(stone,true);
     

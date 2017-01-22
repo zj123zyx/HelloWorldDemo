@@ -15,8 +15,11 @@ class NPCRole:public Role
 {
 public:
     
-    static NPCRole* createWithPicName(string pic_name);
-    virtual bool initWithPicName(string pic_name);
+//    static NPCRole* createWithPicName(string pic_name);
+//    virtual bool initWithPicName(string pic_name);
+    
+    static NPCRole* createWithNpcId(string npcId);
+    virtual bool initWithNpcId(string npcId);
     
     void setPosition(const Vec2 &position);
     virtual void move(Point point);

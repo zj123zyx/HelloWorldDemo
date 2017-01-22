@@ -13,10 +13,67 @@
 #include "Wood.hpp"
 #include "Player.hpp"
 
-NPCRole* NPCRole::createWithPicName(string pic_name)
-{
+//NPCRole* NPCRole::createWithPicName(string pic_name)
+//{
+//    NPCRole *pRet = new(std::nothrow) NPCRole();
+//    if (pRet && pRet->initWithPicName(pic_name))
+//    {
+//        pRet->autorelease();
+//        return pRet;
+//    }
+//    else
+//    {
+//        delete pRet;
+//        pRet = nullptr;
+//        return nullptr;
+//    }
+//}
+//
+//bool NPCRole::initWithPicName(string pic_name){
+//    bool ret = false;
+//    if(Role::init()){
+//        ret = true;
+//        m_roleType = RoleType_NPCRole;
+//        m_width=60;//32;//自身宽度
+//        m_height=60;//32;//自身高度
+//        m_bagValue = 8;
+//        m_fightValue.m_moveSpeed = 1.5;
+////        m_fightValue.m_useType=1;
+//        m_fightValue.m_health=10;
+//        m_fightValue.m_attack=2;
+//        m_fightValue.m_attackCD=3;
+//        m_fightValue.m_attackRange=1;
+//        m_selfValue.m_sticky=true;
+//        m_selfValue.m_name="npc";
+//        
+//        m_maxFightValue = m_fightValue;
+//        
+//        setRoleSpriteFrame(pic_name);
+//        SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
+//        m_roleSprite = Sprite::createWithSpriteFrame(frame);
+//        m_roleSprite->setScale(2);
+//        if(m_roleSprite){
+//            this->addChild(m_roleSprite);
+//        }
+//        
+//        m_upLabel = Label::createWithSystemFont(".", "", 14);
+//        m_upLabel->setAnchorPoint(Vec2(0.5, 0));
+//        m_upLabel->setPositionY(4);
+//        if(m_upLabel){
+//            m_desNode->addChild(m_upLabel);
+//        }
+//        //设置动画
+//        setAnimation(ROLW_MOVE_DOWN,"res/Roles/assassin1a.png",0,2);
+//        setAnimation(ROLW_MOVE_LEFT,"res/Roles/assassin1a.png",3,5);
+//        setAnimation(ROLW_MOVE_RIGHT,"res/Roles/assassin1a.png",6,8);
+//        setAnimation(ROLW_MOVE_UP,"res/Roles/assassin1a.png",9,11);
+//    }
+//    return ret;
+//}
+
+NPCRole* NPCRole::createWithNpcId(string npcId){
     NPCRole *pRet = new(std::nothrow) NPCRole();
-    if (pRet && pRet->initWithPicName(pic_name))
+    if (pRet && pRet->initWithNpcId(npcId))
     {
         pRet->autorelease();
         return pRet;
@@ -28,27 +85,39 @@ NPCRole* NPCRole::createWithPicName(string pic_name)
         return nullptr;
     }
 }
-
-bool NPCRole::initWithPicName(string pic_name){
+bool NPCRole::initWithNpcId(string npcId){
     bool ret = false;
     if(Role::init()){
         ret = true;
         m_roleType = RoleType_NPCRole;
-        m_width=60;//32;//自身宽度
-        m_height=60;//32;//自身高度
-        m_bagValue = 8;
-        m_fightValue.m_moveSpeed = 1.5;
-//        m_fightValue.m_useType=1;
-        m_fightValue.m_health=10;
-        m_fightValue.m_attack=2;
-        m_fightValue.m_attackCD=3;
-        m_fightValue.m_attackRange=1;
-        m_selfValue.m_sticky=true;
-        m_selfValue.m_name="npc";
+        
+        string nameStr = CommonUtils::getPropById(npcId,"name");
+        string description = CommonUtils::getPropById(npcId,"description");
+        string picture = CommonUtils::getPropById(npcId,"picture");
+        int width = atoi(CommonUtils::getPropById(npcId, "width").c_str());
+        int height = atoi(CommonUtils::getPropById(npcId, "height").c_str());
+        int bagValue = atoi(CommonUtils::getPropById(npcId, "bagValue").c_str());
+        float moveSpeed = atof(CommonUtils::getPropById(npcId, "moveSpeed").c_str());
+        float health = atof(CommonUtils::getPropById(npcId, "health").c_str());
+        float attack = atof(CommonUtils::getPropById(npcId, "attack").c_str());
+        float attackCD = atof(CommonUtils::getPropById(npcId, "attackCD").c_str());
+        float attackRange = atof(CommonUtils::getPropById(npcId, "attackRange").c_str());
+        int sticky = atoi(CommonUtils::getPropById(npcId, "sticky").c_str());
+        
+        m_width=width;//自身宽度
+        m_height=height;//自身高度
+        m_selfValue.m_name=nameStr;
+        m_selfValue.m_sticky=(sticky>0);
+        m_bagValue = bagValue;
+        m_fightValue.m_moveSpeed = moveSpeed;
+        m_fightValue.m_health=health;
+        m_fightValue.m_attack=attack;
+        m_fightValue.m_attackCD=attackCD;
+        m_fightValue.m_attackRange=attackRange;
         
         m_maxFightValue = m_fightValue;
         
-        setRoleSpriteFrame(pic_name);
+        setRoleSpriteFrame(picture);
         SpriteFrame* frame = CommonUtils::createRoleSpriteFrameBySizeNumber(m_rolePicName, Size(32, 32),1);
         m_roleSprite = Sprite::createWithSpriteFrame(frame);
         m_roleSprite->setScale(2);
@@ -63,10 +132,10 @@ bool NPCRole::initWithPicName(string pic_name){
             m_desNode->addChild(m_upLabel);
         }
         //设置动画
-        setAnimation(ROLW_MOVE_DOWN,"res/Roles/assassin1a.png",0,2);
-        setAnimation(ROLW_MOVE_LEFT,"res/Roles/assassin1a.png",3,5);
-        setAnimation(ROLW_MOVE_RIGHT,"res/Roles/assassin1a.png",6,8);
-        setAnimation(ROLW_MOVE_UP,"res/Roles/assassin1a.png",9,11);
+        setAnimation(ROLW_MOVE_DOWN,picture,0,2);
+        setAnimation(ROLW_MOVE_LEFT,picture,3,5);
+        setAnimation(ROLW_MOVE_RIGHT,picture,6,8);
+        setAnimation(ROLW_MOVE_UP,picture,9,11);
     }
     return ret;
 }

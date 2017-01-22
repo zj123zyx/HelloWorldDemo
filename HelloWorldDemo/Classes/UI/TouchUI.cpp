@@ -6,7 +6,6 @@
 #include "RolesController.hpp"
 
 //test
-#include "SqliteHelper.hpp"
 
 USING_NS_CC;
 
@@ -310,9 +309,15 @@ void TouchUI::onBtn1Click(Ref* pSender, Control::EventType event){
         }else{
             CCLOG("没有目标");
             flyHint("没有目标");
-            bool b1 = SqliteHelper::getInstance()->ExecuteSql("create table student(ID integer primary key autoincrement,name text,sex text)");
-            bool b2 = SqliteHelper::getInstance()->ExecuteSql("insert into student (name, sex) values('student1','male')");
-            bool b3 = SqliteHelper::getInstance()->TableExists("student");
+//            bool b1 = SqliteHelper::getInstance()->ExecuteSql("create table student(ID integer primary key autoincrement,name text,sex text)");
+//            bool b2 = SqliteHelper::getInstance()->ExecuteSql("insert into student (name, sex) values('student1','male')");
+//            bool b3 = SqliteHelper::getInstance()->TableExists("student");
+//            bool b5 = SqliteHelper::getInstance()->TableExists("student1");
+//            map<int,DBKeyValue> b4 = SqliteHelper::getInstance()->SelectSql("select * from student");
+            
+            bool b6 = SqliteHelper::getInstance()->TableEmpty("student");
+            
+            int a=1;
         }
     }
 }

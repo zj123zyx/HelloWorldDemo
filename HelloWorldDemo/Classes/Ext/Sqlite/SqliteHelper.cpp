@@ -56,51 +56,76 @@ bool SqliteHelper::ExecuteSql(string sqlStr){//执行sql语句
     return ret;
 }
 
-bool SqliteHelper::TableExists(string tableName){//表是否存在
-    bool ret = false;
+vector<map<int,DBKeyValue>> SqliteHelper::SelectSql(string sqlStr){//数据库查询
+    vector<map<int,DBKeyValue>> dataVec;
     sqlite3 *pdb = getDataBase();
     if(pdb==nullptr){
-        return ret;
+        log("error database null");
+        return dataVec;
     }
-    
-    string sqlStr = string("select count(*) from sqlite_master where type='table' and name='").append(tableName).append("'");
     char **re;//查询结果
     int r,c;//行、列
     sqlite3_get_table(pdb,sqlStr.c_str(),&re,&r,&c,NULL);//1
-    log("row is %d,column is %d",r,c);
-    
+//    log("row is %d,column is %d",r,c);
+    vector<string> keyVec;
+    for(int i=0;i<c;i++)//2
+    {
+        keyVec.push_back(string(re[i]));
+    }
+    int idx=0;
     for(int i=1;i<=r;i++)//2
     {
+        map<int,DBKeyValue> dataMap;
         for(int j=0;j<c;j++)
         {
-            log("%s",re[i*c+j]);
+            DBKeyValue kv = {keyVec[j],re[i*c+j]};
+            dataMap[idx]=kv;
+            idx++;
+        }
+        dataVec.push_back(dataMap);
+    }
+    sqlite3_free_table(re);
+    sqlite3_close(pdb);
+    
+    for (int i=0; i<dataVec.size(); i++) {
+        map<int,DBKeyValue> tempMap = dataVec[i];
+        map<int,DBKeyValue>::iterator it = tempMap.begin();
+        for (; it!=tempMap.end(); it++) {
+            DBKeyValue kv = it->second;
+            log("%s:%s",kv.DBKey.c_str(),kv.DBValue.c_str());
         }
     }
+    return dataVec;
+}
 
-    
-//    char **re;//查询结果
-//    int r,c;//行、列
-//    sqlite3_get_table(pdb,"select * from student",&re,&r,&c,NULL);//1
-//    log("row is %d,column is %d",r,c);
-//    
-//    for(int i=1;i<=r;i++)//2
-//    {
-//        for(int j=0;j<c;j++)
-//        {
-//            log("%s",re[i*c+j]);
-//        }
-//    }
-    sqlite3_free_table(re);
-    
-    sqlite3_close(pdb);
+bool SqliteHelper::TableExists(string tableName){//表是否存在
+    bool ret = false;
+    string sqlStr = string("select count(*) from sqlite_master where type='table' and name='").append(tableName).append("'");
+    vector<map<int,DBKeyValue>> vec = SelectSql(sqlStr);
+    if(vec.size()==1){
+        map<int,DBKeyValue> map = vec[0];
+        if(map.find(0)!=map.end() && map[0].DBValue=="1"){
+            ret = true;
+        }
+    }
     return ret;
 }
 
-
-
-
-
-
+bool SqliteHelper::TableEmpty(string tableName){//表是否为空
+    bool ret = false;
+    string sqlStr = string("select count(*) from '").append(tableName).append("'");
+    vector<map<int,DBKeyValue>> vec = SelectSql(sqlStr);
+    if(vec.size()==1){
+        map<int,DBKeyValue> map = vec[0];
+        if(map.find(0)!=map.end() && atoi(map[0].DBValue.c_str())>0){
+            ret = false;
+        }else{
+            ret = true;
+        }
+    }
+    
+    return ret;
+}
 
 
 

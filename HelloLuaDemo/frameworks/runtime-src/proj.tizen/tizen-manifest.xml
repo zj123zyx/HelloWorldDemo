@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="2.3" package="com.coco2dx.org" version="1.0.0">
+    <ui-application appid="com.coco2dx.org" exec="hellolua" type="capp" multiple="false" taskmanage="true" nodisplay="false">
+        <icon>HelloLuaDemo.png</icon>
+        <label>HelloLuaDemo</label>
+	</ui-application>
+</manifest>
